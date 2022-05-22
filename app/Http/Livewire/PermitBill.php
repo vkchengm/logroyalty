@@ -219,18 +219,20 @@ class PermitBill extends Component
             $grandTotal = $grandTotal+$detail['amount'];
         }
 
-        foreach ($this->additionalcharges as $additionalcharge) {
-            $added = PermitCharge::create([
-                'permit_id' => $this->permit->id,
-                'name' => $additionalcharge['name'],
-                'unit' => $additionalcharge['unit'],
-                'description' => $additionalcharge['description'],
-                'amount' => $additionalcharge['amount'],
-                'total' => $additionalcharge['total'],
-            ]);
+        if (isset($this->additionalcharges)) {
+            foreach ($this->additionalcharges as $additionalcharge) {
+                $added = PermitCharge::create([
+                    'permit_id' => $this->permit->id,
+                    'name' => $additionalcharge['name'],
+                    'unit' => $additionalcharge['unit'],
+                    'description' => $additionalcharge['description'],
+                    'amount' => $additionalcharge['amount'],
+                    'total' => $additionalcharge['total'],
+                ]);
 
-            $grandTotal = $grandTotal+$additionalcharge['total'];
-        }
+                $grandTotal = $grandTotal+$additionalcharge['total'];
+            }
+        }   
 
         $this->permit->billed_vol = $grandVol;
         $this->permit->billed_amount = $grandTotal;

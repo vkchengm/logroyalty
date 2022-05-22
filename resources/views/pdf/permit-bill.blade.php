@@ -134,10 +134,10 @@
                 Total Logs: {{ number_format($permit->permitDetails->count()) }}
             </td>
             <td>
-                Total Volume: {{ number_format($permit->billed_vol) }} m3
+                Total Volume: {{ number_format($permit->billed_vol, 2) }} m3
             </td>
             <td>
-                Total Amount: {{ number_format($permit->billed_amount) }}
+                Total Amount: {{ number_format($permit->billed_amount, 2) }}
             </td>
         </tr>
     </table>

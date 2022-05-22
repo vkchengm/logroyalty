@@ -22,22 +22,6 @@
                         </div>
 
                         <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
-                            <label for="fos" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Regional Financial Officer</label>
-                            <select name="fo_id" id="fo" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
-                            @foreach($fos as $id => $fo)
-                                    <option value="{{ $id }}" {{ (isset($region) && $region->fo ? $region->fo->id : old('fo_id')) == $id ? 'selected' : '' }}>
-                                        {{ $fo }}
-                                    </option>
-                            @endforeach
-                            </select>
-                            @if($errors->has('fo_id'))
-                                <p class="help-block">
-                                    {{ $errors->first('fo_id') }}
-                                </p>
-                            @endif
-                        </div>
-
-                        <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
                             <label for="ppws" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Regional Officer</label>
                             <select name="ppw_id" id="ppw" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
                             @foreach($ppws as $id => $ppw)
@@ -65,6 +49,22 @@
                             @if($errors->has('tppw_id'))
                                 <p class="help-block">
                                     {{ $errors->first('tppw_id') }}
+                                </p>
+                            @endif
+                        </div>
+
+                        <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
+                            <label for="fos" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Regional Financial Officer</label>
+                            <select name="fo_id" id="fo" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                            @foreach($fos as $id => $fo)
+                                    <option value="{{ $id }}" {{ (isset($region) && $region->fo ? $region->fo->id : old('fo_id')) == $id ? 'selected' : '' }}>
+                                        {{ $fo }}
+                                    </option>
+                            @endforeach
+                            </select>
+                            @if($errors->has('fo_id'))
+                                <p class="help-block">
+                                    {{ $errors->first('fo_id') }}
                                 </p>
                             @endif
                         </div>

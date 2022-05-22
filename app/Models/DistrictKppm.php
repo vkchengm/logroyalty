@@ -10,6 +10,7 @@ class DistrictKppm extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
         'district_id',
         'kppm_id',
     ];

@@ -24,7 +24,6 @@
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <input type="submit" class="bg-red-600 hover:bg-red-900 text-white font-bold py-2 px-4 rounded" value="Delete">
-                                {{-- <input type="submit" class="bg-white text-red-600 hover:text-red-900 mb-2 mr-2" value="Delete"> --}}
                             </form>
                         </div>
 
@@ -36,7 +35,6 @@
                             </form>
                         </div>
                     @elseif ($permit->status == "paid")
-                        {{-- <a href="{{ route('permits.print', $permit->id) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Print Bill</a> --}}
                         <form class="inline-block" action="{{ route('permits.print', $permit->id) }}" method="POST">
                             <input type="hidden" name="_method" value="PUT">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -49,33 +47,23 @@
                     @if ($permit->status == "approved")
                         <a href="{{ route('permits.bill', $permit->id) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Bill</a>
                         <div class="px-1">
-                            {{-- <form class="inline-block" action="{{ route('permits.reject', $permit->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
-                                <input type="hidden" name="_method" value="PUT">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" value="Reject">
-                            </form> --}}
                             <button onclick="Livewire.emit('openModal', 'permit-bill-reject', {{ json_encode([$permit]) }})" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Reject</button>
                         </div>
 
+                    @endif
+
+                    @if ($permit->status == "billed")
+                        <button onclick="Livewire.emit('openModal', 'permit-pay', {{ json_encode([$permit]) }})" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Update Payment</button>
+                        
+                    @endif
+
+                    @if ($permit->status == "paid")
                         <form class="inline-block" action="{{ route('permits.print', $permit->id) }}" method="POST">
                             <input type="hidden" name="_method" value="PUT">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <input type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" value="Print">
                         </form>
-
                     @endif
-                    @if ($permit->status == "billed")
-                        <button onclick="Livewire.emit('openModal', 'permit-pay', {{ json_encode([$permit]) }})" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Update Payment</button>
-                        
-                        <div class="px-1">
-                            <form class="inline-block" action="{{ route('permits.print', $permit->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
-                                <input type="hidden" name="_method" value="PUT">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" value="Submit">
-                            </form>
-                        </div>
-                    @endif
-
 
                 @endcan
 
@@ -88,20 +76,10 @@
                         
                         <div class="px-1">
                             <button onclick="Livewire.emit('openModal', 'permit-approve', {{ json_encode([$permit]) }})" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Approve</button>
-                            {{-- <form class="inline-block" action="{{ route('permits.approve', $permit->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
-                            <input type="hidden" name="_method" value="PUT">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" value="Approve">
-                        </form> --}}
                         </div>
         
                         <button onclick="Livewire.emit('openModal', 'permit-disapprove', {{ json_encode([$permit]) }})" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Disapprove</button>
-                        {{-- <form class="inline-block" action="{{ route('permits.disapprove', $permit->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
-                            <input type="hidden" name="_method" value="PUT">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" value="Disapprove">
-                        </form> --}}
-                        @endif
+                    @endif
                 @endcan
 
                 @can('kppm_access')
@@ -154,7 +132,6 @@
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:bg-stone-600 ">
                                             <div title="Licensee" class="text-sm text-gray-900 dark:text-gray-300 "> <p > {{ $permit->user->licensee->name }} </p> </div>
-                                            {{-- <div title="License No." class="text-sm text-gray-900 dark:text-gray-300 "> <p > {{ $permit->license_no }} </p> </div> --}}
                                             @isset($permit->license)
                                                 <div title="License No." class="text-sm text-gray-900 dark:text-gray-300 "> <p > {{ $permit->license->name }} </p> </div>
                                                 <div title="License AC No." class="text-sm text-gray-900 dark:text-gray-300 "> <p> {{ $permit->licenseAccount->account_no }} </p> </div>
@@ -162,7 +139,6 @@
                                             @endisset
                                             
                                             <div title="Receipt No." class="uppercase text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->receipt_no }} </div>
-                                            {{-- <div title="Application Status" class="uppercase text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->status }} </div> --}}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600 ">
@@ -392,7 +368,8 @@
             @cannot('kppm_access')
                 <div class="flex px-6 py-4 justify-end text-xl dark:text-gray-300">
                     {{-- Total: {{ number_format($grandTotal) }} --}}
-                    Total: {{ number_format($permit->billed_amount) }}
+                    {{-- Total: {{ number_format($permit->billed_amount) }} --}}
+                    Total: {{ number_format($permit->billed_amount, 2) }}
 
                 </div>
             @endcannot
