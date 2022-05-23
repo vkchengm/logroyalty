@@ -1601,8 +1601,8 @@ class UsersTableSeeder extends Seeder
             // Testing Company
             [
                 'id'             => 138,
-                'name'           => 'Matthew Cheng',
-                'email'          => 'vkchengm@gmail.com',
+                'name'           => 'Applicant',
+                'email'          => 'applicant@email.com',
                 'type'           => 'external',
                 'password'       => bcrypt('password'),
                 'is_activated'   => 1,

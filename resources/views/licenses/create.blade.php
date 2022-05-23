@@ -32,6 +32,9 @@
                                 <option value="Form 2B">
                                     Form 2B
                                 </option>
+                                <option value="Form 1">
+                                    Form 1
+                                </option>
                             </select>
                             @if($errors->has('type'))
                                 <p class="help-block">
