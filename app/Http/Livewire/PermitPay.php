@@ -34,16 +34,37 @@ class PermitPay extends ModalComponent
             'user_name' => auth()->user()->name,
             'action' => 'paid',
             'remark' => $this->permitLogRemark.' ',
-            'system_info' => 'Paid On:'.$this->permit->payment_date.' Valid:'.$this->permit->valid_from.'-'.$this->permit->valid_to,
+            'system_info' => 'Paid On:'.$this->permit->payment_date.' Receipt No.:'.$this->permit->receipt_no,
+            // 'system_info' => 'Paid On:'.$this->permit->payment_date.' Valid:'.$this->permit->valid_from.'-'.$this->permit->valid_to,
         ]);
 
         $recipient = $this->permit->user;
         $tdpNo = 'TDP'.str_pad($this->permit->id, 6, '0', STR_PAD_LEFT);
         $subject = 'Permit No. '.$tdpNo.' has been paid';
-        $line = 'Permit is ready to be downloaded.';
+        $line = 'Permit Bill is ready to be downloaded. Please print out the bill and bring it to HQ for Signing.';
         $url = url('/permits/'.$this->permit->id);
         $recipient->notify(new PermitUpdated($subject, $line, $url));    
 
+        $recipient = $this->permit->dfo;
+        $tdpNo = 'TDP'.str_pad($this->permit->id, 6, '0', STR_PAD_LEFT);
+        $subject = 'Permit No. '.$tdpNo.' has been paid';
+        $line = 'Payment Notification. Please instruct KPPM for further actions';
+        $url = url('/permits/'.$this->permit->id);
+        $recipient->notify(new PermitUpdated($subject, $line, $url));    
+
+        $recipient = $this->permit->kppm;
+        $tdpNo = 'TDP'.str_pad($this->permit->id, 6, '0', STR_PAD_LEFT);
+        $subject = 'Permit No. '.$tdpNo.' has been paid';
+        $line = 'Payment Notification. Please be ready for marking.';
+        $url = url('/permits/'.$this->permit->id);
+        $recipient->notify(new PermitUpdated($subject, $line, $url));    
+
+        $recipient = $this->permit->district->region->ppw;
+        $tdpNo = 'TDP'.str_pad($this->permit->id, 6, '0', STR_PAD_LEFT);
+        $subject = 'Permit No. '.$tdpNo.' has been paid';
+        $line = 'Payment Notification.';
+        $url = url('/permits/'.$this->permit->id);
+        $recipient->notify(new PermitUpdated($subject, $line, $url));    
 
         $this->closeModal();
         return redirect()->route('permits.index');
@@ -59,9 +80,10 @@ class PermitPay extends ModalComponent
     {
         return [
             'permit.receipt_no' => ['string'],
+            'permit.fcf_receipt_no' => ['string'],
             'permit.payment_date' => ['date'],
-            'permit.valid_from' => ['date'],
-            'permit.valid_to' => ['date']
+            // 'permit.valid_from' => ['date'],
+            // 'permit.valid_to' => ['date']
         ];
     }
 }
