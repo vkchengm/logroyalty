@@ -15,6 +15,7 @@ class PermitEdit extends Component
 {
     public $permitdetails = [];
     public $species = [];
+    public $line_no = 1;
     public $permit;
     public $licenses;
     public $licenseAccounts;
@@ -42,9 +43,17 @@ class PermitEdit extends Component
 
     } 
 
-    public function addEditDetail()
+    // public function addEditDetail()
+    // {
+    //     $this->permitdetails[] = ['log_no'=>'', 'species_id'=>'', 'length'=>0, 'diameter_1'=>0, 'diameter_2'=>0, 'mean'=>0, 'defect_symbol'=>0, 'defect_length'=>0, 'defect_diameter'=>0];        
+    // }
+
+    public function addDetails()
     {
-        $this->permitdetails[] = ['log_no'=>'', 'species_id'=>'', 'length'=>0, 'diameter_1'=>0, 'diameter_2'=>0, 'mean'=>0, 'defect_symbol'=>0, 'defect_length'=>0, 'defect_diameter'=>0];        
+        for($x=0; $x<=$this->line_no-1; $x++)
+        {
+            $this->permitdetails[] = ['log_no'=>'', 'species_id'=>'', 'length'=>0, 'diameter_1'=>0, 'diameter_2'=>0, 'mean'=>0, 'defect_symbol'=>0, 'defect_length'=>0, 'defect_diameter'=>0];        
+        }
     }
 
     public function removeEditDetail($index)

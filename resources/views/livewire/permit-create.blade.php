@@ -1,24 +1,16 @@
 <div>
-    <div class="pb-2">
-        <input type="number" wire:model="line_no" name="line_no" id="line_no" class="form-input rounded-md shadow-sm mt-1">
-        
-        <button class="btn btn-sm btn-secondary py-2 dark:text-gray-300 text-gray-700" wire:click.prevent="addDetails">
+    {{-- <div class="pb-2">
+        <input type="number" wire:model="line_no" name="line_no" id="line_no" class="form-input rounded-md shadow-sm mt-1 w-24">
+        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="addDetails">
             + Add Logs
         </button>
-    </div>
+    </div> --}}
 
 
     <form method="post" action="{{ route('permits.store') }}">
         @csrf
         
         <div class="shadow overflow-hidden sm:rounded-md">
-            {{-- Licensee Info section 1 --}}
-            {{-- {{ Auth::user()->name }}
-            {{ Auth::user()->licensee->name }}
-            {{ Auth::user()->licensee->license_no }}
-            {{ Auth::user()->licensee->licensee_ac_no }} --}}
-
-            
             {{-- master section 1 --}}
             <div class="px-6 bg-white dark:bg-stone-800 pt-4 pb-4">
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7">
@@ -39,24 +31,6 @@
                         @endif
                     </div>    
 
-                    {{-- <div class="form-group px-1 py-1">
-                        <label for="license_no" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">License No.</label>
-                        <input type="text" name="license_no" id="license_no" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                            value="{{ old('license_no', '') }}" />
-                        @error('license_no')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div> --}}
-
-                    {{-- <div class="form-group px-1 py-1">
-                        <label for="coupe_no" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Coupe No.</label>
-                        <input type="text" name="coupe_no" id="coupe_no" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                            value="{{ old('coupe_no', '') }}" />
-                        @error('coupe_no')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div> --}}
-
                     <div class="form-group px-1 py-1">
                         <label for="coupe_no" class="block font-medium text-sm text-gray-700 dark:text-white">Coupe No.</label>
                         <select name="coupe_no" id="coupe_no" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" >
@@ -73,9 +47,6 @@
                     <div class="form-group px-1 py-1">
                         <label for="licensee_ac_no" class="block font-medium text-sm text-gray-700 dark:text-white">License A/C No.</label>
                         <select name="licensee_ac_no" id="licensee_ac_no" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" >
-                        {{-- <option value="" selected>
-                            All
-                        </option> --}}
                         @isset($licenseAccounts)
                             @foreach($licenseAccounts as $id => $licenseAccount)
                                     <option value="{{ $licenseAccount->id }}">
@@ -165,20 +136,10 @@
                         @endif
                     </div>    
                     
-                    {{-- <div class="form-group px-1 py-1">
-                        <label for="licensee_ac_no" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Licensee A/C No.</label>
-                        <input type="text" name="licensee_ac_no" id="licensee_ac_no" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                        value="{{ Auth::user()->licensee->licensee_ac_no }}" />
-                        
-                        @error('licensee_ac_no')
-                        <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div> --}}
-                    
                     <div class="form-group px-1 py-1">
                         <label for="description" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Description</label>
                         {{-- <input type="text" name="description" id="description" type="text" class="rounded-md shadow-sm mt-1 block w-full" --}}
-                        <input type="text" name="description" id="description" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                        <input type="text" name="description" id="description" class="form-input rounded-md shadow-sm mt-1 block w-full" wire:model="description"
 
                             value="{{ old('description', '') }}" />
                         @error('description')
@@ -289,7 +250,7 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="number" style="width: 7em"
+                                        <input type="number" step=".2" style="width: 7em"
                                             name="permitdetails[{{ $index }}][length]"
                                             size="4" 
                                             class="form-control"
@@ -342,7 +303,8 @@
                                     <td class="px-2">
                                         {{-- <a href="#" class="btn btn-sm btn-secondary py-1 dark:text-white" wire:click.self="removeDetail({{$index}})">Delete</a> --}}
 
-                                        <a href="#" class="btn btn-sm btn-secondary py-1 dark:text-white" wire:click.prevent="removeDetail({{$index}})">Delete</a>
+                                        {{-- <a href="#" class="btn btn-sm btn-secondary py-1 dark:text-white" wire:click.prevent="removeDetail({{$index}})">Delete</a> --}}
+                                        <a href="#" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="removeDetail({{$index}})">Delete</a>
 
                                       {{-- <button class="btn btn-sm btn-secondary py-1 dark:text-white" wire:click.prevent="removeDetail({{ $index }})">
                                         Delete
@@ -363,11 +325,23 @@
 
                     <div class="row">
                         <div class="col-md-12 py-4">
-                            {{-- <a href="#" wire:click.prevent="addDetail">+ Add Another Log</a> --}}
-                            <button class="btn btn-sm btn-secondary py-2 " wire:click.prevent="addDetail">
-                              + Add Another Log
+                            <input type="number" wire:model="line_no" name="line_no" id="line_no" class="form-input rounded-md shadow-sm mt-1 w-16">
+                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="addDetails">
+                                Add Logs
                             </button>
+                    
+                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="addDetails">
+                                Import Logs from Excel file
+                            </button>
+  
+                            {{-- <a href="#" wire:click.prevent="addDetail">+ Add Another Log</a> --}}
+                            
+                            {{-- <button class="btn btn-sm btn-secondary py-2 " wire:click.prevent="addDetail"> --}}
+                            {{-- <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded " wire:click.prevent="addDetail">
+                              + Add Another Log
+                            </button> --}}
 
+  
                         </div>
                         <div>
                             Note: SN=Serial No., L=Length, D1=Diameter 1, D2=Diameter 2, DS=Defect Symbol, DL=Defect Length, DD=Defect Diameter

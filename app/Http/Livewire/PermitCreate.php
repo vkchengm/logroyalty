@@ -16,28 +16,23 @@ class PermitCreate extends Component
 {
     public $permitdetails = [];
     public $species = [];
-    public $line_no = 20;
+    public $line_no = 1;
     public $licenseAccounts;
     public $licenseId;
+
+    public $description = '';
+    public $place_of_scaling = '';
+    public $name_of_scaler = '';
+    public $owner_of_property_hammer_mark = '';
+    public $registered_property_hammer_mark = '';
+    public $buyer = '';
 
     public function mount()
     {
         $this->species = Species::all();
-        // $this->licenses = License::where('licensee_id', Auth::user()->licensee->id)->pluck('id', 'name')->prepend(trans('global.pleaseSelect'), '');
         $this->licenses = License::where('licensee_id', Auth::user()->licensee->id)->orderBy('name')->pluck('id', 'name');
         $this->districts = District::orderBy('name','asc')->pluck('id','name')->prepend(trans(''), 'Please select');
         $this->landtypes = LandTypes::orderBy('name','asc')->pluck('id','name')->prepend(trans(''), 'Please select');
-
-        // $this->landtypes = LandTypes::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-        
-        // if ($this->licenseId != '')
-        // {
-        //     $this->licenseAccounts = LicenseAccCoupe::where('license_id', $this->licenseId)->orderBy('account_no','ASC')->get();
-        // }
-        // else
-        // {
-        //     $this->licenseAccounts = LicenseAccCoupe::orderBy('account_no','ASC')->get();            
-        // }
         $this->licenseAccounts = LicenseAccCoupe::where('license_id', $this->licenses->first())->orderBy('account_no','DESC')->get();
 
 
