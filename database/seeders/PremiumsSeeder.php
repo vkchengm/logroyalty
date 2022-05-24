@@ -17,44 +17,47 @@ class PremiumsSeeder extends Seeder
         $id=1;
         $premiums = [
 
+            // NFM
             [
                 'id'            => $id++,
-                'license_type'  => 'Yayasan Sabah',
+                'licensee_type'  => 'YAYASAN SABAH',
                 'land_type_id'  => '2',
                 'log_size_id'   => '5',
                 'amount'        => '15',
             ],
             [
                 'id'            => $id++,
-                'license_type'  => 'Benta Wawasan',
+                'licensee_type'  => 'BENTA WAWASAN SDN BHD',
                 'land_type_id'  => '2',
                 'log_size_id'   => '5',
                 'amount'        => '15',
             ],
             [
                 'id'            => $id++,
-                'license_type'  => 'SFMLA',
+                'licensee_type'  => 'OTHERS',
                 'land_type_id'  => '2',
                 'log_size_id'   => '5',
                 'amount'        => '30',
             ],
+            // [
+            //     'id'            => $id++,
+            //     'licensee_type'  => 'Form 2B',
+            //     'land_type_id'  => '2',
+            //     'log_size_id'   => '5',
+            //     'amount'        => '20',
+            // ],
+
+            // ITP
             [
                 'id'            => $id++,
-                'license_type'  => 'Form 2B',
-                'land_type_id'  => '2',
-                'log_size_id'   => '5',
-                'amount'        => '20',
-            ],
-            [
-                'id'            => $id++,
-                'license_type'  => 'Yayasan Sabah',
+                'licensee_type'  => 'YAYASAN SABAH',
                 'land_type_id'  => '3',
                 'log_size_id'   => '4',
                 'amount'        => '15',
             ],
             [
                 'id'            => $id++,
-                'license_type'  => 'Yayasan Sabah',
+                'licensee_type'  => 'YAYASAN SABAH',
                 'land_type_id'  => '3',
                 'log_size_id'   => '5',
                 'amount'        => '15',
@@ -62,14 +65,14 @@ class PremiumsSeeder extends Seeder
 
             [
                 'id'            => $id++,
-                'license_type'  => 'Benta Wawasan',
+                'licensee_type'  => 'BENTA WAWASAN SDN BHD',
                 'land_type_id'  => '3',
                 'log_size_id'   => '4',
                 'amount'        => '15',
             ],
             [
                 'id'            => $id++,
-                'license_type'  => 'Benta Wawasan',
+                'licensee_type'  => 'BENTA WAWASAN SDN BHD',
                 'land_type_id'  => '3',
                 'log_size_id'   => '5',
                 'amount'        => '15',
@@ -77,61 +80,91 @@ class PremiumsSeeder extends Seeder
 
             [
                 'id'            => $id++,
-                'license_type'  => 'SFMLA',
+                'licensee_type'  => 'OTHERS',
                 'land_type_id'  => '3',
                 'log_size_id'   => '2',
                 'amount'        => '5',
             ],
             [
                 'id'            => $id++,
-                'license_type'  => 'SFMLA',
+                'licensee_type'  => 'OTHERS',
                 'land_type_id'  => '3',
                 'log_size_id'   => '3',
                 'amount'        => '5',
             ],
             [
                 'id'            => $id++,
-                'license_type'  => 'SFMLA',
+                'licensee_type'  => 'OTHERS',
                 'land_type_id'  => '3',
                 'log_size_id'   => '4',
                 'amount'        => '20',
             ],
             [
                 'id'            => $id++,
-                'license_type'  => 'SFMLA',
+                'licensee_type'  => 'OTHERS',
                 'land_type_id'  => '3',
                 'log_size_id'   => '5',
                 'amount'        => '20',
             ],
 
+            // state land            
             [
                 'id'            => $id++,
-                'license_type'  => 'Form 2B',
-                'land_type_id'  => '3',
+                'licensee_type'  => 'ALL',
+                'land_type_id'  => '5',
                 'log_size_id'   => '2',
                 'amount'        => '5',
             ],
             [
                 'id'            => $id++,
-                'license_type'  => 'Form 2B',
-                'land_type_id'  => '3',
+                'licensee_type'  => 'ALL',
+                'land_type_id'  => '5',
                 'log_size_id'   => '3',
                 'amount'        => '5',
             ],
             [
                 'id'            => $id++,
-                'license_type'  => 'Form 2B',
-                'land_type_id'  => '3',
+                'licensee_type'  => 'ALL',
+                'land_type_id'  => '5',
                 'log_size_id'   => '4',
                 'amount'        => '20',
             ],
             [
                 'id'            => $id++,
-                'license_type'  => 'Form 2B',
-                'land_type_id'  => '3',
+                'licensee_type'  => 'ALL',
+                'land_type_id'  => '5',
                 'log_size_id'   => '5',
                 'amount'        => '20',
             ],
+
+            // [
+            //     'id'            => $id++,
+            //     'licensee_type'  => 'Form 2B',
+            //     'land_type_id'  => '3',
+            //     'log_size_id'   => '2',
+            //     'amount'        => '5',
+            // ],
+            // [
+            //     'id'            => $id++,
+            //     'licensee_type'  => 'Form 2B',
+            //     'land_type_id'  => '3',
+            //     'log_size_id'   => '3',
+            //     'amount'        => '5',
+            // ],
+            // [
+            //     'id'            => $id++,
+            //     'licensee_type'  => 'Form 2B',
+            //     'land_type_id'  => '3',
+            //     'log_size_id'   => '4',
+            //     'amount'        => '20',
+            // ],
+            // [
+            //     'id'            => $id++,
+            //     'licensee_type'  => 'Form 2B',
+            //     'land_type_id'  => '3',
+            //     'log_size_id'   => '5',
+            //     'amount'        => '20',
+            // ],
 
         ];
         Premiums::insert($premiums);

@@ -1608,7 +1608,7 @@ class UsersTableSeeder extends Seeder
                 'is_activated'   => 1,
                 'remember_token' => null,
                 'email_verified_at' => Carbon::now(),
-                'licensee_id'   => 4045,
+                'licensee_id'   => 1,
             ],
             
 

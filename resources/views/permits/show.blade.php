@@ -145,6 +145,7 @@
                                             <div title="District" class="text-sm text-gray-900 dark:text-gray-300 ">{{ $permit->district->name ?? '' }} </div>
                                             <div title="DFO" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->dfo->name ?? '' }} </div>
                                             <div title="KPPM" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->kppm->name ?? '' }} </div>
+                                            <div title="FO" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->fo->name ?? '' }} </div>
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600 ">
@@ -166,9 +167,11 @@
 
                                         @if ($permit->status == "paid")
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600 ">
+                                                <div title="Receipt No." class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->receipt_no }} </div>
                                                 <div title="Payment Date" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->payment_date }} </div>
-                                                <div title="Valid From" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->valid_from }} </div>
-                                                <div title="Valid To" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->valid_to }} </div>
+                                                <div title="FCF Receipt No." class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->fcf_receipt_no }} </div>
+                                                {{-- <div title="Valid From" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->valid_from }} </div>
+                                                <div title="Valid To" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->valid_to }} </div> --}}
                                             </td>
                                         @endif
 
@@ -223,13 +226,13 @@
                                     </th>
 
                                     @cannot('kppm_access')                                        
-                                        <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-right">
                                             Royalty
                                         </th>
-                                        <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-right">
                                             Premium
                                         </th>
-                                        <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-right">
                                             Amount
                                         </th>
                                     @endcannot
@@ -276,15 +279,15 @@
                                             </td>
 
                                             @cannot('kppm_access')                                        
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600 text-right">
                                                 <div class="text-sm text-gray-900 dark:text-gray-300"> {{ $permitdetail->royalty }} </div>
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600 text-right">
                                                 <div class="text-sm text-gray-900 dark:text-gray-300"> {{ $permitdetail->premium }} </div>
                                             </td>
 
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600 text-right">
-                                                <div class="text-sm text-gray-900 dark:text-gray-300"> {{ $permitdetail->amount }} </div>
+                                                <div class="text-sm text-gray-900 dark:text-gray-300"> {{ number_format($permitdetail->amount,2) }} </div>
                                             </td>
                                             @endcannot
 
@@ -321,10 +324,10 @@
                                             Description
                                         </th>
                                         
-                                        <th title="Diameter 1 / Diameter 2" scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th title="Diameter 1 / Diameter 2" scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-right">
                                             Amount
                                         </th>
-                                        <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-right">
                                             Total
                                         </th>
 
@@ -345,12 +348,12 @@
                                                     <div class="text-sm text-gray-900 dark:text-gray-300"> {{ $permitcharge->description }} </div>
                                                 </td>
 
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600">
-                                                    <div class="text-sm text-gray-900 dark:text-gray-300"> {{ $permitcharge->amount }} </div>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600 text-right">
+                                                    <div class="text-sm text-gray-900 dark:text-gray-300"> {{ number_format($permitcharge->amount,2) }} </div>
                                                 </td>
 
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600">
-                                                    <div class="text-sm text-gray-900 dark:text-gray-300"> {{ $permitcharge->total }} </div>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600 text-right">
+                                                    <div class="text-sm text-gray-900 dark:text-gray-300"> {{ number_format($permitcharge->total,2) }} </div>
                                                 </td>
 
                                             </tr>

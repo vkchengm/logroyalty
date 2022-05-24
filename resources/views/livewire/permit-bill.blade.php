@@ -10,8 +10,18 @@
                     <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
 
                     <div class="px-2 pb-4 pb-4">
-                        <label for="license_no" class="block font-medium text-sm text-gray-700 dark:text-gray-300">License No./Coupe No.</label>
-                        <span class="pr-4 block py-1 text-lg text-sm text-gray-700 dark:text-gray-300 rounded-md shadow-sm mt-1 border-solid w-full">{{ $permit->license_no }}</span>
+                        <label for="license_no" class="block font-medium text-sm text-gray-700 dark:text-gray-300">License No.</label>
+                        <span class="pr-4 block py-1 text-lg text-sm text-gray-700 dark:text-gray-300 rounded-md shadow-sm mt-1 border-solid w-full">{{ $permit->license->name }}</span>
+                    </div>
+
+                    <div class="px-2 pb-4">
+                        <label for="license_no" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Coupe No.</label>
+                        <span class="pr-4 block py-1 text-lg text-sm text-gray-700 dark:text-gray-300 rounded-md shadow-sm mt-1 border-solid w-full">{{ $permit->licenseAccount->coupe_no }}</span>
+                    </div>
+
+                    <div class="px-2 pb-4">
+                        <label for="license_no" class="block font-medium text-sm text-gray-700 dark:text-gray-300">License A/C No.</label>
+                        <span class="pr-4 block py-1 text-lg text-sm text-gray-700 dark:text-gray-300 rounded-md shadow-sm mt-1 border-solid w-full">{{ $permit->licenseAccount->account_no }}</span>
                     </div>
 
                     <div class="px-2 pb-4">
@@ -39,11 +49,6 @@
                         <label for="market" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Market</label>
                         <span class="pr-4 block py-1 text-lg text-sm text-gray-700 dark:text-gray-300 rounded-md shadow-sm mt-1 border-solid w-full">{{ $permit->market }}</span>
                     </div>    
-
-                    <div class="px-2 pb-4">
-                        <label for="licensee_ac_no" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Licensee A/C No.</label>
-                        <span class="pr-4 block py-1 text-lg text-sm text-gray-700 dark:text-gray-300 rounded-md shadow-sm mt-1 border-solid w-full">{{ $permit->licensee_ac_no }}</span>
-                    </div>
 
                     <div class="px-2 pb-4">
                       <label for="description" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Description</label>
@@ -200,6 +205,15 @@
                                 <option value="">Select Charge</option>
                                 <option value="PPM">
                                     PPM
+                                </option>
+                                <option value="FCF">
+                                    FCF
+                                </option>
+                                <option value="FRF">
+                                    FRF
+                                </option>
+                                <option value="License Fee">
+                                    License Fee
                                 </option>
                                 <option value="Other">
                                     Other

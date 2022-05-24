@@ -11,8 +11,8 @@ class RoyaltiesTable extends DataTableComponent
 {
 
     // public bool $columnSelect = true;
-    // public array $perPageAccepted = [100, 200, 500];
-    public array $perPageAccepted = [20, 40, 60];
+    public array $perPageAccepted = [100, 200, 500];
+    // public array $perPageAccepted = [20, 40, 60];
     // public bool $perPageAll = true;
     // public int $perPage = 2;
 
