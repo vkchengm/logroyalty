@@ -35,18 +35,6 @@ class StoreLicenseeRequest extends FormRequest
                 'string',
                 'required',
             ],
-            // 'license_type'    => [
-            //     'string',
-            //     'nullable',
-            // ],            
-            // 'license_no'    => [
-            //     'string',
-            //     'nullable',
-            // ],            
-            // 'licensee_ac_no'    => [
-            //     'string',
-            //     'nullable',
-            // ],            
             'contact_no'    => [
                 'string',
                 'nullable',

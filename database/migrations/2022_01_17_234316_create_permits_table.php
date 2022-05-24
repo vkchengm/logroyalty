@@ -31,9 +31,10 @@ class CreatePermitsTable extends Migration
             $table->string('status');
 
             $table->string('receipt_no')->nullable();
+            $table->string('fcf_receipt_no')->nullable();
             $table->date('payment_date')->nullable();
-            $table->date('valid_from')->nullable();
-            $table->date('valid_to')->nullable();
+            // $table->date('valid_from')->nullable();
+            // $table->date('valid_to')->nullable();
             $table->double('billed_vol', 8, 2)->nullable();
             $table->double('billed_amount', 8, 2)->nullable();
     

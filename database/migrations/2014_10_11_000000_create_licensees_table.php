@@ -20,14 +20,6 @@ class CreateLicenseesTable extends Migration
             $table->string('contact_no')->nullable();
             $table->string('address_1')->nullable();
             $table->string('address_2')->nullable();
-
-            // $table->string('license_type')->nullable();
-            // $table->string('license_no')->nullable();
-            // $table->string('licensee_ac_no')->nullable();
-
-            // $table->unsignedBigInteger('district_id')->nullable();
-            // $table->foreign('district_id')->references('id')->on('districts');            
-
             $table->timestamps();
         });
     }

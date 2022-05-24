@@ -85,7 +85,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function licensee()
     {
-        // return $this->belongsTo(Licensee::class)->withDefault(['license_type' => '', 'license_no' => '', 'licensee_ac_no' => '']);
         return $this->belongsTo(Licensee::class);
     }
 
@@ -93,11 +92,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Role::class);
     }
-
-    // public function tdps()
-    // {
-    //     return $this->hasMany(Tdp::class);
-    // }
 
     public function permits()
     {
