@@ -17,6 +17,7 @@ class CreateSpeciesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
+            $table->string('import_code');
             $table->timestamps();
         });
     }

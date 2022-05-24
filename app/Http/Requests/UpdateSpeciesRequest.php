@@ -33,6 +33,10 @@ class UpdateSpeciesRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'import_code'   => [
+                'string',
+                'required',
+            ],
         ];
     }
 }

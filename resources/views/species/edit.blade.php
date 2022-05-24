@@ -41,6 +41,15 @@
                             @endif
                         </div>
 
+                        <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
+                            <label for="import_code" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Import Code</label>
+                            <input type="text" name="import_code" id="import_code" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                   value="{{ old('import_code', $species->import_code) }}" />
+                            @error('import_code')
+                                <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 dark:bg-stone-600 text-right sm:px-6">
                             <a href="{{ route('species.index') }}"  class="pr-4">
                                 <img src="{{ asset('back-arrow-svgrepo-com.svg') }}" alt="My SVG Icon" width="25" height="25">
