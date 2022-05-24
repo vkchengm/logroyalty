@@ -15,7 +15,7 @@ class CreatePremiumsTable extends Migration
     {
         Schema::create('premiums', function (Blueprint $table) {
             $table->id();
-            $table->string('license_type')->nullable();
+            $table->string('licensee_type')->nullable();
             $table->unsignedBigInteger('species_id')->nullable();
             $table->foreign('species_id')->references('id')->on('species');
             $table->unsignedBigInteger('land_type_id')->nullable();

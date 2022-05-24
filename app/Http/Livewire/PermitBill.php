@@ -40,7 +40,7 @@ class PermitBill extends Component
         $market = $permit->market; 
         $landTypeId = $permit->land_type_id;
         $method = $permit->logging_method;
-        $license_type = $permit->user->licensee->type;
+        $licensee_type = $permit->user->licensee->name;
 
         $grandTotal = 0;
         $grandVol = 0;
@@ -76,7 +76,7 @@ class PermitBill extends Component
 
           
           $premium = Premiums::where('land_type_id', $landTypeId)
-                          ->where('license_type', $license_type)
+                          ->where('licensee_type', $licensee_type)
                           ->get();
 
           if (count($premium) == 1){
