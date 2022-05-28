@@ -22,11 +22,11 @@ class CreatePermitsTable extends Migration
             $table->string('licensee_ac_no')->nullable();
             $table->string('description')->nullable();
 
-            $table->string('place_of_scaling');
+            $table->string('place_of_scaling')->nullable();
             $table->date('scaled_date')->nullable();  
-            $table->string('name_of_scaler');
-            $table->string('owner_of_property_hammer_mark');
-            $table->string('registered_property_hammer_mark');
+            $table->string('name_of_scaler')->nullable();
+            $table->string('owner_of_property_hammer_mark')->nullable();
+            $table->string('registered_property_hammer_mark')->nullable();
             $table->string('buyer')->nullable();
             $table->string('status');
 

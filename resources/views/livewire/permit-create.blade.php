@@ -1,12 +1,4 @@
 <div>
-    {{-- <div class="pb-2">
-        <input type="number" wire:model="line_no" name="line_no" id="line_no" class="form-input rounded-md shadow-sm mt-1 w-24">
-        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="addDetails">
-            + Add Logs
-        </button>
-    </div> --}}
-
-
     <form method="post" action="{{ route('permits.store') }}" enctype="multipart/form-data">
         @csrf
         
@@ -61,7 +53,6 @@
                         <label for="districts" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">District</label>
                         <select name="district_id" id="district" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" required>
                             @foreach($districts as $id => $district)
-                                {{-- <option value="{{ $id }}" {{ (isset($tdp) && $tdp->district ? $tdp->district->id : old('district_id')) == $id ? 'selected' : '' }}> --}}
                                 <option value="{{ $district }}">
                                     {{ $id }}
                                 </option>
@@ -80,8 +71,6 @@
                           @foreach($landtypes as $id => $landtype)
                               <option value="{{ $landtype }}" {{ (isset($tdp) && $tdp->landtype ? $tdp->landtype->id : old('land_type_id')) == $id ? 'selected' : '' }}>
                                   {{ $id }}
-                              {{-- <option value="{{ $id }}" {{ (isset($tdp) && $tdp->landtype ? $tdp->landtype->id : old('land_type_id')) == $id ? 'selected' : '' }}>
-                                  {{ $landtype }} --}}
                               </option>
                           @endforeach
                           </select>
@@ -137,7 +126,6 @@
                     
                     <div class="form-group px-1 py-1">
                         <label for="description" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Description</label>
-                        {{-- <input type="text" name="description" id="description" type="text" class="rounded-md shadow-sm mt-1 block w-full" --}}
                         <input type="text" name="description" id="description" class="form-input rounded-md shadow-sm mt-1 block w-full" wire:model="description"
 
                             value="{{ old('description', '') }}" />
@@ -232,7 +220,6 @@
                                             name="permitdetails[{{ $index }}][log_no]" 
                                             size="10"
                                             class="form-control"
-                                            {{-- class="form-input" --}}
                                             wire:model="permitdetails.{{ $index }}.log_no" required/>
                                     </td>
                                     <td class="w-full form-control">
@@ -268,13 +255,6 @@
                                             class="form-control"
                                             wire:model="permitdetails.{{ $index }}.diameter_2" min="1"/>
                                     </td>
-                                    {{-- <td>
-                                        <input type="number" style="width: 7em"
-                                            name="permitdetails[{{ $index }}][defect_symbol]"
-                                            size="12" 
-                                            class="form-control"
-                                            wire:model="permitdetails.{{ $index }}.defect_symbol" />
-                                    </td> --}}
                                     <td class="w-full form-control">
                                         <select name="permitdetails[{{ $index }}][defect_symbol]" class=" min-w-full"
                                         wire:model="permitdetails.{{ $index }}.defect_symbol"
@@ -299,14 +279,8 @@
                                             wire:model="permitdetails.{{ $index }}.defect_diameter" min="0" step="1"/>
                                     </td>
                                     <td class="px-2">
-                                        {{-- <a href="#" class="btn btn-sm btn-secondary py-1 dark:text-white" wire:click.self="removeDetail({{$index}})">Delete</a> --}}
-
-                                        {{-- <a href="#" class="btn btn-sm btn-secondary py-1 dark:text-white" wire:click.prevent="removeDetail({{$index}})">Delete</a> --}}
                                         <a href="#" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="removeDetail({{$index}})">Delete</a>
 
-                                      {{-- <button class="btn btn-sm btn-secondary py-1 dark:text-white" wire:click.prevent="removeDetail({{ $index }})">
-                                        Delete
-                                      </button> --}}
                                     </td>
                                 </tr>
                                 
@@ -333,18 +307,8 @@
                                 <button type="submit" name='submit' class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-40" wire:click.prevent="importExcel">
                                     Import Excel file
                                 </button>
-                                {{-- <input type="file" name="file"/> --}}
                                 <input id="file" type="file" name="file" class="form-control rounded-md shadow-sm mt-1"/>
                             </div>
-                            {{-- <button onclick="Livewire.emit('openModal', 'permit-assign', {{ json_encode([$permit]) }})" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Assign KPPM</button> --}}
-                            {{-- <button onclick="Livewire.emit('openModal', 'permit-assign')" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Assign KPPM</button> --}}
-  
-                            {{-- <a href="#" wire:click.prevent="addDetail">+ Add Another Log</a> --}}
-                            
-                            {{-- <button class="btn btn-sm btn-secondary py-2 " wire:click.prevent="addDetail"> --}}
-                            {{-- <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded " wire:click.prevent="addDetail">
-                              + Add Another Log
-                            </button> --}}
 
   
                         </div>
@@ -362,9 +326,6 @@
 
 
             <div class="flex space-x-4 items-center justify-end px-4 py-3 bg-gray-50  dark:bg-stone-600 text-right sm:px-6">
-                {{-- <div class="px-1">
-                    <a href="{{url()->previous()}}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">Cancel</a>
-                </div> --}}
                 <a href="{{ route('permits.index') }}"  class="pr-4">
                     <img src="{{ asset('back-arrow-svgrepo-com.svg') }}" alt="My SVG Icon" width="25" height="25">
                 </a>
