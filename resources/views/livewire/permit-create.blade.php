@@ -32,6 +32,19 @@
                     </div>    
 
                     <div class="form-group px-1 py-1">
+                        <label for="licensee_ac_no" class="block font-medium text-sm text-gray-700 dark:text-white">License A/C No.</label>
+                        <select name="licensee_ac_no" id="licensee_ac_no" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" required >
+                        @isset($licenseAccounts)
+                            @foreach($licenseAccounts as $id => $licenseAccount)
+                                    <option value="{{ $licenseAccount->id }}">
+                                        {{ $licenseAccount->account_no }}
+                                    </option>
+                            @endforeach
+                        @endisset
+                        </select>
+                    </div>    
+
+                    <div class="form-group px-1 py-1">
                         <label for="coupe_no" class="block font-medium text-sm text-gray-700 dark:text-white">Coupe No.</label>
                         <select name="coupe_no" id="coupe_no" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" >
                         @isset($licenseAccounts)
@@ -43,20 +56,6 @@
                         @endisset
                         </select>
                     </div>    
-
-                    <div class="form-group px-1 py-1">
-                        <label for="licensee_ac_no" class="block font-medium text-sm text-gray-700 dark:text-white">License A/C No.</label>
-                        <select name="licensee_ac_no" id="licensee_ac_no" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" >
-                        @isset($licenseAccounts)
-                            @foreach($licenseAccounts as $id => $licenseAccount)
-                                    <option value="{{ $licenseAccount->id }}">
-                                        {{ $licenseAccount->account_no }}
-                                    </option>
-                            @endforeach
-                        @endisset
-                        </select>
-                    </div>    
-
 
                     <div class="form-group px-1 py-1">
                         <label for="districts" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">District</label>
@@ -239,7 +238,7 @@
                                     <td class="w-full form-control">
                                         <select name="permitdetails[{{ $index }}][species_id]" class=" min-w-full"
                                         wire:model="permitdetails.{{ $index }}.species_id"
-                                        class="w-full" >
+                                        class="w-full" required>
                                             <option value="">Select Species</option>
                                             @foreach ($species as $specie)
                                                 <option value={{ $specie->id }}>
@@ -249,11 +248,11 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="number" step=".2" style="width: 7em"
+                                        <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][length]"
                                             size="4" 
                                             class="form-control"
-                                            wire:model="permitdetails.{{ $index }}.length" min="0.2"/>
+                                            wire:model="permitdetails.{{ $index }}.length" min="0.2" step="0.2"/>
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
@@ -290,14 +289,14 @@
                                             name="permitdetails[{{ $index }}][defect_length]"
                                             size="4" 
                                             class="form-control"
-                                            wire:model="permitdetails.{{ $index }}.defect_length" min="0.2" />
+                                            wire:model="permitdetails.{{ $index }}.defect_length" min="0" step="0.2"/>
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][defect_diameter]"
                                             size="4" 
                                             class="form-control"
-                                            wire:model="permitdetails.{{ $index }}.defect_diameter" min="1" />
+                                            wire:model="permitdetails.{{ $index }}.defect_diameter" min="0" step="1"/>
                                     </td>
                                     <td class="px-2">
                                         {{-- <a href="#" class="btn btn-sm btn-secondary py-1 dark:text-white" wire:click.self="removeDetail({{$index}})">Delete</a> --}}

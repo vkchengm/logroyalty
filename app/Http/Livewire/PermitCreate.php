@@ -56,25 +56,15 @@ class PermitCreate extends Component
 
     public function importExcel(Request $request)
     {
-        dd($request->file);
-        // $file = $request->file('logs_file');
-        // $file = $request->file('logs_file')->getRealPath();
-        // $path1 = $request->file('logs_file')->store('temp'); 
-        // $path=storage_path('app').'/'.$path1;  
 
-        // $data = \Excel::import(new UsersImport,$path);
 
-        // (new LogsImport)->import($request->file('logs_file'), null, \Maatwebsite\Excel\Excel::CSV);
-
-        $path1 = $request->file('logs_file')->store('temp'); 
-        $path=storage_path('app').'/'.$path1;  
-
-        $collection = (new LogsImport)->toCollection($path, null, \Maatwebsite\Excel\Excel::CSV);
+        $logs = (new LogsImport)->toCollection($path, null, \Maatwebsite\Excel\Excel::CSV);
         // $collection = Excel::toCollection(new LogsImport, $path);
-        dd('testing');
-        for($x=0; $x<=$this->line_no-1; $x++)
+
+        // for($x=0; $x<=$this->$collection->count()-1; $x++)
+        foreach ($logs as $index => $log)
         {
-            $this->permitdetails[] = ['log_no'=>'', 'species_id'=>'', 'length'=>0, 'diameter_1'=>0, 'diameter_2'=>0, 'mean'=>0, 'defect_symbol'=>0, 'defect_length'=>0, 'defect_diameter'=>0];        
+            $this->permitdetails[] = ['log_no'=>$log[$index][log_no], 'species_id'=>$log[$index][species_id], 'length'=>$log[$index][length], 'diameter_1'=>$log[$index][diameter_1], 'diameter_2'=>$log[$index][diameter_2], 'mean'=>0, 'defect_symbol'=>$log[$index][defect_symbol], 'defect_length'=>$log[$index][defect_length], 'defect_diameter'=>$log[$index][defect_diameter]];        
         }
     }
 
