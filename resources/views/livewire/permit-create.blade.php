@@ -7,7 +7,7 @@
     </div> --}}
 
 
-    <form method="post" action="{{ route('permits.store') }}">
+    <form method="post" action="{{ route('permits.store') }}" enctype="multipart/form-data">
         @csrf
         
         <div class="shadow overflow-hidden sm:rounded-md">
@@ -60,7 +60,7 @@
 
                     <div class="form-group px-1 py-1">
                         <label for="districts" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">District</label>
-                        <select name="district_id" id="district" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                        <select name="district_id" id="district" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" required>
                             @foreach($districts as $id => $district)
                                 {{-- <option value="{{ $id }}" {{ (isset($tdp) && $tdp->district ? $tdp->district->id : old('district_id')) == $id ? 'selected' : '' }}> --}}
                                 <option value="{{ $district }}">
@@ -77,7 +77,7 @@
 
                     <div class="form-group px-1 py-1">
                         <label for="landtypes" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Land Type</label>
-                        <select name="land_type_id" id="land_type_id" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                        <select name="land_type_id" id="land_type_id" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" required  >
                           @foreach($landtypes as $id => $landtype)
                               <option value="{{ $landtype }}" {{ (isset($tdp) && $tdp->landtype ? $tdp->landtype->id : old('land_type_id')) == $id ? 'selected' : '' }}>
                                   {{ $id }}
@@ -95,7 +95,7 @@
 
                     <div class="form-group px-1 py-1">
                         <label for="logging_method" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Logging method</label>
-                        <select name="logging_method" id="logging_method" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                        <select name="logging_method" id="logging_method" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" required>
                                 <option value="" selected>
                                   Please select
                                 </option>
@@ -118,7 +118,7 @@
 
                     <div class="form-group px-1 py-1">
                         <label for="market" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Market</label>
-                        <select name="market" id="market" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                        <select name="market" id="market" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" required>
                            <option value="" selected>
                              Please select
                            </option>
@@ -159,8 +159,7 @@
                     <div class="form-group px-1 py-1">
                       <label for="scaled_date" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Scaled Date</label>
                       <input type="date" name="scaled_date" id="scaled_date" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                        
-                          value="{{ old('scaled_date', '') }}" />
+                          value="{{ old('scaled_date', '') }}" required/>
                       @error('scaled_date')
                           <p class="text-sm text-red-600">{{ $message }}</p>
                       @enderror
@@ -235,7 +234,7 @@
                                             size="10"
                                             class="form-control"
                                             {{-- class="form-input" --}}
-                                            wire:model="permitdetails.{{ $index }}.log_no" />
+                                            wire:model="permitdetails.{{ $index }}.log_no" required/>
                                     </td>
                                     <td class="w-full form-control">
                                         <select name="permitdetails[{{ $index }}][species_id]" class=" min-w-full"
@@ -254,21 +253,21 @@
                                             name="permitdetails[{{ $index }}][length]"
                                             size="4" 
                                             class="form-control"
-                                            wire:model="permitdetails.{{ $index }}.length" />
+                                            wire:model="permitdetails.{{ $index }}.length" min="0.2"/>
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][diameter_1]"
                                             size="4" 
                                             class="form-control"
-                                            wire:model="permitdetails.{{ $index }}.diameter_1" />
+                                            wire:model="permitdetails.{{ $index }}.diameter_1" min="1"/>
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][diameter_2]"
                                             size="4" 
                                             class="form-control"
-                                            wire:model="permitdetails.{{ $index }}.diameter_2" />
+                                            wire:model="permitdetails.{{ $index }}.diameter_2" min="1"/>
                                     </td>
                                     {{-- <td>
                                         <input type="number" style="width: 7em"
@@ -291,14 +290,14 @@
                                             name="permitdetails[{{ $index }}][defect_length]"
                                             size="4" 
                                             class="form-control"
-                                            wire:model="permitdetails.{{ $index }}.defect_length" />
+                                            wire:model="permitdetails.{{ $index }}.defect_length" min="0.2" />
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][defect_diameter]"
                                             size="4" 
                                             class="form-control"
-                                            wire:model="permitdetails.{{ $index }}.defect_diameter" />
+                                            wire:model="permitdetails.{{ $index }}.defect_diameter" min="1" />
                                     </td>
                                     <td class="px-2">
                                         {{-- <a href="#" class="btn btn-sm btn-secondary py-1 dark:text-white" wire:click.self="removeDetail({{$index}})">Delete</a> --}}
@@ -325,14 +324,21 @@
 
                     <div class="row">
                         <div class="col-md-12 py-4">
-                            <input type="number" wire:model="line_no" name="line_no" id="line_no" class="form-input rounded-md shadow-sm mt-1 w-16">
-                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="addDetails">
+                            
+                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-40" wire:click.prevent="addDetails">
                                 Add Logs
                             </button>
+                            <input type="number" wire:model="line_no" name="line_no" id="line_no" class="form-input rounded-md shadow-sm mt-1 w-16">
                     
-                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="addDetails">
-                                Import Logs from Excel file
-                            </button>
+                            <div class="py-1">
+                                <button type="submit" name='submit' class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-40" wire:click.prevent="importExcel">
+                                    Import Excel file
+                                </button>
+                                {{-- <input type="file" name="file"/> --}}
+                                <input id="file" type="file" name="file" class="form-control rounded-md shadow-sm mt-1"/>
+                            </div>
+                            {{-- <button onclick="Livewire.emit('openModal', 'permit-assign', {{ json_encode([$permit]) }})" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Assign KPPM</button> --}}
+                            {{-- <button onclick="Livewire.emit('openModal', 'permit-assign')" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Assign KPPM</button> --}}
   
                             {{-- <a href="#" wire:click.prevent="addDetail">+ Add Another Log</a> --}}
                             

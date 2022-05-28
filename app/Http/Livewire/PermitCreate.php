@@ -8,9 +8,12 @@ use App\Models\Species;
 use Livewire\Component;
 use App\Models\District;
 use App\Models\LandTypes;
+use App\Imports\LogsImport;
 use App\Models\PermitDetail;
+use Illuminate\Http\Request;
 use App\Models\LicenseAccCoupe;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PermitCreate extends Component
 {
@@ -38,13 +41,37 @@ class PermitCreate extends Component
 
     }
 
-    public function addDetail()
-    {
-        $this->permitdetails[] = ['log_no'=>'', 'species_id'=>'', 'length'=>0, 'diameter_1'=>0, 'diameter_2'=>0, 'mean'=>0, 'defect_symbol'=>0, 'defect_length'=>0, 'defect_diameter'=>0];        
-    }
+    // public function addDetail()
+    // {
+    //     $this->permitdetails[] = ['log_no'=>'', 'species_id'=>'', 'length'=>0, 'diameter_1'=>0, 'diameter_2'=>0, 'mean'=>0, 'defect_symbol'=>0, 'defect_length'=>0, 'defect_diameter'=>0];        
+    // }
 
     public function addDetails()
     {
+        for($x=0; $x<=$this->line_no-1; $x++)
+        {
+            $this->permitdetails[] = ['log_no'=>'', 'species_id'=>'', 'length'=>0, 'diameter_1'=>0, 'diameter_2'=>0, 'mean'=>0, 'defect_symbol'=>0, 'defect_length'=>0, 'defect_diameter'=>0];        
+        }
+    }
+
+    public function importExcel(Request $request)
+    {
+        dd($request->file);
+        // $file = $request->file('logs_file');
+        // $file = $request->file('logs_file')->getRealPath();
+        // $path1 = $request->file('logs_file')->store('temp'); 
+        // $path=storage_path('app').'/'.$path1;  
+
+        // $data = \Excel::import(new UsersImport,$path);
+
+        // (new LogsImport)->import($request->file('logs_file'), null, \Maatwebsite\Excel\Excel::CSV);
+
+        $path1 = $request->file('logs_file')->store('temp'); 
+        $path=storage_path('app').'/'.$path1;  
+
+        $collection = (new LogsImport)->toCollection($path, null, \Maatwebsite\Excel\Excel::CSV);
+        // $collection = Excel::toCollection(new LogsImport, $path);
+        dd('testing');
         for($x=0; $x<=$this->line_no-1; $x++)
         {
             $this->permitdetails[] = ['log_no'=>'', 'species_id'=>'', 'length'=>0, 'diameter_1'=>0, 'diameter_2'=>0, 'mean'=>0, 'defect_symbol'=>0, 'defect_length'=>0, 'defect_diameter'=>0];        

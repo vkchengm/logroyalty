@@ -190,9 +190,9 @@
                     </div>    
 
                     <div class="px-1 py-1">
-                      <label for="place_of_scaling" class="dark:text-gray-300 block font-medium text-sm text-gray-700">Scaled Date</label>
+                      <label for="scaled_date" class="dark:text-gray-300 block font-medium text-sm text-gray-700">Scaled Date</label>
                       <input type="date" name="scaled_date" id="scaled_date" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                          value="{{ old('scaled_date', $permit->scaled_date) }}" />
+                          value="{{ old('scaled_date', $permit->scaled_date) }}" required/>
                       @error('scaled_date')
                           <p class="text-sm text-red-600">{{ $message }}</p>
                       @enderror
@@ -265,12 +265,12 @@
                                         <input type="text" 
                                             name="permitdetails[{{ $index }}][log_no]" 
                                             size="10"
-                                            wire:model="permitdetails.{{ $index }}.log_no" />
+                                            wire:model="permitdetails.{{ $index }}.log_no" required/>
                                     </td>
                                     <td class="w-full form-control ">
                                         <select name="permitdetails[{{ $index }}][species_id]" class=" min-w-full"
                                         wire:model="permitdetails.{{ $index }}.species_id"
-                                        class="w-full" >
+                                        class="w-full" required>
                                             <option value="">Select Species</option>
                                             @foreach ($species as $specie)
                                                 <option value={{ $specie->id }}>
@@ -283,19 +283,19 @@
                                         <input type="number" step=".2" style="width: 7em"
                                             name="permitdetails[{{ $index }}][length]"
                                             size="4" 
-                                            wire:model="permitdetails.{{ $index }}.length" />
+                                            wire:model="permitdetails.{{ $index }}.length" min="0.2"/>
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][diameter_1]"
                                             size="4" 
-                                            wire:model="permitdetails.{{ $index }}.diameter_1" />
+                                            wire:model="permitdetails.{{ $index }}.diameter_1" min="1"/>
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][diameter_2]"
                                             size="4" 
-                                            wire:model="permitdetails.{{ $index }}.diameter_2" />
+                                            wire:model="permitdetails.{{ $index }}.diameter_2" min="1"/>
                                     </td>
                                     
                                     {{-- <td>
@@ -318,13 +318,13 @@
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][defect_length]"
                                             size="4" 
-                                            wire:model="permitdetails.{{ $index }}.defect_length" />
+                                            wire:model="permitdetails.{{ $index }}.defect_length" min="0.2"/>
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][defect_diameter]"
                                             size="4" 
-                                            wire:model="permitdetails.{{ $index }}.defect_diameter" />
+                                            wire:model="permitdetails.{{ $index }}.defect_diameter" min="1" />
                                     </td>
                                     <td class="px-2">
                                       {{-- <button class="btn btn-sm btn-secondary py-1 dark:text-white" wire:click.prevent="removeEditDetail({{ $index }})"> --}}
@@ -354,9 +354,9 @@
                                 Add Logs
                             </button>
                     
-                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="addDetails">
+                            {{-- <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="addDetails">
                                 Import Logs from Excel file
-                            </button>
+                            </button> --}}
 
 
 
