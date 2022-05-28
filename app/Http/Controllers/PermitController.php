@@ -56,22 +56,24 @@ class PermitController extends Controller
     {
         $permit = Permit::create($request->all());
         $totalVol = 0;
-        foreach ($request->permitdetails as $detail) {
-            $line = $permit->permitDetails()->create($detail);
-
-            $mean = ($line->diameter_1 + $line->diameter_2) / 2;
-            $line->mean = $mean;
-            
-            $logvol = round(3.14159*pow(($mean/2/100),2)*$line->length, 2);        
-            $defeatvol = round(3.14159*pow(($line->defect_diameter/2/100),2)*$line->defect_length, 2);
-            $vol = $logvol - $defeatvol; 
-            
-            // $line->vol = round(3.14159*pow(($line->mean/2/100),2)*$line->length, 2); 
-            $line->vol = $vol; 
-
-
-            $line->save();
-            $totalVol = $totalVol + $line->vol;
+        if (isset($request->permitdetails)) {
+            foreach ($request->permitdetails as $detail) {
+                $line = $permit->permitDetails()->create($detail);
+    
+                $mean = ($line->diameter_1 + $line->diameter_2) / 2;
+                $line->mean = $mean;
+                
+                $logvol = round(3.14159*pow(($mean/2/100),2)*$line->length, 2);        
+                $defeatvol = round(3.14159*pow(($line->defect_diameter/2/100),2)*$line->defect_length, 2);
+                $vol = $logvol - $defeatvol; 
+                
+                // $line->vol = round(3.14159*pow(($line->mean/2/100),2)*$line->length, 2); 
+                $line->vol = $vol; 
+    
+    
+                $line->save();
+                $totalVol = $totalVol + $line->vol;
+            }    
         }
 
         $log = PermitLog::create([
@@ -117,32 +119,35 @@ class PermitController extends Controller
         $deleted = PermitDetail::where('permit_id', $permit->id)->delete();
         $totalVol = 0;
 
-        foreach ($request->permitdetails as $detail) {
-            $mean = ($detail['diameter_1']+$detail['diameter_2']) / 2;
+        if (isset($request->permitdetails)) {
 
-            $logvol = round(3.14159*pow(($mean/2/100),2)*$detail['length'], 2);            
-            $defeatvol = round(3.14159*pow(($detail['defect_diameter']/2/100),2)*$detail['defect_length'], 2);
-            $vol = $logvol - $defeatvol; 
+            foreach ($request->permitdetails as $detail) {
+                $mean = ($detail['diameter_1']+$detail['diameter_2']) / 2;
 
-            $totalVol = $totalVol+$vol;
+                $logvol = round(3.14159*pow(($mean/2/100),2)*$detail['length'], 2);            
+                $defeatvol = round(3.14159*pow(($detail['defect_diameter']/2/100),2)*$detail['defect_length'], 2);
+                $vol = $logvol - $defeatvol; 
 
-            $added = PermitDetail::create([
-                'permit_id' => $permit->id,
-                'log_no' => $detail['log_no'],
-                'species_id' => $detail['species_id'],
-                'length' => $detail['length'],
-                'diameter_1' => $detail['diameter_1'],
-                'diameter_2' => $detail['diameter_2'],
-                'mean' => ($detail['diameter_1']+$detail['diameter_2']) / 2,
+                $totalVol = $totalVol+$vol;
 
-                'defect_symbol' => $detail['defect_symbol'],
-                'defect_length' => $detail['defect_length'],
-                'defect_diameter' => $detail['defect_diameter'],
+                $added = PermitDetail::create([
+                    'permit_id' => $permit->id,
+                    'log_no' => $detail['log_no'],
+                    'species_id' => $detail['species_id'],
+                    'length' => $detail['length'],
+                    'diameter_1' => $detail['diameter_1'],
+                    'diameter_2' => $detail['diameter_2'],
+                    'mean' => ($detail['diameter_1']+$detail['diameter_2']) / 2,
 
-                'vol' => $vol,
-            ]);
+                    'defect_symbol' => $detail['defect_symbol'],
+                    'defect_length' => $detail['defect_length'],
+                    'defect_diameter' => $detail['defect_diameter'],
+
+                    'vol' => $vol,
+                ]);
+            }
         }
-
+        
         $log = PermitLog::create([
             'permit_id' => $permit->id,
             'user_name' => auth()->user()->name,

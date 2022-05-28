@@ -25,9 +25,14 @@ class PermitEdit extends Component
     public function mount($permit)
     {
         $this->species = Species::all();
-        $this->districts = District::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-        $this->districts2 = District::all();
-        $this->landtypes = LandTypes::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        // $this->districts = District::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $this->districts = District::orderBy('name','asc')->pluck('name', 'id');
+
+        // $this->districts = District::orderBy('name','asc')->pluck('id','name')->prepend(trans(''), 'Please select');
+
+        // $this->districts2 = District::all();
+        // $this->landtypes = LandTypes::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $this->landtypes = LandTypes::all()->pluck('name', 'id');
         $this->permitdetails = PermitDetail::where('permit_id', $permit->id)->get()->toArray();
         $this->licenses = License::where('licensee_id', $permit->user->licensee->id)->orderBy('name','ASC')->pluck('name', 'id');
         $this->licenseAccounts = LicenseAccCoupe::where('license_id', $permit->license_no)->orderBy('account_no','DESC')->pluck('account_no', 'id');
