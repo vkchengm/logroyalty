@@ -18,8 +18,12 @@ class LicenseAccCoupe extends Model
         'start_date',
         'expiry_date',
         'land_type',
-    ];
 
+        // 'license_type',
+        // 'license_no',
+        // 'licensee_ac_no',
+        // 'district_id',
+    ];
 
     public function license()
     {

@@ -2,8 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Models\License;
+use App\Models\Licensee;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Validation\Rule;
 
 class StoreLicenseRequest extends FormRequest
 {
@@ -25,20 +28,25 @@ class StoreLicenseRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'     => [
+            'name'        => [
                 'string',
                 'required',
             ],
-            'type'     => [
+            'type'        => [
                 'string',
                 'required',
             ],
-            'start_date'     => [
+            'start_date'  => [
                 'date',
             ],
-            'expiry_date'     => [
+            'expiry_date' => [
                 'date',
             ],
         ];
+    }
+
+    public function persist(Licensee $licensee)
+    {
+        return $licensee->licenses()->create($this->validated());
     }
 }

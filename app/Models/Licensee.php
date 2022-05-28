@@ -19,6 +19,11 @@ class Licensee extends Model
         'contact_no',
         'address_1',
         'address_2',
+        
+        // 'license_type',
+        // 'license_no',
+        // 'licensee_ac_no',
+        // 'district_id',
     ];
 
 
