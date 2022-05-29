@@ -30,24 +30,21 @@
                         </div>
 
                         <div class="px-4 py-5 bg-white dark:bg-stone-600  sm:p-6">
-                            <label for="license_type" class="block font-medium text-sm text-gray-700 dark:text-gray-200">License Type</label>
-                            <select name="license_type" id="license_type" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
-                                <option {{ ($premium->license_type) == 'SFMLA' ? 'selected' : '' }} value="SFMLA">
-                                        SFMLA
+                            <label for="licensew_type" class="block font-medium text-sm text-gray-700 dark:text-gray-200">License Type</label>
+                            <select name="licensew_type" id="licensew_type" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                                <option {{ ($premium->licensew_type) == 'YAYASAN SABAH' ? 'selected' : '' }} value="YAYASAN SABAH">
+                                    YAYASAN SABAH
                                 </option>
-                                <option {{ ($premium->license_type) == 'Form 2B' ? 'selected' : '' }} value="Form 2B">
-                                    Form 2B
+                                <option {{ ($premium->licensew_type) == 'BENTA WAWASAN SDN BHD' ? 'selected' : '' }} value="BENTA WAWASAN SDN BHD">
+                                    BENTA WAWASAN SDN BHD
                                 </option>
-                                <option {{ ($premium->license_type) == 'Yayasan Sabah' ? 'selected' : '' }} value="Yayasan Sabah">
-                                    Yayasan Sabah
-                                </option>
-                                <option {{ ($premium->license_type) == 'Benta Wawasan' ? 'selected' : '' }} value="Benta Wawasan">
-                                    Benta Wawasan
+                                <option {{ ($premium->licensew_type) == 'OTHERS' ? 'selected' : '' }} value="OTHERS">
+                                    OTHERS
                                 </option>
                             </select>
-                            @if($errors->has('license_type'))
+                            @if($errors->has('licensew_type'))
                                 <p class="help-block">
-                                    {{ $errors->first('license_type') }}
+                                    {{ $errors->first('licensew_type') }}
                                 </p>
                             @endif
                         </div>

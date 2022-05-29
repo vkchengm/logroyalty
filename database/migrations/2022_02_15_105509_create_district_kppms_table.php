@@ -15,6 +15,7 @@ class CreateDistrictKppmsTable extends Migration
     {
         Schema::create('district_kppms', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
 
             $table->unsignedBigInteger('district_id')->nullable();
             $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');

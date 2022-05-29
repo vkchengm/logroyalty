@@ -36,10 +36,6 @@ class PermitFactory extends Factory
             'registered_property_hammer_mark' => $this->faker->text(10),
             'status' => 'approved',
     
-            // 'payment_date',
-            // 'receipt_no',
-            // 'valid_from',
-            // 'valid_to',
             'billed_vol' => rand(5, 500),
             'billed_amount' => rand(800, 200000),
     

@@ -180,13 +180,6 @@
                         @enderror
                     </div>
 
-
-                {{-- </div>
-            </div> --}}
-
-            {{-- master section 2 --}}
-            {{-- <div class="px-6 bg-white py-2">
-                <div class="flex flex-row"> --}}
                     <div class="px-1 py-1">
                         <label for="place_of_scaling" class="dark:text-gray-300 block font-medium text-sm text-gray-700">Place of Scaling</label>
                         <input type="text" name="place_of_scaling" id="place_of_scaling" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -197,9 +190,9 @@
                     </div>    
 
                     <div class="px-1 py-1">
-                      <label for="place_of_scaling" class="dark:text-gray-300 block font-medium text-sm text-gray-700">Scaled Date</label>
+                      <label for="scaled_date" class="dark:text-gray-300 block font-medium text-sm text-gray-700">Scaled Date</label>
                       <input type="date" name="scaled_date" id="scaled_date" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                          value="{{ old('scaled_date', $permit->scaled_date) }}" />
+                          value="{{ old('scaled_date', $permit->scaled_date) }}" required/>
                       @error('scaled_date')
                           <p class="text-sm text-red-600">{{ $message }}</p>
                       @enderror
@@ -260,7 +253,6 @@
                             <th class="font-light">L(M)</th>
                             <th class="font-light">D1(CM)</th>
                             <th class="font-light">D2(CM)</th>
-                            {{-- <th class="font-light">Mean(CM)</th> --}}
                             <th class="font-light">DS</th>
                             <th class="font-light">DL(M)</th>
                             <th class="font-light">DD(CM)</th>
@@ -273,12 +265,13 @@
                                         <input type="text" 
                                             name="permitdetails[{{ $index }}][log_no]" 
                                             size="10"
-                                            wire:model="permitdetails.{{ $index }}.log_no" />
+                                            wire:model="permitdetails.{{ $index }}.log_no" required/>
                                     </td>
                                     <td class="w-full form-control ">
                                         <select name="permitdetails[{{ $index }}][species_id]" class=" min-w-full"
                                         wire:model="permitdetails.{{ $index }}.species_id"
-                                        class="w-full" >
+                                        class="w-full" required>
+                                            <option value="">Select Species</option>
                                             @foreach ($species as $specie)
                                                 <option value={{ $specie->id }}>
                                                     {{ $specie->name.' ('.$specie->type.')' }}
@@ -287,22 +280,22 @@
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="number" style="width: 7em"
+                                        <input type="number" step=".2" style="width: 7em"
                                             name="permitdetails[{{ $index }}][length]"
                                             size="4" 
-                                            wire:model="permitdetails.{{ $index }}.length" />
+                                            wire:model="permitdetails.{{ $index }}.length" min="0.2"/>
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][diameter_1]"
                                             size="4" 
-                                            wire:model="permitdetails.{{ $index }}.diameter_1" />
+                                            wire:model="permitdetails.{{ $index }}.diameter_1" min="1"/>
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][diameter_2]"
                                             size="4" 
-                                            wire:model="permitdetails.{{ $index }}.diameter_2" />
+                                            wire:model="permitdetails.{{ $index }}.diameter_2" min="1"/>
                                     </td>
                                     
                                     {{-- <td>
@@ -325,16 +318,17 @@
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][defect_length]"
                                             size="4" 
-                                            wire:model="permitdetails.{{ $index }}.defect_length" />
+                                            wire:model="permitdetails.{{ $index }}.defect_length" min="0.2"/>
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][defect_diameter]"
                                             size="4" 
-                                            wire:model="permitdetails.{{ $index }}.defect_diameter" />
+                                            wire:model="permitdetails.{{ $index }}.defect_diameter" min="1" />
                                     </td>
                                     <td class="px-2">
-                                      <button class="btn btn-sm btn-secondary py-1 dark:text-white" wire:click.prevent="removeEditDetail({{ $index }})">
+                                      {{-- <button class="btn btn-sm btn-secondary py-1 dark:text-white" wire:click.prevent="removeEditDetail({{ $index }})"> --}}
+                                      <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="removeEditDetail({{ $index }})">
                                         Delete
                                       </button>
                                     </td>
@@ -353,10 +347,22 @@
 
 
                     <div class="row">
-                        <div class="col-md-12">
-                            <button class="btn btn-sm btn-secondary py-2" wire:click.prevent="addEditDetail">
-                              + Add Another Log
+                        <div class="col-md-12 py-4">
+
+                            <input type="number" wire:model="line_no" name="line_no" id="line_no" class="form-input rounded-md shadow-sm mt-1 w-16">
+                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="addDetails">
+                                Add Logs
                             </button>
+                    
+                            {{-- <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="addDetails">
+                                Import Logs from Excel file
+                            </button> --}}
+
+
+
+                            {{-- <button class="btn btn-sm btn-secondary py-2" wire:click.prevent="addEditDetail">
+                              + Add Another Log
+                            </button> --}}
 
                            
 

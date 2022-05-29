@@ -25,13 +25,13 @@
                                         Name
                                     </th>
                                     <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                                        Regional Financial Officer
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                                         Regional Officer
                                     </th>
                                     <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                                         Assistance Regional Officer
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
+                                        Regional Financial Officer
                                     </th>
                                     <th scope="col" width="200" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 ">
 
@@ -49,13 +49,13 @@
                                             {{ $region->name }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
-                                            {{ $region->fo->name ?? '' }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
                                             {{ $region->ppw->name ?? '' }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
                                             {{ $region->tppw->name ?? '' }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
+                                            {{ $region->fo->name ?? '' }}
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">

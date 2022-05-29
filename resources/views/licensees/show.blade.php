@@ -9,22 +9,23 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             {{-- Buttons --}}
-            <div class="flex items-center py-3">               
+            <div class="flex items-center py-3">
                 <div class="px-2">
                     <a href="{{ route('licensees.index') }}" >
                         <img src="{{ asset('back-arrow-svgrepo-com.svg') }}" alt="My SVG Icon" width="25" height="25">
                     </a>
                 </div>
+
                 <div class="px-2">
-                    <a href="{{ route('licenses.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">New License</a>
+                    <a href="{{ route('licensees.licenses.create', ['licensee' => $licensee]) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">New License</a>
                 </div>
                 {{-- <div >
                     <a href="{{ route('licensees.index') }}"  class="pr-4">
                         <img src="{{ asset('back-arrow-svgrepo-com.svg') }}" alt="My SVG Icon" width="25" height="25">
-                    </a>            
+                    </a>
                 </div> --}}
             </div>
-            
+
             {{-- <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -61,25 +62,73 @@
             </div> --}}
 
             {{-- Licenses --}}
-            <div class="flex flex-col py-4">                
-                <div class="pt-2 font-bold">Licenses Listing</div>
-                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <div class="flex flex-col py-4">
+                <div class="py-2 font-bold">Licenses Listing</div>
+                <div class="-my-2 sm:-mx-6 lg:-mx-8">
+                    <div class="py-2 align-middle min-w-full sm:px-6 lg:px-8">
+                        <div class="shadow border-b border-gray-200 sm:rounded-lg divide-y">
                             @foreach ($licensee->licenses as $license)
                                 <div class="py-2">
-                                    <div class="flex"> 
-                                        <div class="pb-1 px-2"><img src="{{ asset('button-plus-svgrepo-com.svg') }}" alt="My SVG Icon" width="25" height="25"></div>
-                                        <div class="font-bold">{{ 'License No.: '.$license->name }}</div>
+                                    <div class="flex justify-between items-center">
+                                        <div class="inline-flex items-center ml-1">
+                                            <a class="px-2 cursor-pointer" href="{{ route('licenses.licenseAccCoupe.create', ['license' => $license]) }}">
+                                                <img src="{{ asset('button-plus-svgrepo-com.svg') }}" alt="My SVG Icon" width="25" height="25">
+                                            </a>
+
+                                            <div class="font-bold">{{ 'License No.: '.$license->name }}</div>
+                                        </div>
+
+                                        <div class="flex space-x-2">
+                                            <x-jet-secondary-button>
+                                                <a href="{{ route('licenses.edit', ['license' => $license]) }}">Edit</a>
+                                            </x-jet-secondary-button>
+
+                                            <form method="POST" action="{{ route('licenses.destroy', ['license' => $license]) }}">
+                                                @csrf @method('DELETE')
+
+                                                <x-jet-danger-button type="submit" class="mr-2">Delete</x-jet-danger-button>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="grid grid-cols-3 gap-2">
+
+                                    <div class="grid grid-cols-3 gap-2 px-3">
                                         @foreach ($license->licenseAccCoupes as $licenseAccCoupe)
-                                            <div>
-                                                {{ 'Account No.: '.$licenseAccCoupe->account_no }} 
-                                                @isset($licenseAccCoupe->coupe_no)
-                                                    <br> {{ 'Coupe No.: '.$licenseAccCoupe->coupe_no }} 
-                                                @endisset
-                                                {{-- <br> --}}
+                                            <div class="relative m-3 border border-gray-200 rounded p-2 flex" x-data="{hover: false}"
+                                                 @mouseover = "hover = true"
+                                                 @mouseleave = "hover = false"
+                                            >
+                                                <div>
+                                                    {{ 'Account No.: '.$licenseAccCoupe->account_no }}
+
+                                                    @isset($licenseAccCoupe->coupe_no)
+                                                        <br> {{ 'Coupe No.: '.$licenseAccCoupe->coupe_no }}
+                                                    @endisset
+                                                </div>
+
+                                                <div class="absolute top-0 right-0 mr-2 cursor-pointer">
+                                                    <x-jet-dropdown align="right" width="32">
+                                                        <x-slot name="trigger">
+                                                            <div class="h-5 w-5 mr-0" >
+                                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAACH0lEQVRIia2WPU8UURSGn3PnojbSk80mGCi05BfQEVEC2mCBWRcTCwtN/GApdkMWBAt0t7AyxI9dA5Wx4GMrOkorOhuEKAJWJEjpzD0WApksM7uuw9vNOyfPOfecO3eu0ECj+VIa44YUrgOdQPro1bbAllOttVldfFMc/xHHkCgzky+nPONPOOSugG1UBOBAPnmOsbczT781TXCnUBoUcfPAxSbgeh0ijFSmxpbDphd+yBZmH4hQAS60CAc4D9zq6e3bX19b/XxsnqwgM/Gy36gu1yf9DzlVc7M6/WTpJEEmX04ZE3yh9bbE6Zcf2Mvzzx/tGQAjweQZwgHa27zfRQAZzZfSatwWEa0Zzw7Tle5oSNr4vsts9eMpX8FX53UaleBGFBxAVZuWqkTHCFhj3JAVkf44TFRlrUmvGYXuhJRG6rYKHZGfM8lmAKCQMkJME0k2AwABZ4E9YrZo0hkI7BiBr4koDaSwaZ1qTUT6owKSzgBkxbRZXVTwIytIMAMF3zmzLADZwos5hHtNaS1JX1ee5e7/PYusKwKHZ0g/wGMSwAC8K47vojoMBGcAd6J6u1LM/YTQGbS+trrR09u3D1wl5lf6L3BVfViZzi0cG6dAo4XZARVZANpbhB+oMFKdGquFTVMf9X46t3LOky6BV3G7KywFX9A5P7BX6uGRKwgrky+nPPEHVWRA4JI7urYY2FbYFNVaoHbpw8zjnTjGH9GQzb0HDo2MAAAAAElFTkSuQmCC"/>
+                                                            </div>
+                                                        </x-slot>
+
+                                                        <x-slot name="content">
+                                                            <div class="flex flex-col space-y-2">
+                                                                <x-jet-dropdown-link href="{{ route('licenseAccCoupe.edit', ['licenseAccCoupe' => $licenseAccCoupe]) }}">
+                                                                    {{ __('Edit') }}
+                                                                </x-jet-dropdown-link>
+
+                                                                <form method="POST" action="{{ route('licenseAccCoupe.destroy', ['licenseAccCoupe' => $licenseAccCoupe]) }}">
+                                                                    @csrf @method('DELETE')
+                                                                    <button type="submit" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition">
+                                                                        {{ __('Delete') }}
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </x-slot>
+                                                    </x-jet-dropdown>
+                                                </div>
                                             </div>
                                         @endforeach
                                     </div>
@@ -97,13 +146,13 @@
                                 @foreach ($licensee->licenses as $license)
                                     <tr class="border-b">
                                         <td>
-                                        {{ 'License No.: '.$license->name }} 
+                                        {{ 'License No.: '.$license->name }}
                                         </td>
                                         <td>
                                             @foreach ($license->licenseAccCoupes as $licenseAccCoupe)
-                                                {{ 'Account No.: '.$licenseAccCoupe->account_no }} 
+                                                {{ 'Account No.: '.$licenseAccCoupe->account_no }}
                                                 @isset($licenseAccCoupe->coupe_no)
-                                                    {{ '|   Coupe No.: '.$licenseAccCoupe->coupe_no }} 
+                                                    {{ '|   Coupe No.: '.$licenseAccCoupe->coupe_no }}
                                                 @endisset
                                                 <br>
                                             @endforeach

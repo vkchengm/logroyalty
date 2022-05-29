@@ -42,8 +42,9 @@ class Permit extends Model
 
         'payment_date',
         'receipt_no',
-        'valid_from',
-        'valid_to',
+        'fcf_receipt_no',
+        // 'valid_from',
+        // 'valid_to',
         'billed_vol',
         'billed_amount',
 
@@ -59,43 +60,6 @@ class Permit extends Model
     public static function boot()
     {
         parent::boot();
-
-        // $role = DB::table('role_user')
-        //             ->where('user_id', auth()->id())
-        //             ->first();
-
-        
-        // $myId = auth()->id();
-        // dd(auth()->user());
-
-        // $roleTitle = auth()->user()->roles()->first()->title;
-        // if ($roleTitle != 'Viewer') {
-        //     if ($roleTitle == 'DFO') {
-        //         static::addGlobalScope('dfo_id', function(Builder $builder) {
-        //             if (auth()->check()) {
-        //                 return $builder->where('dfo_id', auth()->id());
-        //             }
-        //         });
-        //     } elseif ($roleTitle == 'FO') {
-        //         static::addGlobalScope('fo_id', function(Builder $builder) {
-        //             if (auth()->check()) {
-        //                 return $builder->where('fo_id', auth()->id());
-        //             }
-        //         });
-        //     } elseif ($roleTitle == 'KPPM') {
-        //         static::addGlobalScope('kppm_id', function(Builder $builder) {
-        //             if (auth()->check()) {
-        //                 return $builder->where('kppm_id', auth()->id());
-        //             }
-        //         });
-        //     } else {
-        //         static::addGlobalScope('user_id', function(Builder $builder) {
-        //             if (auth()->check()) {
-        //                 return $builder->where('user_id', auth()->id());
-        //             }
-        //         });
-        //     }
-        // }
     }
 
     public function district()

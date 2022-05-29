@@ -16,6 +16,7 @@ use App\Http\Controllers\DistrictsController;
 use App\Http\Controllers\LandTypesController;
 use App\Http\Controllers\RoyaltiesController;
 use App\Http\Controllers\LicenseMasterController;
+use App\Http\Controllers\LicenseAccountCoupeController;
 
 
 /*
@@ -57,7 +58,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/settings', function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::put('/permit/print/{id}', [PermitController::class, 'print'])->name('permits.print');
-    
+
     Route::put('/permit/submit/{id}', [PermitController::class, 'submit'])->name('permits.submit');
     Route::put('/permit/accept/{id}', [PermitController::class, 'accept'])->name('permits.accept');
     Route::put('/permit/reject/{id}', [PermitController::class, 'reject'])->name('permits.reject');
@@ -69,7 +70,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users/index-external', [UsersController::class, 'indexexternal'])->name('users.index-external');
     Route::get('/users/{user}/edit-internal', [UsersController::class, 'editinternal'])->name('users.edit-internal');
     Route::get('/users/{user}/edit-external', [UsersController::class, 'editexternal'])->name('users.edit-external');
-    
+
     Route::put('/users/{user}/updateinternal', [UsersController::class, 'updateinternal'])->name('users.updateinternal');
     Route::put('/users/{user}/updateexternal', [UsersController::class, 'updateexternal'])->name('users.updateexternal');
 
@@ -78,7 +79,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/users/{user}/destroyinternal', [UsersController::class, 'destroyinternal'])->name('users.destroyinternal');
     // Route::put('/user/activate/{id}', [UsersController::class, 'activate'])->name('users.activate');
 
-    
+
     Route::get('/permits/{permit}/bill', [PermitController::class, 'bill'])->name('permits.bill');
     Route::get('/permits/report', [PermitController::class, 'report'])->name('permits.report');
 
@@ -95,9 +96,9 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('/licenses/{licensee}/create', [LicenseController::class, 'create']);
     // Route::get('/licenses/{id}/create', 'licenses@create');
 
+    Route::resource('licensees.licenses', LicenseController::class)->shallow();
+    Route::resource('licenses.licenseAccCoupe', LicenseAccountCoupeController::class)->shallow();
     Route::resources([
-            'licenses'=> LicenseController::class,
-            
             'licensees'=> LicenseeController::class,
             'users'=> UsersController::class,
             'regions'=> RegionsController::class,
@@ -105,7 +106,7 @@ Route::group(['middleware' => 'auth'], function () {
             'logsizes' => LogSizeController::class,
             'landtypes'=> LandTypesController::class,
             'prices'=> PricesController::class,
-            
+
             'royalties'=> RoyaltiesController::class,
             'premiums'=> PremiumsController::class,
 

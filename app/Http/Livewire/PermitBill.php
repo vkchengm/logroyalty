@@ -40,7 +40,7 @@ class PermitBill extends Component
         $market = $permit->market; 
         $landTypeId = $permit->land_type_id;
         $method = $permit->logging_method;
-        $license_type = $permit->user->licensee->type;
+        $licensee_type = $permit->user->licensee->name;
 
         $grandTotal = 0;
         $grandVol = 0;
@@ -76,7 +76,7 @@ class PermitBill extends Component
 
           
           $premium = Premiums::where('land_type_id', $landTypeId)
-                          ->where('license_type', $license_type)
+                          ->where('licensee_type', $licensee_type)
                           ->get();
 
           if (count($premium) == 1){
@@ -219,18 +219,20 @@ class PermitBill extends Component
             $grandTotal = $grandTotal+$detail['amount'];
         }
 
-        foreach ($this->additionalcharges as $additionalcharge) {
-            $added = PermitCharge::create([
-                'permit_id' => $this->permit->id,
-                'name' => $additionalcharge['name'],
-                'unit' => $additionalcharge['unit'],
-                'description' => $additionalcharge['description'],
-                'amount' => $additionalcharge['amount'],
-                'total' => $additionalcharge['total'],
-            ]);
+        if (isset($this->additionalcharges)) {
+            foreach ($this->additionalcharges as $additionalcharge) {
+                $added = PermitCharge::create([
+                    'permit_id' => $this->permit->id,
+                    'name' => $additionalcharge['name'],
+                    'unit' => $additionalcharge['unit'],
+                    'description' => $additionalcharge['description'],
+                    'amount' => $additionalcharge['amount'],
+                    'total' => $additionalcharge['total'],
+                ]);
 
-            $grandTotal = $grandTotal+$additionalcharge['total'];
-        }
+                $grandTotal = $grandTotal+$additionalcharge['total'];
+            }
+        }   
 
         $this->permit->billed_vol = $grandVol;
         $this->permit->billed_amount = $grandTotal;

@@ -25,7 +25,6 @@ class LicenseAccCoupe extends Model
         // 'district_id',
     ];
 
-
     public function license()
     {
         return $this->belongsTo(License::class);

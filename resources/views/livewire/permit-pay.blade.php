@@ -6,18 +6,6 @@
     </x-slot>
 
     <x-slot name="content">
-        {{-- <div>
-            Name:
-            <select id="kppm_id" name="kppm_id" class="block mt-1 w-full" type="text" wire:model.defer="permit.kppm_id" />
-                <option value="">Select KPPM</option>
-                @foreach ($kppms as $kppm)
-                    <option value={{ $kppm->id }}>
-                        {{ $kppm->name }}
-                    </option>
-                @endforeach
-            </select>
-        </div> --}}
-
         <div>
             Receipt No.:
             <input id="receipt_no" class="block mt-1 w-full" type="text" wire:model.defer="permit.receipt_no" />
@@ -37,6 +25,15 @@
         </div>
 
         <div>
+            FCF Receipt No.:
+            <input id="fcf_receipt_no" class="block mt-1 w-full" type="text" wire:model.defer="permit.fcf_receipt_no" />
+            
+            @error('permit.fcf_receipt_no')
+                <span class="text-sm text-red-500">{{ $message }}</span>
+            @enderror
+        </div>
+
+        {{-- <div>
             Valid From:
             <input id="valid_from" class="block mt-1 w-full" type="date" wire:model.defer="permit.valid_from" />
             
@@ -52,7 +49,7 @@
             @error('permit.valid_to')
                 <span class="text-sm text-red-500">{{ $message }}</span>
             @enderror
-        </div>
+        </div> --}}
 
         <div>
             Notes:

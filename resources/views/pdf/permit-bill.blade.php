@@ -82,15 +82,15 @@
         <tr>
             <td class="right">License No</td>
             <td class="right">:</td>
-            <td>{{ $permit->license_no }}</td>
+            <td>{{ $permit->license->name }}</td>
 
             <td class="right">Account No</td>
             <td class="right">:</td>
-            <td>{{ $permit->licensee_ac_no }}</td>
+            <td>{{ $permit->licenseAccount->account_no }}</td>
 
             <td class="right">Coupe No</td>
             <td class="right">:</td>
-            <td>{{ $permit->coupe_no }}</td>
+            <td>{{ $permit->licenseAccount->coupe_no }}</td>
         </tr>
 
         <tr>
@@ -134,10 +134,10 @@
                 Total Logs: {{ number_format($permit->permitDetails->count()) }}
             </td>
             <td>
-                Total Volume: {{ number_format($permit->billed_vol) }} m3
+                Total Volume: {{ number_format($permit->billed_vol, 2) }} m3
             </td>
             <td>
-                Total Amount: {{ number_format($permit->billed_amount) }}
+                Total Amount: {{ number_format($permit->billed_amount, 2) }}
             </td>
         </tr>
     </table>
@@ -158,11 +158,11 @@
                         {{ $permitCharge->name }} {{ $permitCharge->description }}
                     </td>            
                     <td class="right">
-                        {{ $permitCharge->amount }}
+                        {{ number_format($permitCharge->amount, 2) }}
                         {{ $permitCharge->unit }}
                     </td>            
                     <td class="right">
-                        {{ $permitCharge->total }}
+                        {{ number_format($permitCharge->total, 2) }}
                     </td>            
                 </tr>
             @endforeach
@@ -188,7 +188,7 @@
                     {{ $speciesSum->count() }}
                 </td>            
                 <td class="right">
-                    {{ $speciesSum->sum() }}
+                    {{ number_format($speciesSum->sum(),2) }}
                 </td>            
             </tr>
         @endforeach
@@ -212,7 +212,7 @@
                     {{ $below29->count() }}
                 </td>
                 <td class="right">
-                    {{ $below29->sum('vol') }}
+                    {{ number_format($below29->sum('vol'),2) }}
                 </td>
             </tr>
 
@@ -224,7 +224,7 @@
                     {{ $between30to44->count() }}
                 </td>
                 <td class="right">
-                    {{ $between30to44->sum('vol') }}
+                    {{ number_format($between30to44->sum('vol'),2) }}
                 </td>
             </tr>
             <tr>
@@ -235,7 +235,7 @@
                     {{ $between45to59->count() }}
                 </td>
                 <td class="right">
-                    {{ $between45to59->sum('vol') }}
+                    {{ number_format($between45to59->sum('vol'),2) }}
                 </td>
             </tr>
             <tr>
@@ -246,7 +246,7 @@
                     {{ $above60->count() }}
                 </td>
                 <td class="right">
-                    {{ $above60->sum('vol') }}
+                    {{ number_format($above60->sum('vol'),2) }}
                 </td>
             </tr>
         </tbody>
@@ -275,7 +275,7 @@
 
     <div class="page-break"></div>
 
-
+    <img style="position:absolute" src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('sflogo.png')))}}" width="80"/>
     <h1 class="center">KERAJAAN SABAH MALAYSIA</h1>
     <h2 class="center">JABATAN PERHUTANAN</h2>
     <h3 class="center">Timber Disposal Permit Listing</h3>
@@ -291,15 +291,15 @@
         <tr>
             <td class="right">License No</td>
             <td class="right">:</td>
-            <td>{{ $permit->license_no }}</td>
+            <td>{{ $permit->license->name }}</td>
 
             <td class="right">Account No</td>
             <td class="right">:</td>
-            <td>{{ $permit->licensee_ac_no }}</td>
+            <td>{{ $permit->licenseAccount->account_no }}</td>
 
             <td class="right">Coupe No</td>
             <td class="right">:</td>
-            <td>{{ $permit->coupe_no }}</td>
+            <td>{{ $permit->licenseAccount->coupe_no }}</td>
         </tr>
 
         <tr>
@@ -355,6 +355,7 @@
             <th class="right">Vol</th>
             <th class="right">Royalty</th>
             <th class="right">Premium</th>
+            <th class="right">Total</th>
         </tr>
         </thead>
         <tbody>
@@ -382,6 +383,9 @@
             <td class="right">
                 {{ $permitdetail->premium }}
             </td>
+            <td class="right">
+                {{ number_format($permitdetail->amount,2) }}
+            </td>
         </tr>
 
         @if ($index == 20)
@@ -392,7 +396,7 @@
             
 
 
-
+            <img style="position:absolute" src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('sflogo.png')))}}" width="80"/>
             <h1 class="center">KERAJAAN SABAH MALAYSIA</h1>
             <h2 class="center">JABATAN PERHUTANAN</h2>
             <h3 class="center">Timber Disposal Permit Listing</h3>

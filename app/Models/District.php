@@ -39,6 +39,6 @@ class District extends Model
 
     public function kppms()
     {
-        return $this->hasMany( DistrictKPPM::class);
+        return $this->hasMany( DistrictKppm::class);
     }
 }

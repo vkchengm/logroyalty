@@ -25,11 +25,15 @@ class StoreSpeciesRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'     => [
+            'name'          => [
                 'string',
                 'required',
             ],
-            'type'     => [
+            'type'          => [
+                'string',
+                'required',
+            ],
+            'import_code'   => [
                 'string',
                 'required',
             ],

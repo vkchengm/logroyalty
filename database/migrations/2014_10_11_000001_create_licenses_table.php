@@ -21,14 +21,6 @@ class CreateLicensesTable extends Migration
             $table->foreign('licensee_id')->references('id')->on('licensees');
             $table->date('start_date')->nullable();  
             $table->date('expiry_date')->nullable();  
-
-            // $table->string('license_type')->nullable();
-            // $table->string('license_no')->nullable();
-            // $table->string('licensee_ac_no')->nullable();
-
-            // $table->unsignedBigInteger('district_id')->nullable();
-            // $table->foreign('district_id')->references('id')->on('districts');            
-
             $table->timestamps();
         });
     }

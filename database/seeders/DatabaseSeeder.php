@@ -14,7 +14,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            LicenseeSeeder::class,
+            LicenseesTableSeeder::class,
+            LicensesTableSeeder::class,
+            LicenseAccCoupesTableSeeder::class,
+
             UsersTableSeeder::class,
             RolesTableSeeder::class,
             PermissionsTableSeeder::class,
@@ -25,12 +28,13 @@ class DatabaseSeeder extends Seeder
             SpeciesSeeder::class,
             LandTypesSeeder::class,
             LogSizeSeeder::class,
-            // PricesSeeder::class,
             RoyaltiesSeeder::class,
-            PermitSeeder::class,
+            // PermitSeeder::class,
             PremiumsSeeder::class,
 
         ]);
         
-}
+        $this->call(RoleUserTableSeeder::class);
+        $this->call(DistrictKppmsTableSeeder::class);
+    }
 }

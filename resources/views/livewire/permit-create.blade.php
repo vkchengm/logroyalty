@@ -1,24 +1,8 @@
 <div>
-    <div class="pb-2">
-        <input type="number" wire:model="line_no" name="line_no" id="line_no" class="form-input rounded-md shadow-sm mt-1">
-        
-        <button class="btn btn-sm btn-secondary py-2 dark:text-gray-300 text-gray-700" wire:click.prevent="addDetails">
-            + Add Logs
-        </button>
-    </div>
-
-
-    <form method="post" action="{{ route('permits.store') }}">
+    <form method="post" action="{{ route('permits.store') }}" enctype="multipart/form-data">
         @csrf
         
         <div class="shadow overflow-hidden sm:rounded-md">
-            {{-- Licensee Info section 1 --}}
-            {{-- {{ Auth::user()->name }}
-            {{ Auth::user()->licensee->name }}
-            {{ Auth::user()->licensee->license_no }}
-            {{ Auth::user()->licensee->licensee_ac_no }} --}}
-
-            
             {{-- master section 1 --}}
             <div class="px-6 bg-white dark:bg-stone-800 pt-4 pb-4">
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7">
@@ -39,23 +23,18 @@
                         @endif
                     </div>    
 
-                    {{-- <div class="form-group px-1 py-1">
-                        <label for="license_no" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">License No.</label>
-                        <input type="text" name="license_no" id="license_no" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                            value="{{ old('license_no', '') }}" />
-                        @error('license_no')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div> --}}
-
-                    {{-- <div class="form-group px-1 py-1">
-                        <label for="coupe_no" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Coupe No.</label>
-                        <input type="text" name="coupe_no" id="coupe_no" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                            value="{{ old('coupe_no', '') }}" />
-                        @error('coupe_no')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div> --}}
+                    <div class="form-group px-1 py-1">
+                        <label for="licensee_ac_no" class="block font-medium text-sm text-gray-700 dark:text-white">License A/C No.</label>
+                        <select name="licensee_ac_no" id="licensee_ac_no" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" required >
+                        @isset($licenseAccounts)
+                            @foreach($licenseAccounts as $id => $licenseAccount)
+                                    <option value="{{ $licenseAccount->id }}">
+                                        {{ $licenseAccount->account_no }}
+                                    </option>
+                            @endforeach
+                        @endisset
+                        </select>
+                    </div>    
 
                     <div class="form-group px-1 py-1">
                         <label for="coupe_no" class="block font-medium text-sm text-gray-700 dark:text-white">Coupe No.</label>
@@ -71,27 +50,9 @@
                     </div>    
 
                     <div class="form-group px-1 py-1">
-                        <label for="licensee_ac_no" class="block font-medium text-sm text-gray-700 dark:text-white">License A/C No.</label>
-                        <select name="licensee_ac_no" id="licensee_ac_no" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" >
-                        {{-- <option value="" selected>
-                            All
-                        </option> --}}
-                        @isset($licenseAccounts)
-                            @foreach($licenseAccounts as $id => $licenseAccount)
-                                    <option value="{{ $licenseAccount->id }}">
-                                        {{ $licenseAccount->account_no }}
-                                    </option>
-                            @endforeach
-                        @endisset
-                        </select>
-                    </div>    
-
-
-                    <div class="form-group px-1 py-1">
                         <label for="districts" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">District</label>
-                        <select name="district_id" id="district" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                        <select name="district_id" id="district" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" required>
                             @foreach($districts as $id => $district)
-                                {{-- <option value="{{ $id }}" {{ (isset($tdp) && $tdp->district ? $tdp->district->id : old('district_id')) == $id ? 'selected' : '' }}> --}}
                                 <option value="{{ $district }}">
                                     {{ $id }}
                                 </option>
@@ -106,12 +67,10 @@
 
                     <div class="form-group px-1 py-1">
                         <label for="landtypes" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Land Type</label>
-                        <select name="land_type_id" id="land_type_id" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                        <select name="land_type_id" id="land_type_id" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" required  >
                           @foreach($landtypes as $id => $landtype)
                               <option value="{{ $landtype }}" {{ (isset($tdp) && $tdp->landtype ? $tdp->landtype->id : old('land_type_id')) == $id ? 'selected' : '' }}>
                                   {{ $id }}
-                              {{-- <option value="{{ $id }}" {{ (isset($tdp) && $tdp->landtype ? $tdp->landtype->id : old('land_type_id')) == $id ? 'selected' : '' }}>
-                                  {{ $landtype }} --}}
                               </option>
                           @endforeach
                           </select>
@@ -124,7 +83,7 @@
 
                     <div class="form-group px-1 py-1">
                         <label for="logging_method" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Logging method</label>
-                        <select name="logging_method" id="logging_method" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                        <select name="logging_method" id="logging_method" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" required>
                                 <option value="" selected>
                                   Please select
                                 </option>
@@ -147,7 +106,7 @@
 
                     <div class="form-group px-1 py-1">
                         <label for="market" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Market</label>
-                        <select name="market" id="market" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                        <select name="market" id="market" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" required>
                            <option value="" selected>
                              Please select
                            </option>
@@ -165,20 +124,9 @@
                         @endif
                     </div>    
                     
-                    {{-- <div class="form-group px-1 py-1">
-                        <label for="licensee_ac_no" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Licensee A/C No.</label>
-                        <input type="text" name="licensee_ac_no" id="licensee_ac_no" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                        value="{{ Auth::user()->licensee->licensee_ac_no }}" />
-                        
-                        @error('licensee_ac_no')
-                        <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div> --}}
-                    
                     <div class="form-group px-1 py-1">
                         <label for="description" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Description</label>
-                        {{-- <input type="text" name="description" id="description" type="text" class="rounded-md shadow-sm mt-1 block w-full" --}}
-                        <input type="text" name="description" id="description" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                        <input type="text" name="description" id="description" class="form-input rounded-md shadow-sm mt-1 block w-full" wire:model="description"
 
                             value="{{ old('description', '') }}" />
                         @error('description')
@@ -198,8 +146,7 @@
                     <div class="form-group px-1 py-1">
                       <label for="scaled_date" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Scaled Date</label>
                       <input type="date" name="scaled_date" id="scaled_date" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                        
-                          value="{{ old('scaled_date', '') }}" />
+                          value="{{ old('scaled_date', '') }}" required/>
                       @error('scaled_date')
                           <p class="text-sm text-red-600">{{ $message }}</p>
                       @enderror
@@ -273,13 +220,12 @@
                                             name="permitdetails[{{ $index }}][log_no]" 
                                             size="10"
                                             class="form-control"
-                                            {{-- class="form-input" --}}
-                                            wire:model="permitdetails.{{ $index }}.log_no" />
+                                            wire:model="permitdetails.{{ $index }}.log_no" required/>
                                     </td>
                                     <td class="w-full form-control">
                                         <select name="permitdetails[{{ $index }}][species_id]" class=" min-w-full"
                                         wire:model="permitdetails.{{ $index }}.species_id"
-                                        class="w-full" >
+                                        class="w-full" required>
                                             <option value="">Select Species</option>
                                             @foreach ($species as $specie)
                                                 <option value={{ $specie->id }}>
@@ -293,29 +239,22 @@
                                             name="permitdetails[{{ $index }}][length]"
                                             size="4" 
                                             class="form-control"
-                                            wire:model="permitdetails.{{ $index }}.length" />
+                                            wire:model="permitdetails.{{ $index }}.length" min="0.2" step="0.2"/>
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][diameter_1]"
                                             size="4" 
                                             class="form-control"
-                                            wire:model="permitdetails.{{ $index }}.diameter_1" />
+                                            wire:model="permitdetails.{{ $index }}.diameter_1" min="1"/>
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][diameter_2]"
                                             size="4" 
                                             class="form-control"
-                                            wire:model="permitdetails.{{ $index }}.diameter_2" />
+                                            wire:model="permitdetails.{{ $index }}.diameter_2" min="1"/>
                                     </td>
-                                    {{-- <td>
-                                        <input type="number" style="width: 7em"
-                                            name="permitdetails[{{ $index }}][defect_symbol]"
-                                            size="12" 
-                                            class="form-control"
-                                            wire:model="permitdetails.{{ $index }}.defect_symbol" />
-                                    </td> --}}
                                     <td class="w-full form-control">
                                         <select name="permitdetails[{{ $index }}][defect_symbol]" class=" min-w-full"
                                         wire:model="permitdetails.{{ $index }}.defect_symbol"
@@ -330,23 +269,18 @@
                                             name="permitdetails[{{ $index }}][defect_length]"
                                             size="4" 
                                             class="form-control"
-                                            wire:model="permitdetails.{{ $index }}.defect_length" />
+                                            wire:model="permitdetails.{{ $index }}.defect_length" min="0" step="0.2"/>
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][defect_diameter]"
                                             size="4" 
                                             class="form-control"
-                                            wire:model="permitdetails.{{ $index }}.defect_diameter" />
+                                            wire:model="permitdetails.{{ $index }}.defect_diameter" min="0" step="1"/>
                                     </td>
                                     <td class="px-2">
-                                        {{-- <a href="#" class="btn btn-sm btn-secondary py-1 dark:text-white" wire:click.self="removeDetail({{$index}})">Delete</a> --}}
+                                        <a href="#" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="removeDetail({{$index}})">Delete</a>
 
-                                        <a href="#" class="btn btn-sm btn-secondary py-1 dark:text-white" wire:click.prevent="removeDetail({{$index}})">Delete</a>
-
-                                      {{-- <button class="btn btn-sm btn-secondary py-1 dark:text-white" wire:click.prevent="removeDetail({{ $index }})">
-                                        Delete
-                                      </button> --}}
                                     </td>
                                 </tr>
                                 
@@ -363,11 +297,20 @@
 
                     <div class="row">
                         <div class="col-md-12 py-4">
-                            {{-- <a href="#" wire:click.prevent="addDetail">+ Add Another Log</a> --}}
-                            <button class="btn btn-sm btn-secondary py-2 " wire:click.prevent="addDetail">
-                              + Add Another Log
+                            
+                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-40" wire:click.prevent="addDetails">
+                                Add Logs
                             </button>
+                            <input type="number" wire:model="line_no" name="line_no" id="line_no" class="form-input rounded-md shadow-sm mt-1 w-16">
+                    
+                            <div class="py-1">
+                                <button type="submit" name='submit' class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-40" wire:click.prevent="importExcel">
+                                    Import Excel file
+                                </button>
+                                <input id="file" type="file" name="file" class="form-control rounded-md shadow-sm mt-1"/>
+                            </div>
 
+  
                         </div>
                         <div>
                             Note: SN=Serial No., L=Length, D1=Diameter 1, D2=Diameter 2, DS=Defect Symbol, DL=Defect Length, DD=Defect Diameter
@@ -383,9 +326,6 @@
 
 
             <div class="flex space-x-4 items-center justify-end px-4 py-3 bg-gray-50  dark:bg-stone-600 text-right sm:px-6">
-                {{-- <div class="px-1">
-                    <a href="{{url()->previous()}}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">Cancel</a>
-                </div> --}}
                 <a href="{{ route('permits.index') }}"  class="pr-4">
                     <img src="{{ asset('back-arrow-svgrepo-com.svg') }}" alt="My SVG Icon" width="25" height="25">
                 </a>

@@ -22,18 +22,19 @@ class CreatePermitsTable extends Migration
             $table->string('licensee_ac_no')->nullable();
             $table->string('description')->nullable();
 
-            $table->string('place_of_scaling');
+            $table->string('place_of_scaling')->nullable();
             $table->date('scaled_date')->nullable();  
-            $table->string('name_of_scaler');
-            $table->string('owner_of_property_hammer_mark');
-            $table->string('registered_property_hammer_mark');
+            $table->string('name_of_scaler')->nullable();
+            $table->string('owner_of_property_hammer_mark')->nullable();
+            $table->string('registered_property_hammer_mark')->nullable();
             $table->string('buyer')->nullable();
             $table->string('status');
 
             $table->string('receipt_no')->nullable();
+            $table->string('fcf_receipt_no')->nullable();
             $table->date('payment_date')->nullable();
-            $table->date('valid_from')->nullable();
-            $table->date('valid_to')->nullable();
+            // $table->date('valid_from')->nullable();
+            // $table->date('valid_to')->nullable();
             $table->double('billed_vol', 8, 2)->nullable();
             $table->double('billed_amount', 8, 2)->nullable();
     

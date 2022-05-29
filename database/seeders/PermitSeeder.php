@@ -16,11 +16,8 @@ class PermitSeeder extends Seeder
      */
     public function run()
     {
-        // Permit::factory()->times(50)->create();
-
-        // $permit = Permit::factory()->times(50)
+        
         $permit = Permit::factory()->count(200)
-            // ->haspermitDetails(rand(5,25))
             ->has(
                 PermitDetail::factory()
                     ->count(rand(5,25)) 

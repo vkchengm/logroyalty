@@ -12,7 +12,7 @@ class Premiums extends Model
     protected $fillable = [
         'land_type_id',
         'log_size_id',
-        'license_type',
+        'licensee_type',
 
         'amount',
         // hard coded exemption Macaranga

@@ -4,18 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\License;
 use App\Models\Licensee;
-
-use App\Models\Licenses;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\StoreLicenseRequest;
-use App\Http\Requests\UpdateLicenseRequest;
+use App\Http\Requests\UpdateLicensesRequest;
 
 class LicenseController extends Controller
 {
-    public function index()
+    public function index(Licensee $licensee)
     {
-        $licenses = License::all();
+        $licenses = $licensee->licenses()->get();
 
         return view('licenses.index', compact('licenses'));
     }
@@ -29,53 +25,46 @@ class LicenseController extends Controller
     //     return view('licenses.create', ['licensee' => $licensee]);
     // }
 
-    public function create()
+    public function create(Licensee $licensee)
     {
-        return view('licenses.create');        
-        
+        return view('licenses.create', compact('licensee'));
     }
 
-    
-    public function store(StoreLicenseRequest $request)
+
+    public function store(Licensee $licensee, StoreLicenseRequest $request)
     {
-        $license = License::create($request->validated());
+        $request->persist($licensee);
 
-        $license->licensee_id = '1234';
-        $license->save();
-
-        return redirect()->route('licensees.index');
-
+        return redirect()->route('licensees.show', ['licensee' => $licensee]);
     }
 
-    
+
     public function show(License $license)
     {
         return view('licenses.show', compact('license'));
-        
     }
 
-    
+
     public function edit(License $license)
     {
         return view('licenses.edit', compact('license'));
-        
     }
 
-    
-    public function update(UpdateLicenseRequest $request, License $license)
+
+    public function update(UpdateLicensesRequest $request, License $license)
     {
         $license->update($request->validated());
 
-        return redirect()->route('licenses.index');
-
+        return redirect()->route('licensees.show', ['licensee' => $license->licensee_id]);
     }
 
-    
+
     public function destroy(License $license)
     {
+        $license->licenseAccCoupes()->delete();
+
         $license->delete();
 
-        return redirect()->route('licenses.index');
-
+        return redirect()->route('licensees.show', ['licensee' => $license->licensee]);
     }
 }

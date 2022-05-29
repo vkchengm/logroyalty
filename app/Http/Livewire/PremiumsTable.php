@@ -29,7 +29,7 @@ class PremiumsTable extends DataTableComponent
                 // ->sortable()
                 ->searchable(),
 
-            Column::make('License', 'license_type')
+            Column::make('License', 'licensee_type')
                 // ->sortable()
                 ->searchable(),            
 

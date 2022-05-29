@@ -10,7 +10,7 @@
             <div class="flex flex-col">
                 <div class="py-4">Welcome to Sabah Forestry - Logs Royalty Appilcation</div>
 
-                <div class="font-bold py-4">
+                <div class="py-4">
                     Announcement....
                 </div>
                 <div class="font-bold py-4">

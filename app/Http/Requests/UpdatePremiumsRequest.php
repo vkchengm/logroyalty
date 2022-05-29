@@ -34,7 +34,7 @@ class UpdatePremiumsRequest extends FormRequest
                 'integer',
                 'required',
             ],
-            'license_type'     => [
+            'licensee_type'     => [
                 'string',
                 'required',
             ],

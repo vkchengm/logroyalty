@@ -30,27 +30,24 @@
                         </div>
 
                         <div class="px-4 py-5 bg-white dark:bg-stone-600  sm:p-6">
-                            <label for="license_type" class="block font-medium text-sm text-gray-700 dark:text-gray-200">License Type</label>
-                            <select name="license_type" id="license_type" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                            <label for="licensee_type" class="block font-medium text-sm text-gray-700 dark:text-gray-200">License Type</label>
+                            <select name="licensee_type" id="licensee_type" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
                                 <option value="" selected>
                                     Please select
                                 </option>
-                                <option value="SFMLA">
-                                        SFMLA
+                                <option value="YAYASAN SABAH">
+                                    YAYASAN SABAH
                                 </option>
-                                <option value="Form 2B">
-                                    Form 2B
+                                <option value="BENTA WAWASAN SDN BHD">
+                                    BENTA WAWASAN SDN BHD
                                 </option>
-                                <option value="Yayasan Sabah">
-                                    Yayasan Sabah
-                                </option>
-                                <option value="Benta Wawasan">
-                                    Benta Wawasan
+                                <option value="OTHERS">
+                                    OTHERS
                                 </option>
                             </select>
-                            @if($errors->has('license_type'))
+                            @if($errors->has('licensee_type'))
                                 <p class="help-block">
-                                    {{ $errors->first('license_type') }}
+                                    {{ $errors->first('licensee_type') }}
                                 </p>
                             @endif
                         </div>
