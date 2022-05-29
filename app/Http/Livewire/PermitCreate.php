@@ -2,26 +2,27 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Permit;
 use App\Models\License;
 use App\Models\Species;
 use Livewire\Component;
 use App\Models\District;
 use App\Models\LandTypes;
 use App\Imports\LogsImport;
-use App\Models\PermitDetail;
-use Illuminate\Http\Request;
 use App\Models\LicenseAccCoupe;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithFileUploads;
 use Maatwebsite\Excel\Facades\Excel;
 
 class PermitCreate extends Component
 {
+    use WithFileUploads;
+
     public $permitdetails = [];
     public $species = [];
     public $line_no = 1;
     public $licenseAccounts;
     public $licenseId;
+    public $logs_sheet;
 
     public $description = '';
     public $place_of_scaling = '';
@@ -45,25 +46,61 @@ class PermitCreate extends Component
     {
         for($x=0; $x<=$this->line_no-1; $x++)
         {
-            $this->permitdetails[] = ['log_no'=>'', 'species_id'=>'', 'length'=>0, 'diameter_1'=>0, 'diameter_2'=>0, 'mean'=>0, 'defect_symbol'=>0, 'defect_length'=>0, 'defect_diameter'=>0];        
+            $this->permitdetails[] = ['log_no'=>'', 'species_id'=>'', 'length'=>0, 'diameter_1'=>0, 'diameter_2'=>0, 'mean'=>0, 'defect_symbol'=>0, 'defect_length'=>0, 'defect_diameter'=>0];
         }
     }
 
-    public function importExcel(Request $request)
+    public function importLogsExcel()
     {
-        $logs = (new LogsImport)->toCollection($path, null, \Maatwebsite\Excel\Excel::CSV);
-        // $collection = Excel::toCollection(new LogsImport, $path);
+        $this->validate([
+            'logs_sheet' => ['required', 'file'],
+        ]);
 
-        foreach ($logs as $index => $log)
-        {
-            $this->permitdetails[] = ['log_no'=>$log[$index][log_no], 'species_id'=>$log[$index][species_id], 'length'=>$log[$index][length], 'diameter_1'=>$log[$index][diameter_1], 'diameter_2'=>$log[$index][diameter_2], 'mean'=>0, 'defect_symbol'=>$log[$index][defect_symbol], 'defect_length'=>$log[$index][defect_length], 'defect_diameter'=>$log[$index][defect_diameter]];        
+        $path = $this->logs_sheet->path();
+
+        $pathParts = explode('livewire-tmp', $path);
+
+        $path = 'livewire-tmp'.$pathParts[1];
+
+        $uploadedFileMimeType = $this->logs_sheet->getMimeType();
+
+        if (
+        ! in_array(strtolower($uploadedFileMimeType), [
+            'text/csv',
+            'application/vnd.msexcel',
+            'application/vnd.ms-excel',
+            'text/comma-separated-values',
+            'application/csv,application/excel',
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheetapplication/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        ])
+        ) {
+            return $this->addError(
+                'logs_sheet',
+                'File format is not supported'
+            );
         }
+
+        $logs = Excel::toArray(new LogsImport(), $path,  config('filesystems.default'));
+
+
+        $logs = collect($logs[0])->map(function ($log) {
+            $log['mean'] = 0;
+
+            return $log;
+        })->toArray();
+
+        $this->permitdetails = array_merge($logs, $this->permitdetails);
+
+        $this->emit('imported');
+
+        $this->reset(['logs_sheet']);
     }
 
     public function changeLicense()
     {
         $this->licenseAccounts = LicenseAccCoupe::where('license_id', $this->licenseId)->orderBy('account_no','DESC')->get();
-    } 
+    }
 
     public function removeDetail($index)
     {
@@ -73,7 +110,7 @@ class PermitCreate extends Component
 
     public function render()
     {
-        if (auth()->user()->is_activated == true) 
+        if (auth()->user()->is_activated == true)
         {
             return view('livewire.permit-create');
         }
@@ -82,7 +119,7 @@ class PermitCreate extends Component
             <div class="py-4 text-center">
                 This account needs to be activated!  Please contact Administrator, Thank you!
             </div>
-            blade;  
+            blade;
         }
     }
 }

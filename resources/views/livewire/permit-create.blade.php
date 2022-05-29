@@ -1,7 +1,7 @@
 <div>
     <form method="post" action="{{ route('permits.store') }}" enctype="multipart/form-data">
         @csrf
-        
+
         <div class="shadow overflow-hidden sm:rounded-md">
             {{-- master section 1 --}}
             <div class="px-6 bg-white dark:bg-stone-800 pt-4 pb-4">
@@ -21,7 +21,7 @@
                                 {{ $errors->first('license_no') }}
                             </p>
                         @endif
-                    </div>    
+                    </div>
 
                     <div class="form-group px-1 py-1">
                         <label for="licensee_ac_no" class="block font-medium text-sm text-gray-700 dark:text-white">License A/C No.</label>
@@ -34,7 +34,7 @@
                             @endforeach
                         @endisset
                         </select>
-                    </div>    
+                    </div>
 
                     <div class="form-group px-1 py-1">
                         <label for="coupe_no" class="block font-medium text-sm text-gray-700 dark:text-white">Coupe No.</label>
@@ -47,7 +47,7 @@
                             @endforeach
                         @endisset
                         </select>
-                    </div>    
+                    </div>
 
                     <div class="form-group px-1 py-1">
                         <label for="districts" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">District</label>
@@ -63,7 +63,7 @@
                                 {{ $errors->first('district_id') }}
                             </p>
                         @endif
-                    </div>    
+                    </div>
 
                     <div class="form-group px-1 py-1">
                         <label for="landtypes" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Land Type</label>
@@ -79,7 +79,7 @@
                                   {{ $errors->first('land_type_id') }}
                               </p>
                           @endif
-                    </div>    
+                    </div>
 
                     <div class="form-group px-1 py-1">
                         <label for="logging_method" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Logging method</label>
@@ -102,7 +102,7 @@
                                 {{ $errors->first('logging_method') }}
                             </p>
                         @endif
-                    </div>    
+                    </div>
 
                     <div class="form-group px-1 py-1">
                         <label for="market" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Market</label>
@@ -122,8 +122,8 @@
                                 {{ $errors->first('market') }}
                             </p>
                         @endif
-                    </div>    
-                    
+                    </div>
+
                     <div class="form-group px-1 py-1">
                         <label for="description" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Description</label>
                         <input type="text" name="description" id="description" class="form-input rounded-md shadow-sm mt-1 block w-full" wire:model="description"
@@ -133,7 +133,7 @@
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
-                    
+
                     <div class="form-group px-1 py-1">
                         <label for="place_of_scaling" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Place of Scaling</label>
                         <input type="text" name="place_of_scaling" id="place_of_scaling" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -141,7 +141,7 @@
                         @error('place_of_scaling')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
-                    </div>    
+                    </div>
 
                     <div class="form-group px-1 py-1">
                       <label for="scaled_date" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Scaled Date</label>
@@ -150,7 +150,7 @@
                       @error('scaled_date')
                           <p class="text-sm text-red-600">{{ $message }}</p>
                       @enderror
-                    </div>    
+                    </div>
 
                     <div class="form-group px-1 py-1">
                         <label for="name_of_scaler" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Name of Scaler</label>
@@ -159,7 +159,7 @@
                         @error('name_of_scaler')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
-                    </div>    
+                    </div>
 
                     <div class="form-group px-1 py-1">
                         <label for="owner_of_property_hammer_mark" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Hammer Mark Owner</label>
@@ -168,7 +168,7 @@
                         @error('owner_of_property_hammer_mark')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
-                    </div>    
+                    </div>
 
                     <div class="form-group px-1 py-1">
                       <label for="registered_property_hammer_mark" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Hammer Mark</label>
@@ -177,7 +177,7 @@
                       @error('registered_property_hammer_mark')
                           <p class="text-sm text-red-600">{{ $message }}</p>
                       @enderror
-                    </div>    
+                    </div>
 
                     <div class="form-group px-1 py-1">
                         <label for="buyer" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Buyer</label>
@@ -186,8 +186,8 @@
                         @error('buyer')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
-                    </div>    
-  
+                    </div>
+
               </div>
             </div>
 
@@ -197,7 +197,7 @@
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
                     <div class="align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                    
+
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                         <table class="min-w-full divide-y divide-gray-200" id="products_table">
                         <thead>
@@ -216,8 +216,8 @@
                             @foreach ($permitdetails as $index => $permitdetail)
                                 <tr class="break-words dark:text-gray-900">
                                     <td>
-                                        <input type="text" 
-                                            name="permitdetails[{{ $index }}][log_no]" 
+                                        <input type="text"
+                                            name="permitdetails[{{ $index }}][log_no]"
                                             size="10"
                                             class="form-control"
                                             wire:model="permitdetails.{{ $index }}.log_no" required/>
@@ -237,21 +237,21 @@
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][length]"
-                                            size="4" 
+                                            size="4"
                                             class="form-control"
                                             wire:model="permitdetails.{{ $index }}.length" min="0.2" step="0.2"/>
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][diameter_1]"
-                                            size="4" 
+                                            size="4"
                                             class="form-control"
                                             wire:model="permitdetails.{{ $index }}.diameter_1" min="1"/>
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][diameter_2]"
-                                            size="4" 
+                                            size="4"
                                             class="form-control"
                                             wire:model="permitdetails.{{ $index }}.diameter_2" min="1"/>
                                     </td>
@@ -267,14 +267,14 @@
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][defect_length]"
-                                            size="4" 
+                                            size="4"
                                             class="form-control"
                                             wire:model="permitdetails.{{ $index }}.defect_length" min="0" step="0.2"/>
                                     </td>
                                     <td>
                                         <input type="number" style="width: 7em"
                                             name="permitdetails[{{ $index }}][defect_diameter]"
-                                            size="4" 
+                                            size="4"
                                             class="form-control"
                                             wire:model="permitdetails.{{ $index }}.defect_diameter" min="0" step="1"/>
                                     </td>
@@ -283,7 +283,7 @@
 
                                     </td>
                                 </tr>
-                                
+
                             @endforeach
 
                         </tbody>
@@ -297,20 +297,24 @@
 
                     <div class="row">
                         <div class="col-md-12 py-4">
-                            
+
                             <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-40" wire:click.prevent="addDetails">
                                 Add Logs
                             </button>
                             <input type="number" wire:model="line_no" name="line_no" id="line_no" class="form-input rounded-md shadow-sm mt-1 w-16">
-                    
+
                             <div class="py-1">
-                                <button type="submit" name='submit' class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-40" wire:click.prevent="importExcel">
+                                <button type="submit" name='submit' class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-40" wire:click.prevent="importLogsExcel()">
                                     Import Excel file
                                 </button>
-                                <input id="file" type="file" name="file" class="form-control rounded-md shadow-sm mt-1"/>
+                                <input id="file" wire:model="logs_sheet" type="file" name="file" class="form-control rounded-md shadow-sm mt-1"/>
                             </div>
 
-  
+                            <x-jet-input-error for="logs_sheet"></x-jet-input-error>
+
+                            <x-jet-action-message on="">
+                                Logs Imported!
+                            </x-jet-action-message>
                         </div>
                         <div>
                             Note: SN=Serial No., L=Length, D1=Diameter 1, D2=Diameter 2, DS=Defect Symbol, DL=Defect Length, DD=Defect Diameter
