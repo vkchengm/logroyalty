@@ -160,8 +160,10 @@
                                             <div title="Scaled Date" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->scaled_date }} </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600 ">
-                                            <div title="Hammer Mark Owner" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->owner_of_property_hammer_mark }} </div>
-                                            <div title="Mark" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->registered_property_hammer_mark }} </div>
+                                            @isset($permit->hammerMark)
+                                                <div title="Hammer Mark" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->hammerMark->name }} </div>
+                                                <div title="Hammer Mark Owner" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->hammerMark->employee_name }} </div>
+                                            @endisset
                                             <div title="Remark" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->description }} </div>
                                         </td>
 
@@ -170,8 +172,6 @@
                                                 <div title="Receipt No." class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->receipt_no }} </div>
                                                 <div title="Payment Date" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->payment_date }} </div>
                                                 <div title="FCF Receipt No." class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->fcf_receipt_no }} </div>
-                                                {{-- <div title="Valid From" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->valid_from }} </div>
-                                                <div title="Valid To" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->valid_to }} </div> --}}
                                             </td>
                                         @endif
 
@@ -184,6 +184,13 @@
             </div>
 
             <div class="py-4">
+                    <div class="flex px-6 justify-end text-xl dark:text-gray-300">
+                        <div class="px-2">No. of Log: {{ $permit->permitDetails->count() }}</div>
+                        <div class="px-2">Volume: {{ number_format($permit->billed_vol, 2) }}m3</div>
+                        @cannot('kppm_access')
+                            <div class="px-2">Amount: {{ number_format($permit->billed_amount, 2) }}</div>
+                        @endcannot
+                    </div>
             </div>
 
             {{-- Permit Details --}}
@@ -368,14 +375,13 @@
 
 
 
-            @cannot('kppm_access')
+            {{-- @cannot('kppm_access')
                 <div class="flex px-6 py-4 justify-end text-xl dark:text-gray-300">
-                    {{-- Total: {{ number_format($grandTotal) }} --}}
-                    {{-- Total: {{ number_format($permit->billed_amount) }} --}}
-                    Total: {{ number_format($permit->billed_amount, 2) }}
-
+                    <div class="px-2">No. of Log: {{ $permit->permitDetails->count() }}</div>
+                    <div class="px-2">Volume: {{ number_format($permit->billed_vol, 2) }}m3</div>
+                    <div class="px-2">Amount: {{ number_format($permit->billed_amount, 2) }}</div>
                 </div>
-            @endcannot
+            @endcannot --}}
 
             {{-- Permit Logs --}}
             @cannot('applicant_access')

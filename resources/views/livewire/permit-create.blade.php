@@ -1,15 +1,18 @@
 <div>
-    <form method="post" action="{{ route('permits.store') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('permits.store') }}" enctype="multipart/form-data" onkeydown="return event.key != 'Enter';">
         @csrf
 
         <div class="shadow overflow-hidden sm:rounded-md">
             {{-- master section 1 --}}
             <div class="px-6 bg-white dark:bg-stone-800 pt-4 pb-4">
-                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7">
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
+
+                    <input type="hidden" name="timber_type" id="timber_type" value="round"/>
 
                     <div class="form-group px-1 py-1">
                         <label for="license_no" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">License No.</label>
-                        <select name="license_no" id="license_no" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" wire:change="changeLicense()" wire:model="licenseId" >
+                        <select name="license_no" id="license_no" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" wire:change="changeLicense()" wire:model="licenseId" required>
+                            <option value="">Please Select</option>
                             @foreach($licenses as $id => $license)
                                 <option value="{{ $license }}">
                                     {{ $id }}
@@ -24,6 +27,25 @@
                     </div>
 
                     <div class="form-group px-1 py-1">
+                        <label for="licensee_ac_no" class="block font-medium text-sm text-gray-700 dark:text-white">License A/C No.</label>
+                        <select name="licensee_ac_no" id="licensee_ac_no" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" wire:model="licensee_ac_no" wire:change="updateCoupe()" required>
+                        <option value="">Please Select</option>
+                        @isset($licenseAccounts)
+                            @foreach($licenseAccounts as $id => $licenseAccount)
+                                    <option value="{{ $licenseAccount->id }}">
+                                        {{ $licenseAccount->account_no }}
+                                    </option>
+                            @endforeach
+                        @endisset
+                        </select>
+                    </div>
+
+                    <div class="form-group px-1 py-1">
+                        <label for="coupe_no" class="block font-medium text-sm text-gray-700 dark:text-white">Coupe No.</label>
+                        <input type="text" name="coupe_no_tmp" id="coupe_no_tmp" class="form-input rounded-md shadow-sm mt-1 block w-full" wire:model="coupe_no" readonly />
+                    </div>
+
+                    {{-- <div class="form-group px-1 py-1">
                         <label for="licensee_ac_no" class="block font-medium text-sm text-gray-700 dark:text-white">License A/C No.</label>
                         <select name="licensee_ac_no" id="licensee_ac_no" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" required >
                         @isset($licenseAccounts)
@@ -47,11 +69,11 @@
                             @endforeach
                         @endisset
                         </select>
-                    </div>
+                    </div> --}}
 
                     <div class="form-group px-1 py-1">
                         <label for="districts" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">District</label>
-                        <select name="district_id" id="district" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" required>
+                        <select name="district_id" id="district" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" wire:change="changeDistrict" wire:model="districtId" required>
                             @foreach($districts as $id => $district)
                                 <option value="{{ $district }}">
                                     {{ $id }}
@@ -143,7 +165,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group px-1 py-1">
+                    {{-- <div class="form-group px-1 py-1">
                       <label for="scaled_date" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Scaled Date</label>
                       <input type="date" name="scaled_date" id="scaled_date" class="form-input rounded-md shadow-sm mt-1 block w-full"
                           value="{{ old('scaled_date', '') }}" required/>
@@ -162,22 +184,23 @@
                     </div>
 
                     <div class="form-group px-1 py-1">
-                        <label for="owner_of_property_hammer_mark" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Hammer Mark Owner</label>
-                        <input type="text" name="owner_of_property_hammer_mark" id="owner_of_property_hammer_mark" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                            value="{{ old('owner_of_property_hammer_mark', '') }}" />
-                        @error('owner_of_property_hammer_mark')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
+                        <label for="hammer_mark_id" class="block font-medium text-sm text-gray-700 dark:text-white">Hammer Mark</label>
+                        <select name="hammer_mark_id" id="hammer_mark_id" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" wire:model="hammer_mark_id" wire:change="updateHammerMarkOwner" required>
+                        <option value="">Please Select</option>
+                        @isset($hammerMarks)
+                            @foreach($hammerMarks as $id => $hammerMark)
+                                    <option value="{{ $hammerMark->id }}">
+                                        {{ $hammerMark->name }}
+                                    </option>
+                            @endforeach
+                        @endisset
+                        </select>
                     </div>
 
                     <div class="form-group px-1 py-1">
-                      <label for="registered_property_hammer_mark" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Hammer Mark</label>
-                      <input type="text" name="registered_property_hammer_mark" id="registered_property_hammer_mark" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                          value="{{ old('registered_property_hammer_mark', '') }}" />
-                      @error('registered_property_hammer_mark')
-                          <p class="text-sm text-red-600">{{ $message }}</p>
-                      @enderror
-                    </div>
+                        <label for="hammer_mark_owner" class="block font-medium text-sm text-gray-700 dark:text-white">Hammer Mark Owner</label>
+                        <input type="text" name="hammer_mark_owner" id="hammer_mark_owner" class="form-input rounded-md shadow-sm mt-1 block w-full" wire:model="hammer_mark_owner" readonly />
+                    </div> --}}
 
                     <div class="form-group px-1 py-1">
                         <label for="buyer" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Buyer</label>
@@ -210,6 +233,9 @@
                             <th class="font-light">DS</th>
                             <th class="font-light">DL(M)</th>
                             <th class="font-light">DD(CM)</th>
+                            <th class="px-2 py-2">
+                                <a href="#" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" wire:keydown.enter="removeDetails" wire:click.prevent="removeDetails()">Clear</a>
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -279,7 +305,7 @@
                                             wire:model="permitdetails.{{ $index }}.defect_diameter" min="0" step="1"/>
                                     </td>
                                     <td class="px-2">
-                                        <a href="#" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="removeDetail({{$index}})">Delete</a>
+                                        <a href="#" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" wire:keydown.enter="removeDetail({{$index}})" wire:click.prevent="removeDetail({{$index}})">Delete</a>
 
                                     </td>
                                 </tr>
@@ -298,16 +324,27 @@
                     <div class="row">
                         <div class="col-md-12 py-4">
 
-                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-40" wire:click.prevent="addDetails">
+                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-40" wire:click.prevent="addDetails" wire:keydown.enter="addDetails">
                                 Add Logs
                             </button>
-                            <input type="number" wire:model="line_no" name="line_no" id="line_no" class="form-input rounded-md shadow-sm mt-1 w-16">
+                            <input type="number" wire:model="line_no" name="line_no" id="line_no" class="form-input rounded-md shadow-sm mt-1 w-16 dark:text-gray-900" wire:keydown.enter="addDetails">
+
+                            <span class="px-2">No. of logs added: {{ count($permitdetails) }}</span>
+
 
                             <div class="py-1">
                                 <button type="submit" name='submit' class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-40" wire:click.prevent="importLogsExcel()">
                                     Import Excel file
                                 </button>
                                 <input id="file" wire:model="logs_sheet" type="file" name="file" class="form-control rounded-md shadow-sm mt-1"/>
+                            </div>
+                            <div>
+                                <button wire:click.prevent="downloadSample" class="px-2">
+                                    Import Format
+                                </button>
+                                <button wire:click.prevent="downloadCode">
+                                    Import Codes
+                                </button>
                             </div>
 
                             <x-jet-input-error for="logs_sheet"></x-jet-input-error>

@@ -11,8 +11,9 @@ use App\Models\User;
 use App\Models\Region;
 use App\Models\District;
 
-use Illuminate\Support\Facades\Auth;
+use App\Models\HammerMark;
 use App\Traits\Multitenantable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -39,6 +40,7 @@ class Permit extends Model
         'registered_property_hammer_mark',
         'buyer',
         'status',
+        'timber_type',
 
         'payment_date',
         'receipt_no',
@@ -49,6 +51,7 @@ class Permit extends Model
         'billed_amount',
 
         'user_id',
+        'hammer_mark_id',
         'district_id',
         'land_type_id',
         'dfo_id',
@@ -67,6 +70,11 @@ class Permit extends Model
         return $this->belongsTo( District::class);
     }    
     
+    public function hammerMark()
+    {
+        return $this->belongsTo( HammerMark::class);
+    }    
+
     public function licensee()
     {
         return $this->belongsTo( Licensee::class);
@@ -126,4 +134,10 @@ class Permit extends Model
     {
         return $this->hasMany(PermitCharge::class);
     }
+
+    // public function permitWeighingInfo()
+    // {
+    //     return $this->hasOne(PermitWeighingInfo::class);
+    // }
+
 }

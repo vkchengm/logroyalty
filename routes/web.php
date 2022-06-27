@@ -6,6 +6,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\PermitController;
 use App\Http\Controllers\PricesController;
 use App\Http\Controllers\LogSizeController;
+use App\Http\Controllers\HammerMarkController;
 use App\Http\Controllers\RegionsController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\SpeciesController;
@@ -57,6 +58,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/settings', function () {
 
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/permits/create-plantation', [PermitController::class, 'createPlantation'])->name('permits.create-plantation');
+    Route::get('/permits/create-converted', [PermitController::class, 'createConverted'])->name('permits.create-converted');
+
     Route::put('/permit/print/{id}', [PermitController::class, 'print'])->name('permits.print');
 
     Route::put('/permit/submit/{id}', [PermitController::class, 'submit'])->name('permits.submit');
@@ -104,6 +108,7 @@ Route::group(['middleware' => 'auth'], function () {
             'regions'=> RegionsController::class,
             'species'=> SpeciesController::class,
             'logsizes' => LogSizeController::class,
+            'hammermarks' => HammerMarkController::class,
             'landtypes'=> LandTypesController::class,
             'prices'=> PricesController::class,
 

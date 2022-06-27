@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Permit;
 use Livewire\Component;
 use App\Models\PermitLog;
+use App\Models\HammerMark;
 use App\Notifications\PermitUpdated;
 use LivewireUI\Modal\ModalComponent;
 
@@ -15,6 +16,7 @@ class PermitAccept extends ModalComponent
     // public $kppms = [];
     public Permit $permit;
     public $permitLogRemark;
+    public $hammermarks;
 
     public function mount(Permit $permit)
     {
@@ -23,13 +25,18 @@ class PermitAccept extends ModalComponent
 
         $this->permit = $permit;
 
+        // $this->hammermarks = 
+
+        $this->hammermarks = HammerMark::where('district_id', $this->permit->district_id)->orderBy('name','ASC')->get();
+
+
         // $this->permitLogRemark = 'Testing';
 
     }
 
     public function update()
     {
-        // $this->validate();
+        $this->validate();
 
         $this->permit->status = 'accepted';
         $this->permit->save();
@@ -62,7 +69,9 @@ class PermitAccept extends ModalComponent
     public function rules(): array
     {
         return [
-            // 'permit.kppm_id' => ['required', 'int'],
-        ];
+             'permit.scaled_date' => ['required', 'date'],
+             'permit.name_of_scaler' => ['string'],
+             'permit.hammer_mark_id' => ['integer'],
+            ];
     }
 }

@@ -8,17 +8,35 @@
     </x-slot>
 
     <x-slot name="content">
-        {{-- <div>
+        <div>
             Name:
-            <select id="kppm_id" name="kppm_id" class="block mt-1 w-full" type="text" wire:model.defer="permit.kppm_id" />
-                <option value="">Select KPPM</option>
-                @foreach ($kppms as $kppm)
-                    <option value={{ $kppm->id }}>
-                        {{ $kppm->name }}
+            <select id="hammer_mark_id" name="hammer_mark_id" class="block mt-1 w-full" type="text" wire:model.defer="permit.hammer_mark_id" />
+                <option value="">Select Hammer Mark</option>
+                @foreach ($hammermarks as $hammermark)
+                    <option value={{ $hammermark->id }}>
+                        {{ $hammermark->name.' - '. $hammermark->employee_name }}
                     </option>
                 @endforeach
             </select>
-        </div> --}}
+        </div>
+
+        <div>
+            Name of Scaler:
+            <input id="name_of_scaler" class="block mt-1 w-full" type="text" wire:model.defer="permit.name_of_scaler" />
+            
+            @error('permit.name_of_scaler')
+                <span class="text-sm text-red-500">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div>
+            Scaled Date:
+            <input id="scaled_date" class="block mt-1 w-full" type="date" wire:model.defer="permit.scaled_date" />
+            
+            @error('permit.scaled_date')
+                <span class="text-sm text-red-500">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div>
             Notes:

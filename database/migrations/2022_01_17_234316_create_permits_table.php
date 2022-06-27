@@ -25,9 +25,8 @@ class CreatePermitsTable extends Migration
             $table->string('place_of_scaling')->nullable();
             $table->date('scaled_date')->nullable();  
             $table->string('name_of_scaler')->nullable();
-            $table->string('owner_of_property_hammer_mark')->nullable();
-            $table->string('registered_property_hammer_mark')->nullable();
             $table->string('buyer')->nullable();
+            $table->string('timber_type')->nullable();
             $table->string('status');
 
             $table->string('receipt_no')->nullable();
@@ -48,6 +47,11 @@ class CreatePermitsTable extends Migration
             $table->foreign('kppm_id')->references('id')->on('users');
             $table->unsignedBigInteger('fo_id')->nullable();
             $table->foreign('fo_id')->references('id')->on('users');
+
+            // $table->string('owner_of_property_hammer_mark')->nullable();
+            // $table->string('registered_property_hammer_mark')->nullable();
+            $table->unsignedBigInteger('hammer_mark_id')->nullable();
+            $table->foreign('hammer_mark_id')->references('id')->on('hammer_marks');            
 
             $table->unsignedBigInteger('district_id')->nullable();
             $table->foreign('district_id')->references('id')->on('districts');            
