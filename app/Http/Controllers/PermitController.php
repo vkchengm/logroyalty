@@ -51,6 +51,14 @@ class PermitController extends Controller
     {
         return view('permits.create');
     }
+    public function createPlantation()
+    {
+        return view('permits.create-plantation');
+    }
+    public function createConverted()
+    {
+        return view('permits.create-converted');
+    }
 
     public function store(StorePermitRequest $request)
     {
@@ -60,7 +68,7 @@ class PermitController extends Controller
             foreach ($request->permitdetails as $detail) {
                 $line = $permit->permitDetails()->create($detail);
     
-                $mean = ($line->diameter_1 + $line->diameter_2) / 2;
+                $mean = round(($line->diameter_1 + $line->diameter_2) / 2);
                 $line->mean = $mean;
                 
                 $logvol = round(3.14159*pow(($mean/2/100),2)*$line->length, 2);        
@@ -75,6 +83,9 @@ class PermitController extends Controller
                 $totalVol = $totalVol + $line->vol;
             }    
         }
+        
+        $permit->billed_vol = $totalVol;
+        $permit->save();
 
         $log = PermitLog::create([
             'permit_id' => $permit->id,
@@ -122,7 +133,8 @@ class PermitController extends Controller
         if (isset($request->permitdetails)) {
 
             foreach ($request->permitdetails as $detail) {
-                $mean = ($detail['diameter_1']+$detail['diameter_2']) / 2;
+                // $mean = ($detail['diameter_1']+$detail['diameter_2']) / 2;
+                $mean = round(($detail['diameter_1']+$detail['diameter_2']) / 2);
 
                 $logvol = round(3.14159*pow(($mean/2/100),2)*$detail['length'], 2);            
                 $defeatvol = round(3.14159*pow(($detail['defect_diameter']/2/100),2)*$detail['defect_length'], 2);
@@ -137,7 +149,8 @@ class PermitController extends Controller
                     'length' => $detail['length'],
                     'diameter_1' => $detail['diameter_1'],
                     'diameter_2' => $detail['diameter_2'],
-                    'mean' => ($detail['diameter_1']+$detail['diameter_2']) / 2,
+                    // 'mean' => ($detail['diameter_1']+$detail['diameter_2']) / 2,
+                    'mean' => $mean,
 
                     'defect_symbol' => $detail['defect_symbol'],
                     'defect_length' => $detail['defect_length'],
@@ -148,6 +161,9 @@ class PermitController extends Controller
             }
         }
         
+        $permit->billed_vol = $totalVol;
+        $permit->save();
+
         $log = PermitLog::create([
             'permit_id' => $permit->id,
             'user_name' => auth()->user()->name,

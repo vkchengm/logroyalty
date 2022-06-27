@@ -16,7 +16,8 @@
                     <div class=" space-x-8 px-4 ml-10 pt-4 flex">
                         
                         <x-jet-nav-link class="py-4 text-white dark:hover:text-gray-200" href="{{ route('permits.index') }}" :active="request()->routeIs('permits.*')">
-                            {{ __('Permits') }}
+                            {{-- {{ __('Permits') }} --}}
+                            {{ __('TDP') }}
                         </x-jet-nav-link>
 
                         <x-jet-dropdown align="right" width="60">
@@ -278,6 +279,9 @@
                                 <x-jet-dropdown-link href="{{ route('logsizes.index') }}">
                                     {{ __('Log Sizes') }}
                                 </x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('hammermarks.index') }}">
+                                    {{ __('Hammer Marks') }}
+                                </x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="{{ route('species.index') }}">
                                     {{ __('Species') }}
                                 </x-jet-dropdown-link>
@@ -304,7 +308,9 @@
                                     <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-white bg-white dark:bg-stone-700 hover:text-gray-700 focus:outline-none transition">
                                         {{ Auth::user()->name }}
                                         @if (Auth::user()->roles()->first()->title == 'Applicant')
-                                            {{ Auth::user()->licensee->name }}
+                                            @isset(Auth::user()->licensee)
+                                                {{ Auth::user()->licensee->name }}
+                                            @endisset   
                                         @endif
                                         <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -452,7 +458,7 @@
             </x-jet-responsive-nav-link>
 
             @can('admin_access')
-                <x-jet-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
+                <x-jet-responsive-nav-link class="dark:text-gray-300 dark:hover:text-gray-800" href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
                     {{ __('Users Management') }}
                 </x-jet-responsive-nav-link>
             @endcan    
@@ -464,40 +470,40 @@
             @endcan --}}
 
             @can('reports_access')
-                <x-jet-responsive-nav-link href="{{ route('permits.report') }}" :active="request()->routeIs('permits.*')">
+                <x-jet-responsive-nav-link class="dark:text-gray-300 dark:hover:text-gray-800" href="{{ route('permits.report') }}" :active="request()->routeIs('permits.*')">
                     Reports
                 </x-jet-responsive-nav-link>
             @endcan
 
             @canany(['admin_access','fo_access'])
 
-                <x-jet-responsive-nav-link href="{{ route('regions.index') }}" :active="request()->routeIs('regions.*')">
+                <x-jet-responsive-nav-link class="dark:text-gray-300 dark:hover:text-gray-800" href="{{ route('regions.index') }}" :active="request()->routeIs('regions.*')">
                     {{ __('Regions') }}
                 </x-jet-responsive-nav-link>
 
-                <x-jet-responsive-nav-link href="{{ route('districts.index') }}" :active="request()->routeIs('districts.*')">
+                <x-jet-responsive-nav-link class="dark:text-gray-300 dark:hover:text-gray-800" href="{{ route('districts.index') }}" :active="request()->routeIs('districts.*')">
                     {{ __('Districts') }}
                 </x-jet-responsive-nav-link>
 
-                <x-jet-responsive-nav-link href="{{ route('prices.index') }}" :active="request()->routeIs('prices.*')">
+                <x-jet-responsive-nav-link class="dark:text-gray-300 dark:hover:text-gray-800" href="{{ route('prices.index') }}" :active="request()->routeIs('prices.*')">
                     {{ __('Royalty Rates') }}
                 </x-jet-responsive-nav-link>
                 
-                <x-jet-responsive-nav-link href="{{ route('logsizes.index') }}" :active="request()->routeIs('logsizes.*')">
+                <x-jet-responsive-nav-link class="dark:text-gray-300 dark:hover:text-gray-800" href="{{ route('logsizes.index') }}" :active="request()->routeIs('logsizes.*')">
                     {{ __('Log Sizes') }}
                 </x-jet-responsive-nav-link>
                 
-                <x-jet-responsive-nav-link href="{{ route('species.index') }}" :active="request()->routeIs('species.*')">
+                <x-jet-responsive-nav-link class="dark:text-gray-300 dark:hover:text-gray-800" href="{{ route('species.index') }}" :active="request()->routeIs('species.*')">
                     {{ __('Species') }}
                 </x-jet-responsive-nav-link>
                 
-                <x-jet-responsive-nav-link href="{{ route('landtypes.index') }}" :active="request()->routeIs('landtypes.*')">
+                <x-jet-responsive-nav-link class="dark:text-gray-300 dark:hover:text-gray-800" href="{{ route('landtypes.index') }}" :active="request()->routeIs('landtypes.*')">
                     {{ __('Land Types') }}
                 </x-jet-responsive-nav-link>
             @endcanany
 
             @can('users_access')               
-                <x-jet-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
+                <x-jet-responsive-nav-link class="dark:text-gray-300 dark:hover:text-gray-800" href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
                     Users
                 </x-jet-responsive-nav-link>
             @endcan

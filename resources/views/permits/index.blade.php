@@ -8,9 +8,26 @@
     <div class="px-2 py-1">
         <div class="max-w-6xl mx-auto py-4 sm:px-6 lg:px-8 dark:text-gray-200">
             @can('applicant_access')
-                <div>
-                    <a href="{{ route('permits.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">New Permit Application</a>
-                </div>
+                @if (auth()->user()->is_activated == true)
+                    <div class="flex flex-wrap">
+                        {{-- <div class="flex-auto px-2"><a href="{{ route('permits.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">New TDP - Round logs</a></div>
+                        <div class="flex-auto px-2"><a href="{{ route('permits.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">New TDP - Plantation</a></div>
+                        <div class="flex-auto px-2"><a href="{{ route('permits.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">New TDP - Converted Logs</a></div> --}}
+                        <div class="px-1 py-1">
+                            <div class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"><a href="{{ route('permits.create') }}">New Round Logs</a></div>
+                        </div>
+                        <div class="px-1 py-1">
+                            <div class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"><a href="{{ route('permits.create-plantation') }}">New Plantation Logs</a></div>
+                        </div>
+                        {{-- <div class="px-1 py-1">
+                            <div class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"><a href="{{ route('permits.create-converted') }}">New Converted Logs</a></div>
+                        </div> --}}
+                    </div>
+                @else
+                    <div class="py-4 text-center">
+                        This account needs to be activated!  Please contact the Administrator, Thank you!
+                    </div>                  
+                @endif
             @endcan
 
             {{-- Saved, Rejected & Disapproved --}}
@@ -94,6 +111,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:bg-stone-600 dark:text-gray-300">
                                             <a href="{{ route('permits.show', $permit->id) }}">
                                                 <div class="text-sm text-gray-900 dark:text-gray-300"> {{ ucwords($permit->status) ?? '' }} </div>
+                                                <div title="No. of logs" class="text-sm text-gray-900 dark:text-gray-300"> {{ $permit->permitDetails->count() ?? '' }} </div>
                                                 {{-- <div class="text-sm text-gray-400"> {{ $permit->market }} </div> --}}
                                             </a>
                                         </td>
