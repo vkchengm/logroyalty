@@ -31,7 +31,6 @@ class StorePermitRequest extends FormRequest
             'district_id' => [
                 'required', 'string',
             ]
-
         ];
     }
 }

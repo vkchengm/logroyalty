@@ -234,7 +234,7 @@ class PermitBill extends Component
             }
         }   
 
-        $this->permit->billed_vol = $grandVol;
+        // $this->permit->billed_vol = $grandVol;
         $this->permit->billed_amount = $grandTotal;
         $this->permit->save();
 

@@ -1,6 +1,7 @@
 <?php return array (
   'district-create' => 'App\\Http\\Livewire\\DistrictCreate',
   'district-edit' => 'App\\Http\\Livewire\\DistrictEdit',
+  'hammer-marks-table' => 'App\\Http\\Livewire\\HammerMarksTable',
   'licensees-table' => 'App\\Http\\Livewire\\LicenseesTable',
   'logs' => 'App\\Http\\Livewire\\Logs',
   'logs-edit' => 'App\\Http\\Livewire\\LogsEdit',
@@ -11,6 +12,8 @@
   'permit-bill0' => 'App\\Http\\Livewire\\PermitBill0',
   'permit-bill-reject' => 'App\\Http\\Livewire\\PermitBillReject',
   'permit-create' => 'App\\Http\\Livewire\\PermitCreate',
+  'permit-create-converted' => 'App\\Http\\Livewire\\PermitCreateConverted',
+  'permit-create-plantation' => 'App\\Http\\Livewire\\PermitCreatePlantation',
   'permit-disapprove' => 'App\\Http\\Livewire\\PermitDisapprove',
   'permit-edit' => 'App\\Http\\Livewire\\PermitEdit',
   'permit-pay' => 'App\\Http\\Livewire\\PermitPay',

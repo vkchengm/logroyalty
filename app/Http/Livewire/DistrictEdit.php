@@ -17,10 +17,8 @@ class DistrictEdit extends Component
 
     public function mount($district)
     {
-        // dd($district);
         $this->name = $district->name;
         $this->regions = Region::all()->pluck('name', 'id');
-        // ->prepend(trans('global.pleaseSelect'), '');
 
         $this->dfos = User::whereHas('roles', function (Builder $query) {
             $query->where('title', 'like', 'DFO');
@@ -30,15 +28,12 @@ class DistrictEdit extends Component
         $this->adfos = User::whereHas('roles', function (Builder $query) {
             $query->where('title', 'like', 'ADFO');
         })
-        // ->prepend(trans('global.pleaseSelect'), '')
         ->pluck('name', 'id');
 
         $this->kppms = User::whereHas('roles', function (Builder $query) {
             $query->where('title', 'like', 'KPPM');
         })->orderby('name')->get();
-        // })->pluck('name', 'id');
 
-        // ->prepend(trans('global.pleaseSelect'), '');
 
         $selectedKPPMs = DistrictKppm::where('district_id', $district->id)->get();
         foreach ($selectedKPPMs as $selectedKPPM)
@@ -47,11 +42,6 @@ class DistrictEdit extends Component
 
         }
 
-        // dd($selectedKPPMs);
-
-        // $this->selectedKPPM = User::whereHas('roles', function (Builder $query) {
-        //     $query->where('title', 'like', 'KPPM');
-        // })->pluck('name', 'id');
     }
 
     public function addKPPM()

@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class LogsImport implements WithHeadingRow, ToCollection, SkipsEmptyRows
+// class LogsImport implements ToCollection, SkipsEmptyRows
 {
     use Importable;
 

@@ -30,7 +30,7 @@
                             @enderror
                         </div>
 
-                        <div class="px-4 py-5 bg-white dark:bg-stone-600  sm:p-6">
+                        {{-- <div class="px-4 py-5 bg-white dark:bg-stone-600  sm:p-6">
                             <label for="issued_date" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Issue Date</label>
                             <input type="date" name="issued_date" id="issued_date" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('issued_date', $licenseAccCoupe->issued_date) }}" />
@@ -76,7 +76,7 @@
                             @error('land_type')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         <div class="flex items-center justify-end px-4 py-3 bg-gray-50 dark:bg-stone-600 text-right sm:px-6">
                             <a href="{{ route('licensees.show', ['licensee' => $licensee]) }}"  class="pr-4">

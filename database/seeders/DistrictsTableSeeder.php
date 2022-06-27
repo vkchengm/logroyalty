@@ -82,7 +82,7 @@ class DistrictsTableSeeder extends Seeder
             6 => 
             array (
                 'id' => 7,
-                'name' => 'Kota kinabalu',
+                'name' => 'Kota Kinabalu',
                 'region_id' => 2,
                 'dfo_id' => 38,
                 'adfo_id' => 39,

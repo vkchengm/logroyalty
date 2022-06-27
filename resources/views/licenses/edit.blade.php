@@ -24,14 +24,11 @@
                         <div class="px-4 py-5 bg-white dark:bg-stone-600  sm:p-6">
                             <label for="type" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Type</label>
                             <select name="type" id="type" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
-                                <option {{ ($license->type) == 'Natural' ? 'selected' : '' }} value="Natural" >
-                                    Natural
+                                <option {{ ($license->type) == 'SFMLA' ? 'selected' : '' }} value="SFMLA">
+                                    SFMLA
                                 </option>
-                                <option {{ ($license->type) == 'Plantation' ? 'selected' : '' }} value="Plantation" >
-                                        Plantation
-                                </option>
-                                <option {{ ($license->type) == 'Converted Timber' ? 'selected' : '' }} value="Converted Timber" >
-                                    Converted Timber
+                                <option {{ ($license->type) == 'Form 2B' ? 'selected' : '' }} value="Form 2B">
+                                    Form 2B
                                 </option>
                             </select>
                             @if($errors->has('type'))

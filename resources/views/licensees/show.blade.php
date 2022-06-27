@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="px-2 py-1">
+    <div class="px-2 py-1  dark:text-gray-200">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             {{-- Buttons --}}
@@ -66,7 +66,7 @@
                 <div class="py-2 font-bold">Licenses Listing</div>
                 <div class="-my-2 sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle min-w-full sm:px-6 lg:px-8">
-                        <div class="shadow border-b border-gray-200 sm:rounded-lg divide-y">
+                        <div class="shadow border-b border-gray-200 sm:rounded-lg divide-y bg-white dark:bg-stone-600">
                             @foreach ($licensee->licenses as $license)
                                 <div class="py-2">
                                     <div class="flex justify-between items-center">
@@ -75,7 +75,7 @@
                                                 <img src="{{ asset('button-plus-svgrepo-com.svg') }}" alt="My SVG Icon" width="25" height="25">
                                             </a>
 
-                                            <div class="font-bold">{{ 'License No.: '.$license->name }}</div>
+                                            <div class="font-bold">{{ 'License No.: '.$license->name.' - '.$license->type }}</div>
                                         </div>
 
                                         <div class="flex space-x-2">
@@ -105,7 +105,7 @@
                                                     @endisset
                                                 </div>
 
-                                                <div class="absolute top-0 right-0 mr-2 cursor-pointer">
+                                                <div class="absolute top-0 right-0 mr-2 cursor-pointer  py-1">
                                                     <x-jet-dropdown align="right" width="32">
                                                         <x-slot name="trigger">
                                                             <div class="h-5 w-5 mr-0" >
@@ -114,7 +114,7 @@
                                                         </x-slot>
 
                                                         <x-slot name="content">
-                                                            <div class="flex flex-col space-y-2">
+                                                            <div class="flex flex-col space-y-1">
                                                                 <x-jet-dropdown-link href="{{ route('licenseAccCoupe.edit', ['licenseAccCoupe' => $licenseAccCoupe]) }}">
                                                                     {{ __('Edit') }}
                                                                 </x-jet-dropdown-link>

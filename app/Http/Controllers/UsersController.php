@@ -17,14 +17,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UsersController extends Controller
 {
-    public function index()
-    {
-        abort_if(Gate::denies('admin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+    // public function index()
+    // {
+    //     abort_if(Gate::denies('admin_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::with('roles')->get();
+    //     $users = User::with('roles')->get();
 
-        return view('users.index', compact('users'));
-    }
+    //     return view('users.index', compact('users'));
+    // }
 
     public function indexinternal()
     {
@@ -40,10 +40,7 @@ class UsersController extends Controller
 
         $users = User::where('is_activated', '0')->where('type','external')->get();
 
-        // dd($users);
         return view('users.index-external', compact('users'));
-
-        // return view('users.index-external');
 
     }
 
