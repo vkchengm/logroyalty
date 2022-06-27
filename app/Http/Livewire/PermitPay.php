@@ -48,14 +48,14 @@ class PermitPay extends ModalComponent
         $recipient = $this->permit->dfo;
         $tdpNo = 'TDP'.str_pad($this->permit->id, 6, '0', STR_PAD_LEFT);
         $subject = 'Permit No. '.$tdpNo.' has been paid';
-        $line = 'Payment Notification. Please instruct KPPM for further actions';
+        $line = 'Payment Notification. Please instruct KPPM for RP marking and manual Removal Pass processing.';
         $url = url('/permits/'.$this->permit->id);
         $recipient->notify(new PermitUpdated($subject, $line, $url));    
 
         $recipient = $this->permit->kppm;
         $tdpNo = 'TDP'.str_pad($this->permit->id, 6, '0', STR_PAD_LEFT);
         $subject = 'Permit No. '.$tdpNo.' has been paid';
-        $line = 'Payment Notification. Please be ready for marking.';
+        $line = 'Payment Notification. Please be ready for RP marking.';
         $url = url('/permits/'.$this->permit->id);
         $recipient->notify(new PermitUpdated($subject, $line, $url));    
 
