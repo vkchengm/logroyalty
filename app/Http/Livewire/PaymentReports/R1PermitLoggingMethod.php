@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\PaymentReports;
 
 use App\Models\Permit;
 use App\Models\Region;
@@ -11,7 +11,7 @@ use App\Models\LandTypes;
 use App\Models\PermitDetail;
 use Illuminate\Support\Facades\DB;
 
-class ReportR1PermitLoggingMethod extends Component
+class R1PermitLoggingMethod extends Component
 {
     public $month;
     public $months;
@@ -38,7 +38,20 @@ class ReportR1PermitLoggingMethod extends Component
         $this->result = Permit::select(DB::raw('YEAR(scaled_date) as year'))->distinct()->get();
         $this->yearList = $this->result->sortByDesc('year');
 
-        $this->monthList = [];
+        $this->monthList = [
+            1  => 'January',
+            2  => 'February',
+            3  => 'March',
+            4  => 'April',
+            5  => 'May',
+            6  => 'June',
+            7  => 'July',
+            8  => 'August',
+            9  => 'September',
+            10 => 'October',
+            11 => 'November',
+            12 => 'December',
+        ];
 
         $this->permits = Permit::selectRaw('year(scaled_date) year, month(scaled_date) month,
                                         sum(case when (logging_method="Helicopter") then billed_vol else 0 end) as helicopter_vol,
@@ -72,6 +85,11 @@ class ReportR1PermitLoggingMethod extends Component
 
 
     public function updatedSelectedYear($selectedYear)
+    {
+        $this->changeOption();
+    }
+
+    public function updatedSelectedMonth($selectedMonth)
     {
         $this->changeOption();
     }
@@ -163,6 +181,6 @@ class ReportR1PermitLoggingMethod extends Component
 
     public function render()
     {
-        return view('livewire.report-r1-permit-logging-method');
+        return view('livewire.payment-reports.r1-permit-logging-method');
     }
 }

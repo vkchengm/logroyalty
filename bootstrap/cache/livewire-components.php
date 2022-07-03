@@ -5,6 +5,8 @@
   'licensees-table' => 'App\\Http\\Livewire\\LicenseesTable',
   'logs' => 'App\\Http\\Livewire\\Logs',
   'logs-edit' => 'App\\Http\\Livewire\\LogsEdit',
+  'payment-reports.r1-permit-logging-method' => 'App\\Http\\Livewire\\PaymentReports\\R1PermitLoggingMethod',
+  'payment-reports.r2-permit-licensee' => 'App\\Http\\Livewire\\PaymentReports\\R2PermitLicensee',
   'permit-accept' => 'App\\Http\\Livewire\\PermitAccept',
   'permit-approve' => 'App\\Http\\Livewire\\PermitApprove',
   'permit-assign' => 'App\\Http\\Livewire\\PermitAssign',

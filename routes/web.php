@@ -18,6 +18,7 @@ use App\Http\Controllers\LandTypesController;
 use App\Http\Controllers\RoyaltiesController;
 use App\Http\Controllers\LicenseMasterController;
 use App\Http\Controllers\LicenseAccountCoupeController;
+use App\Http\Controllers\PaymentReportController;
 
 
 /*
@@ -92,6 +93,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/r1-permit-logging-method', [ReportsController::class, 'r1PermitLoggingMethod'])->name('reports.r1-permit-logging-method');
         Route::get('/r2-permit-licensee', [ReportsController::class, 'r2PermitLicensee'])->name('reports.r2-permit-licensee');
         Route::get('/r3-permit-landtype-diameter', [ReportsController::class, 'r3PermitLandTypeDiameter'])->name('reports.r3-permit-landtype-diameter');
+    });
+
+    Route::group(['prefix' => 'payment-reports'], function () {
+        Route::get('/r1-permit-logging-method', [PaymentReportController::class, 'r1PermitLoggingMethod'])->name('payment-reports.r1-permit-logging-method');
+        Route::get('/r2-permit-licensee', [PaymentReportController::class, 'r2PermitLicensee'])->name('payment-reports.r2-permit-licensee');
+        Route::get('/r3-permit-landtype-diameter', [PaymentReportController::class, 'r3PermitLandTypeDiameter'])->name('payment-reports.r3-permit-landtype-diameter');
     });
 
     Route::post('/getFos', [UsersController::class, 'getFos'])->name('getFos');

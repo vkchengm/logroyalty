@@ -50,7 +50,6 @@
 
                 @canany(['report_access', 'viewer_access'])
                     <div class=" space-x-8 px-4 ml-10 pt-4 flex">
-
                         <x-jet-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
@@ -94,6 +93,39 @@
                         </x-jet-dropdown>
                     </div>
                 @endcanany
+
+{{--                payment reports --}}
+                <div class=" space-x-8 px-4 ml-10 pt-4 flex">
+                    <x-jet-dropdown align="right" width="60">
+                        <x-slot name="trigger">
+                            <span class="inline-flex rounded-md">
+                                <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-white bg-white dark:bg-inherit hover:bg-gray-50 hover:text-gray-700 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
+                                    {{-- <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition"> --}}
+                                    Payment Reports
+                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </span>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <div class="w-52">
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r1-permit-logging-method') }}">
+                                    {{ __('R1: RIL, Non-RIL') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r2-permit-licensee') }}">
+                                    {{ __('R2 Accumulated Production By Licnesee') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r3-permit-landtype-diameter') }}">
+                                    {{ __('R3 Accumulated Production By Land Type and Diameter') }}
+                                </x-jet-dropdown-link>
+                            </div>
+                        </x-slot>
+                    </x-jet-dropdown>
+                </div>
 
                 @can('admin_access')
                     {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
