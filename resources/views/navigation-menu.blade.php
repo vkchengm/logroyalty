@@ -112,11 +112,11 @@
                         <x-slot name="content">
                             <div class="w-52">
                                 <x-jet-dropdown-link href="{{ route('payment-reports.r1-permit-logging-method') }}">
-                                    {{ __('R1: RIL, Non-RIL') }}
+                                    {{ __('R1: RIL and Non-RIL') }}
                                 </x-jet-dropdown-link>
 
                                 <x-jet-dropdown-link href="{{ route('payment-reports.r2-permit-licensee') }}">
-                                    {{ __('R2 Accumulated Production By Licnesee') }}
+                                    {{ __('R2: Accumulated Production By Licensee') }}
                                 </x-jet-dropdown-link>
 
                                 <x-jet-dropdown-link href="{{ route('payment-reports.r3-permit-landtype-diameter') }}">

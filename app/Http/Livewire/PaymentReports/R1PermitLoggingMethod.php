@@ -13,41 +13,12 @@ use Illuminate\Support\Facades\DB;
 
 class R1PermitLoggingMethod extends Component
 {
+    use BaseReport;
+
     public $permits = [];
-    public $yearList, $monthList;
-    public $selectedYear, $selectedMonth;
     public $totalRilVol = 0, $totalNonRilVol = 0, $totalVol = 0;
 
     public function mount()
-    {
-        $this->yearList = Permit::select(DB::raw('YEAR(payment_date) as year'))
-            ->distinct()
-            ->latest('year')
-            ->pluck('year')
-            ->toArray();
-
-        $this->yearList = array_filter($this->yearList);
-
-        $this->monthList = [
-            1  => 'January',
-            2  => 'February',
-            3  => 'March',
-            4  => 'April',
-            5  => 'May',
-            6  => 'June',
-            7  => 'July',
-            8  => 'August',
-            9  => 'September',
-            10 => 'October',
-            11 => 'November',
-            12 => 'December',
-        ];
-
-        $this->loadReport();
-    }
-
-
-    public function updated()
     {
         $this->loadReport();
     }

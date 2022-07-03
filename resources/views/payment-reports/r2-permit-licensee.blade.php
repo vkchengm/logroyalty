@@ -8,8 +8,7 @@
     <div>
         <div class="mx-auto py-2 sm:px-6 lg:px-8">
             <div class=" md:mt-0 md:col-span-2">
-                <livewire:payment-reports.r2-permit-logging-method
-                @livewire('report-r2-permit-licensee')
+                <livewire:payment-reports.r2-permit-licensee />
             </div>
         </div>
     </div>
