@@ -50,8 +50,10 @@
                           @endif
                     </div>     --}}
 
+
                     <div class="px-1 ">
                         <label for="year" class="block font-medium text-sm text-gray-700 dark:text-white ">Year</label>
+
                         <select class="form-control select2 rounded-md shadow-sm mt-1 block w-full" wire:ignore
                                 wire:change="changeOption()" wire:model="yearSelected">
                             <option value="" selected>
@@ -67,6 +69,31 @@
                         @if($errors->has('yearSelected'))
                             <p class="help-block">
                                 {{ $errors->first('yearSelected') }}
+                            </p>
+                        @endif
+                    </div>
+
+
+                    <div class="px-1 @if(!$yearSelected) hidden @endif">
+                        <label for="year" class="block font-medium text-sm text-gray-700 dark:text-white ">
+                            Month
+                        </label>
+
+                        <select class="form-control select2 rounded-md shadow-sm mt-1 block w-full" wire:ignore
+                                wire:change="changeOption()" wire:model="monthSelected">
+                            <option value="" selected>
+                                All
+                            </option>
+                            @foreach($monthList as $id => $month)
+                                <option value="{{ $id }}" {{ ( $id == $monthSelected) ? 'selected' : '' }}>
+                                    {{ $month }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        @if($errors->has('monthSelected'))
+                            <p class="help-block">
+                                {{ $errors->first('monthSelected') }}
                             </p>
                         @endif
                     </div>

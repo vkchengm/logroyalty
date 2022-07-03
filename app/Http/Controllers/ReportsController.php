@@ -90,21 +90,6 @@ class ReportsController extends Controller
         return redirect()->route('reports.index');
     }
 
-    public function permitsummary()
-    {
-        return view('reports.permit-summary');
-    }
-
-    public function r2permitlicensee()
-    {
-        return view('reports.r2-permit-licensee');
-    }
-
-    public function r3permitlandtypediameter()
-    {
-        return view('reports.r3-permit-landtype-diameter');
-    }
-
     public function permitloggingmethodbasic()
     {
         $result = Permit::select(DB::raw('YEAR(scaled_date) as year'))->distinct()->get();
@@ -120,9 +105,23 @@ class ReportsController extends Controller
         return view('reports.permit-logging-method-basic');
     }
 
+    public function permitsummary()
+    {
+        return view('reports.permit-summary');
+    }
+
     public function r1PermitLoggingMethod()
     {
         return view('reports.r1-permit-logging-method');
     }
 
+    public function r2PermitLicensee()
+    {
+        return view('reports.r2-permit-licensee');
+    }
+
+    public function r3PermitLandTypeDiameter()
+    {
+        return view('reports.r3-permit-landtype-diameter');
+    }
 }

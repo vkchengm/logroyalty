@@ -89,9 +89,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'reports'], function () {
         Route::get('/permit-summary', [ReportsController::class, 'permitsummary'])->name('reports.permit-summary');
-        Route::get('/r2-permit-licensee', [ReportsController::class, 'r2permitlicensee'])->name('reports.r2-permit-licensee');
-        Route::get('/r3-permit-landtype-diameter', [ReportsController::class, 'r3permitlandtypediameter'])->name('reports.r3-permit-landtype-diameter');
         Route::get('/r1-permit-logging-method', [ReportsController::class, 'r1PermitLoggingMethod'])->name('reports.r1-permit-logging-method');
+        Route::get('/r2-permit-licensee', [ReportsController::class, 'r2PermitLicensee'])->name('reports.r2-permit-licensee');
+        Route::get('/r3-permit-landtype-diameter', [ReportsController::class, 'r3PermitLandTypeDiameter'])->name('reports.r3-permit-landtype-diameter');
     });
 
     Route::post('/getFos', [UsersController::class, 'getFos'])->name('getFos');
