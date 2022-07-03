@@ -13,30 +13,20 @@ use Illuminate\Support\Facades\DB;
 
 class R1PermitLoggingMethod extends Component
 {
-    public $month;
-    public $months;
-    public $yearList;
-    public $monthList;
-    public $testList;
-    public $selectedYear;
-    public $selectedMonth;
-    public $result;
-    // public $totalVol;
-    // public $totalAmount;
-
-    public $totalHelicopterVol;
-    public $totalNonRilVol;
-    public $totalRilVol;
-    public $totalHelicopterAmount;
-    public $totalNonRilAmount;
-    public $totalRilAmount;
-    public $totalVol;
-    public $totalAmount;
+    public $permits = [];
+    public $yearList, $monthList;
+    public $selectedYear, $selectedMonth;
+    public $totalRilVol = 0, $totalNonRilVol = 0, $totalVol = 0;
 
     public function mount()
     {
-        $this->result = Permit::select(DB::raw('YEAR(scaled_date) as year'))->distinct()->get();
-        $this->yearList = $this->result->sortByDesc('year');
+        $this->yearList = Permit::select(DB::raw('YEAR(payment_date) as year'))
+            ->distinct()
+            ->latest('year')
+            ->pluck('year')
+            ->toArray();
+
+        $this->yearList = array_filter($this->yearList);
 
         $this->monthList = [
             1  => 'January',
@@ -53,131 +43,40 @@ class R1PermitLoggingMethod extends Component
             12 => 'December',
         ];
 
-        $this->permits = Permit::selectRaw('year(scaled_date) year, month(scaled_date) month,
-                                        sum(case when (logging_method="Helicopter") then billed_vol else 0 end) as helicopter_vol,
-                                        sum(case when (logging_method="RIL") then billed_vol else 0 end) as ril_vol,
-                                        sum(case when (logging_method="Non-RIL") then billed_vol else 0 end) as non_ril_vol,
-                                        sum(case when (logging_method="Helicopter") then billed_vol else 0 end)+sum(case when (logging_method="Non-RIL") then billed_vol else 0 end)+sum(case when (logging_method="RIL") then billed_vol else 0 end) total_vol,
-
-                                        sum(case when (logging_method="Helicopter") then billed_amount else 0 end) as helicopter_amount,
-                                        sum(case when (logging_method="RIL") then billed_amount else 0 end) as ril_amount,
-                                        sum(case when (logging_method="Non-RIL") then billed_amount else 0 end) as non_ril_amount,
-                                        sum(case when (logging_method="Helicopter") then billed_amount else 0 end)+sum(case when (logging_method="Non-RIL") then billed_amount else 0 end)+sum(case when (logging_method="RIL") then billed_amount else 0 end) total_amount')
-
-                                        ->groupBy('year','month')
-                                        ->orderBy('year','desc')
-                                        ->orderBy('month','asc')
-                                        ->where('status', env('PERMIT_STATUS'))
-                                        ->get();
-
-
-        $this->totalHelicopterVol = number_format($this->permits->sum('helicopter_vol'));
-        $this->totalNonRilVol = number_format($this->permits->sum('ril_vol'));
-        $this->totalRilVol = number_format($this->permits->sum('non_ril_vol'));
-
-        $this->totalHelicopterAmount = number_format($this->permits->sum('helicopter_amount'));
-        $this->totalNonRilAmount = number_format($this->permits->sum('ril_amount'));
-        $this->totalRilAmount = number_format($this->permits->sum('non_ril_amount'));
-
-        $this->totalVol = number_format($this->permits->sum('total_vol'));
-        $this->totalAmount = number_format($this->permits->sum('total_amount'));
+        $this->loadReport();
     }
 
 
-    public function updatedSelectedYear($selectedYear)
+    public function updated()
     {
-        $this->changeOption();
+        $this->loadReport();
     }
 
-    public function updatedSelectedMonth($selectedMonth)
+    public function loadReport()
     {
-        $this->changeOption();
-    }
-
-    public function changeOption()
-    {
-        if ($this->selectedYear != '')
-        {
-            $this->permits = Permit::selectRaw('year(scaled_date) year, month(scaled_date) month,
-            sum(case when (logging_method="Helicopter") then billed_vol else 0 end) as helicopter_vol,
-            sum(case when (logging_method="RIL") then billed_vol else 0 end) as ril_vol,
-            sum(case when (logging_method="Non-RIL") then billed_vol else 0 end) as non_ril_vol,
-            sum(case when (logging_method="Helicopter") then billed_vol else 0 end)+sum(case when (logging_method="Non-RIL") then billed_vol else 0 end)+sum(case when (logging_method="RIL") then billed_vol else 0 end) total_vol,
-
-            sum(case when (logging_method="Helicopter") then billed_amount else 0 end) as helicopter_amount,
-            sum(case when (logging_method="RIL") then billed_amount else 0 end) as ril_amount,
-            sum(case when (logging_method="Non-RIL") then billed_amount else 0 end) as non_ril_amount,
-            sum(case when (logging_method="Helicopter") then billed_amount else 0 end)+sum(case when (logging_method="Non-RIL") then billed_amount else 0 end)+sum(case when (logging_method="RIL") then billed_amount else 0 end) total_amount')
-
-            ->whereYear('scaled_date', $this->selectedYear)
-            ->when($this->selectedMonth, function ($q) {
-                $q->whereMonth('scaled_date', $this->selectedMonth);
+        $this->permits = Permit::query()
+            ->when($this->selectedYear, function ($q) {
+                $q->whereYear('payment_date', $this->selectedYear);
             })
-            ->groupBy('year','month')
-            ->orderBy('year','desc')
-            ->orderBy('month','asc')
-            ->where('status', env('PERMIT_STATUS'))
+            ->when($this->selectedMonth, function ($q) {
+                $q->whereMonth('payment_date', $this->selectedMonth);
+            })
+            ->selectRaw("
+                year(payment_date) as year,
+                month(payment_date) as month,
+                sum(case when (logging_method='RIL') then billed_vol else 0 end) as ril_vol,
+                sum(case when (logging_method='Non-RIL') then billed_vol else 0 end) as non_ril_vol,
+                (sum(case when (logging_method='Non-RIL') then billed_vol else 0 end) + sum(case when (logging_method='RIL') then billed_vol else 0 end)) as total_vol
+            ")
+            ->groupBy(['month', 'year'])
+            ->latest('year')
+            ->oldest('month')
             ->get();
 
-            // $this->permits = Permit::selectRaw('Year(scaled_date) year, Month(scaled_date) month, logging_method, billed_vol, billed_amount')
-            //                         ->whereYear('scaled_date', $this->selectedYear)
-            //                         ->get();        }
-        }
-        else
-        {
-            $this->permits = Permit::selectRaw('year(scaled_date) year, month(scaled_date) month,
-            sum(case when (logging_method="Helicopter") then billed_vol else 0 end) as helicopter_vol,
-            sum(case when (logging_method="RIL") then billed_vol else 0 end) as ril_vol,
-            sum(case when (logging_method="Non-RIL") then billed_vol else 0 end) as non_ril_vol,
-            sum(case when (logging_method="Helicopter") then billed_vol else 0 end)+sum(case when (logging_method="Non-RIL") then billed_vol else 0 end)+sum(case when (logging_method="RIL") then billed_vol else 0 end) total_vol,
-
-            sum(case when (logging_method="Helicopter") then billed_amount else 0 end) as helicopter_amount,
-            sum(case when (logging_method="RIL") then billed_amount else 0 end) as ril_amount,
-            sum(case when (logging_method="Non-RIL") then billed_amount else 0 end) as non_ril_amount,
-            sum(case when (logging_method="Helicopter") then billed_amount else 0 end)+sum(case when (logging_method="Non-RIL") then billed_amount else 0 end)+sum(case when (logging_method="RIL") then billed_amount else 0 end) total_amount')
-
-            ->groupBy('year','month')
-            ->orderBy('year','desc')
-            ->orderBy('month','asc')
-            ->where('status', env('PERMIT_STATUS'))
-            ->get();
-
-
-            // $this->totalHelicopterVol = number_format($this->permits->sum('helicopter_vol'));
-            // $this->totalNonRilVol = number_format($this->permits->sum('ril_vol'));
-            // $this->totalRilVol = number_format($this->permits->sum('non_ril_vol'));
-
-            // $this->totalHelicopterAmount = number_format($this->permits->sum('helicopter_amount'));
-            // $this->totalNonRilAmount = number_format($this->permits->sum('ril_amount'));
-            // $this->totalRilAmount = number_format($this->permits->sum('non_ril_amount'));
-
-            // $this->totalVol = number_format($this->permits->sum('total_vol'));
-            // $this->totalAmount = number_format($this->permits->sum('total_amount'));
-        }
-
-        $this->totalHelicopterVol = number_format($this->permits->sum('helicopter_vol'));
-        $this->totalNonRilVol = number_format($this->permits->sum('ril_vol'));
-        $this->totalRilVol = number_format($this->permits->sum('non_ril_vol'));
-
-        $this->totalHelicopterAmount = number_format($this->permits->sum('helicopter_amount'));
-        $this->totalNonRilAmount = number_format($this->permits->sum('ril_amount'));
-        $this->totalRilAmount = number_format($this->permits->sum('non_ril_amount'));
-
-        $this->totalVol = number_format($this->permits->sum('total_vol'));
-        $this->totalAmount = number_format($this->permits->sum('total_amount'));
-
-        // if ($this->selectedYear != '')
-        // {
-        //         $this->permits = Permit::selectRaw('Year(scaled_date) year, Month(scaled_date) month, logging_method, billed_vol, billed_amount')
-        //                             ->whereYear('scaled_date', $this->selectedYear)
-        //                             ->get();        }
-        // else
-        // {
-        //     $this->permits = Permit::selectRaw('Year(scaled_date) year, Month(scaled_date) month, logging_method, billed_vol, billed_amount')
-        //                                 ->get();
-        // }
+        $this->totalRilVol = $this->permits->sum('ril_vol');
+        $this->totalNonRilVol = $this->permits->sum('non_ril_vol');
+        $this->totalVol = $this->permits->sum('total_vol');;
     }
-
 
     public function render()
     {
