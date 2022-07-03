@@ -87,10 +87,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/permits/{permit}/bill', [PermitController::class, 'bill'])->name('permits.bill');
     Route::get('/permits/report', [PermitController::class, 'report'])->name('permits.report');
 
-    Route::get('/reports/permit-summary', [ReportsController::class, 'permitsummary'])->name('reports.permit-summary');
-    Route::get('/reports/r2-permit-licensee', [ReportsController::class, 'r2permitlicensee'])->name('reports.r2-permit-licensee');
-    Route::get('/reports/r3-permit-landtype-diameter', [ReportsController::class, 'r3permitlandtypediameter'])->name('reports.r3-permit-landtype-diameter');
-    Route::get('/reports/r1-permit-logging-method', [ReportsController::class, 'r1permitloggingmethod'])->name('reports.r1-permit-logging-method');
+    Route::group(['prefix' => 'reports'], function () {
+        Route::get('/permit-summary', [ReportsController::class, 'permitsummary'])->name('reports.permit-summary');
+        Route::get('/r2-permit-licensee', [ReportsController::class, 'r2permitlicensee'])->name('reports.r2-permit-licensee');
+        Route::get('/r3-permit-landtype-diameter', [ReportsController::class, 'r3permitlandtypediameter'])->name('reports.r3-permit-landtype-diameter');
+        Route::get('/r1-permit-logging-method', [ReportsController::class, 'r1PermitLoggingMethod'])->name('reports.r1-permit-logging-method');
+    });
 
     Route::post('/getFos', [UsersController::class, 'getFos'])->name('getFos');
 
@@ -103,23 +105,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('licensees.licenses', LicenseController::class)->shallow();
     Route::resource('licenses.licenseAccCoupe', LicenseAccountCoupeController::class)->shallow();
     Route::resources([
-            'licensees'=> LicenseeController::class,
-            'users'=> UsersController::class,
-            'regions'=> RegionsController::class,
-            'species'=> SpeciesController::class,
-            'logsizes' => LogSizeController::class,
-            'hammermarks' => HammerMarkController::class,
-            'landtypes'=> LandTypesController::class,
-            'prices'=> PricesController::class,
+        'licensees'=> LicenseeController::class,
+        'users'=> UsersController::class,
+        'regions'=> RegionsController::class,
+        'species'=> SpeciesController::class,
+        'logsizes' => LogSizeController::class,
+        'hammermarks' => HammerMarkController::class,
+        'landtypes'=> LandTypesController::class,
+        'prices'=> PricesController::class,
 
-            'royalties'=> RoyaltiesController::class,
-            'premiums'=> PremiumsController::class,
+        'royalties'=> RoyaltiesController::class,
+        'premiums'=> PremiumsController::class,
 
-            'districts'=> DistrictsController::class,
-            // 'reports'=> ReportsController::class,
-            'permits'=> PermitController::class,
-            'licensemasters'=> LicenseMasterController::class,
-
+        'districts'=> DistrictsController::class,
+        // 'reports'=> ReportsController::class,
+        'permits'=> PermitController::class,
+        'licensemasters'=> LicenseMasterController::class,
     ]);
 });
 
