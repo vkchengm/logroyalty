@@ -9,6 +9,7 @@
   'payment-reports.r2-permit-licensee' => 'App\\Http\\Livewire\\PaymentReports\\R2PermitLicensee',
   'payment-reports.r3-permit-land-used-by-diameter' => 'App\\Http\\Livewire\\PaymentReports\\R3PermitLandUsedByDiameter',
   'payment-reports.r4-permit-land-used-by-volume' => 'App\\Http\\Livewire\\PaymentReports\\R4PermitLandUsedByVolume',
+  'payment-reports.r5-permit-land-used-by-species' => 'App\\Http\\Livewire\\PaymentReports\\R5PermitLandUsedBySpecies',
   'permit-accept' => 'App\\Http\\Livewire\\PermitAccept',
   'permit-approve' => 'App\\Http\\Livewire\\PermitApprove',
   'permit-assign' => 'App\\Http\\Livewire\\PermitAssign',

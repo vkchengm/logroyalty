@@ -126,6 +126,10 @@
                                 <x-jet-dropdown-link href="{{ route('payment-reports.r4-permit-land-used-volume') }}">
                                     {{ __('R4: Accumulated Production By Land Type and Volume') }}
                                 </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r5-permit-land-species-volume') }}">
+                                    {{ __('R5: Permits By Land Type, Species and Volume') }}
+                                </x-jet-dropdown-link>
                             </div>
                         </x-slot>
                     </x-jet-dropdown>
