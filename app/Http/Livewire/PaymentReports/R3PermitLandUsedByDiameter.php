@@ -8,7 +8,7 @@ use App\Models\PermitDetail;
 use App\Models\Region;
 use Livewire\Component;
 
-class R3PermitLandUsedByVolume extends Component
+class R3PermitLandUsedByDiameter extends Component
 {
     use BaseReport;
 
@@ -79,9 +79,9 @@ class R3PermitLandUsedByVolume extends Component
                 MONTH(payment_date) as month,
                 YEAR(payment_date) as year
             ')
+            ->oldest('licensee')
             ->latest('year')
             ->oldest('month')
-            ->oldest('licensee')
             ->oldest('region')
             ->oldest('district')
             ->get();
@@ -97,6 +97,6 @@ class R3PermitLandUsedByVolume extends Component
 
     public function render()
     {
-        return view('livewire.payment-reports.r3-permit-land-used-by-volume');
+        return view('livewire.payment-reports.r3-permit-land-used-by-diameter');
     }
 }

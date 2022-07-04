@@ -18,6 +18,11 @@ class PaymentReportController extends Controller
 
     public function r3PermitLandUsedByDiameter()
     {
-        return view('payment-reports.r3-permit-land-used-by-volume');
+        return view('payment-reports.r3-permit-land-used-by-diameter');
+    }
+
+    public function r4PermitLandUsedByVolume()
+    {
+        return view('payment-reports.r4-permit-land-used-by-volume');
     }
 }
