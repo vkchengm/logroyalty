@@ -16,8 +16,8 @@ class PaymentReportController extends Controller
         return view('payment-reports.r2-permit-licensee');
     }
 
-    public function r3PermitLandTypeDiameter()
+    public function r3PermitLandUsedByDiameter()
     {
-
+        return view('payment-reports.r3-permit-land-used-by-volume');
     }
 }

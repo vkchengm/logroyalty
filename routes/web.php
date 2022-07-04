@@ -98,7 +98,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'payment-reports'], function () {
         Route::get('/r1-permit-logging-method', [PaymentReportController::class, 'r1PermitLoggingMethod'])->name('payment-reports.r1-permit-logging-method');
         Route::get('/r2-permit-licensee', [PaymentReportController::class, 'r2PermitLicensee'])->name('payment-reports.r2-permit-licensee');
-        Route::get('/r3-permit-landtype-diameter', [PaymentReportController::class, 'r3PermitLandTypeDiameter'])->name('payment-reports.r3-permit-landtype-diameter');
+        Route::get('/r3-permit-land-used-by-diameter', [PaymentReportController::class, 'r3PermitLandUsedByDiameter'])->name('payment-reports.r3-permit-land-used-diameter');
     });
 
     Route::post('/getFos', [UsersController::class, 'getFos'])->name('getFos');

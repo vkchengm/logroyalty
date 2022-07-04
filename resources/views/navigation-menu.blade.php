@@ -119,8 +119,8 @@
                                     {{ __('R2: Accumulated Production By Licensee') }}
                                 </x-jet-dropdown-link>
 
-                                <x-jet-dropdown-link href="{{ route('payment-reports.r3-permit-landtype-diameter') }}">
-                                    {{ __('R3 Accumulated Production By Land Type and Diameter') }}
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r3-permit-land-used-diameter') }}">
+                                    {{ __('R3: Accumulated Production By Land Type and Diameter') }}
                                 </x-jet-dropdown-link>
                             </div>
                         </x-slot>

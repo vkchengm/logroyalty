@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\PaymentReports;
 
 use App\Models\District;
+use App\Models\LandTypes;
 use App\Models\Licensee;
 use App\Models\Permit;
 use App\Models\Region;
@@ -54,6 +55,14 @@ trait BaseReport
                 $q->where('region_id', $regionId);
             })
             ->oldest('name')
+            ->pluck('name', 'id')
+            ->toArray();
+    }
+
+    public function getLandTypeList()
+    {
+        return LandTypes::query()
+            ->whereIn('id', Permit::query()->distinct()->select('land_type_id'))
             ->pluck('name', 'id')
             ->toArray();
     }

@@ -7,6 +7,7 @@
   'logs-edit' => 'App\\Http\\Livewire\\LogsEdit',
   'payment-reports.r1-permit-logging-method' => 'App\\Http\\Livewire\\PaymentReports\\R1PermitLoggingMethod',
   'payment-reports.r2-permit-licensee' => 'App\\Http\\Livewire\\PaymentReports\\R2PermitLicensee',
+  'payment-reports.r3-permit-land-used-by-volume' => 'App\\Http\\Livewire\\PaymentReports\\R3PermitLandUsedByVolume',
   'permit-accept' => 'App\\Http\\Livewire\\PermitAccept',
   'permit-approve' => 'App\\Http\\Livewire\\PermitApprove',
   'permit-assign' => 'App\\Http\\Livewire\\PermitAssign',
