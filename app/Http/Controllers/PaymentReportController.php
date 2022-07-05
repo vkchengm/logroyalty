@@ -30,4 +30,9 @@ class PaymentReportController extends Controller
     {
         return view('payment-reports.r5-permit-land-used-by-species');
     }
+
+    public function r6PermitLogsProduction()
+    {
+        return view('payment-reports.r6-permit-log-production');
+    }
 }
