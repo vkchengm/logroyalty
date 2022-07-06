@@ -40,4 +40,9 @@ class PaymentReportController extends Controller
     {
         return view('payment-reports.r7-permit-log-production-by-market');
     }
+
+    public function r8PermitLogsProductionByRevenue()
+    {
+        return view('payment-reports.r8-permit-log-production-by-revenue');
+    }
 }

@@ -28,8 +28,13 @@ class R7PermitLogsProductionByMarket extends Component
 
     public function loadReport()
     {
-
         $this->permits = Permit::query()
+            ->when($this->selectedYear, function ($q) {
+                $q->whereYear('payment_date', $this->selectedYear);
+            })
+            ->when($this->selectedYear && $this->selectedMonth, function ($q) {
+                $q->whereMonth('payment_date', $this->selectedMonth);
+            })
             ->when($this->landTypeId, function ($q) {
                 $q->where('land_type_id', $this->landTypeId);
             })
@@ -37,10 +42,6 @@ class R7PermitLogsProductionByMarket extends Component
                 $q->where('market', $this->marketType);
             })
             ->addSelect([
-                'mean' => \App\Models\PermitDetail::query()
-                    ->whereColumn('permits.id','=', 'permit_details.permit_id')
-                    ->selectRaw('sum(vol)'),
-
                 'district' => \App\Models\District::query()
                     ->whereColumn('permits.district_id', '=', 'districts.id')
                     ->select('name'),

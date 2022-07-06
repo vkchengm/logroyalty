@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            R7 Permit By Logs Production Market
+            R8 Permit By Logs Production Revenue
         </h2>
     </x-slot>
 
     <div>
         <div class="mx-auto py-2 sm:px-6 lg:px-8">
             <div class=" md:mt-0 md:col-span-2">
-                <livewire:payment-reports.r7-permit-logs-production-by-market />
+                <livewire:payment-reports.r8-permit-logs-production-by-revenue />
             </div>
         </div>
     </div>
