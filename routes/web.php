@@ -104,6 +104,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/r6-permit-logs-production', [PaymentReportController::class, 'r6PermitLogsProduction'])->name('payment-reports.r6-permit-logs-production');
         Route::get('/r7-permit-logs-production-by-market', [PaymentReportController::class, 'r7PermitLogsProductionByMarket'])->name('payment-reports.r7-permit-logs-production-by-market');
         Route::get('/r8-permit-logs-production-by-revenue', [PaymentReportController::class, 'r8PermitLogsProductionByRevenue'])->name('payment-reports.r8-permit-log-production-by-revenue');
+        Route::get('/r9-permit-logs-summary-by-land', [PaymentReportController::class, 'r9PermitLogsSummaryByLand'])->name('payment-reports.r9-permit-logs-summary-by-land');
     });
 
     Route::post('/getFos', [UsersController::class, 'getFos'])->name('getFos');

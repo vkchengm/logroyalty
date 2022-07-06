@@ -13,6 +13,7 @@
   'payment-reports.r6-permit-logs-production' => 'App\\Http\\Livewire\\PaymentReports\\R6PermitLogsProduction',
   'payment-reports.r7-permit-logs-production-by-market' => 'App\\Http\\Livewire\\PaymentReports\\R7PermitLogsProductionByMarket',
   'payment-reports.r8-permit-logs-production-by-revenue' => 'App\\Http\\Livewire\\PaymentReports\\R8PermitLogsProductionByRevenue',
+  'payment-reports.r9-permit-logs-summary-by-land' => 'App\\Http\\Livewire\\PaymentReports\\R9PermitLogsSummaryByLand',
   'permit-accept' => 'App\\Http\\Livewire\\PermitAccept',
   'permit-approve' => 'App\\Http\\Livewire\\PermitApprove',
   'permit-assign' => 'App\\Http\\Livewire\\PermitAssign',

@@ -45,4 +45,9 @@ class PaymentReportController extends Controller
     {
         return view('payment-reports.r8-permit-log-production-by-revenue');
     }
+
+    public function r9PermitLogsSummaryByLand()
+    {
+        return view('payment-reports.r9-permit-logs-summary-by-land');
+    }
 }
