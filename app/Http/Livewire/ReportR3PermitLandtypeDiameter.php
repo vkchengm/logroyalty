@@ -35,19 +35,13 @@ class ReportR3PermitLandtypeDiameter extends Component
     public function mount()
     {
         $this->landtypes = LandTypes::all()->pluck('name', 'id');
-        
+
         $this->result = Permit::select(DB::raw('YEAR(scaled_date) as year'))->distinct()->get();
         $this->yearList = $this->result->sortByDesc('year');
 
         $this->result = Permit::select(DB::raw('MONTH(scaled_date) as month'))->distinct()->get();
         $this->monthList = $this->result->sortBy('month');
 
-        $this->permits = Permit::
-                        join('permit_details', 'permits.id', '=', 'permit_details.permit_id')
-                        ->select('permit_details.permit_id','permits.*', 'permit_details.*')
-                        // ->groupBy('permit_id')
-                        ->get()->toArray();
-        dd($this->permits);
 
         $this->permits = PermitDetail::selectRaw($this->sqlstring)
 
@@ -104,14 +98,14 @@ class ReportR3PermitLandtypeDiameter extends Component
         }
         else
         {
-            $this->districts = District::orderBy('name','ASC')->get();            
+            $this->districts = District::orderBy('name','ASC')->get();
         }
-        
+
         $this->districtId = '';
         $this->districtIds = District::where('region_id', $this->regionId)->pluck('id');
 
         $this->changeOption();
-    } 
+    }
 
     public function changeOption()
     {
@@ -187,7 +181,7 @@ class ReportR3PermitLandtypeDiameter extends Component
                                             ->orderByDesc('name')
                                             ->limit(1)
                                         )->whereYear('scaled_date', $this->yearSelected)->whereIn('district_id', $this->districtIds)->where('user_id',$this->licenseeId)->get();
-    
+
                 }
                 elseif ($this->districtId == '' && $this->licenseeId == '')
                 {
@@ -211,7 +205,7 @@ class ReportR3PermitLandtypeDiameter extends Component
                                             ->orderByDesc('name')
                                             ->limit(1)
                                         )->whereYear('scaled_date', $this->yearSelected)->whereIn('district_id', $this->districtIds)->get();
-    
+
                 }
                 elseif ($this->districtId != '' && $this->licenseeId != '')
                 {
@@ -311,7 +305,7 @@ class ReportR3PermitLandtypeDiameter extends Component
                                             ->orderByDesc('name')
                                             ->limit(1)
                                         )->whereYear('scaled_date', $this->yearSelected)->where('user_id',$this->licenseeId)->get();
-    
+
                 }
                 elseif ($this->districtId != '' && $this->licenseeId != '')
                 {
@@ -339,7 +333,7 @@ class ReportR3PermitLandtypeDiameter extends Component
                                         ->where('user_id',$this->licenseeId)
                                         ->get();
                 }
-            }            
+            }
         }
         else
         {
@@ -512,7 +506,7 @@ class ReportR3PermitLandtypeDiameter extends Component
                                             ->orderByDesc('name')
                                             ->limit(1)
                                         )->where('user_id',$this->licenseeId)->get();
-    
+
                 }
                 elseif ($this->districtId != '' && $this->licenseeId != '')
                 {
@@ -539,14 +533,14 @@ class ReportR3PermitLandtypeDiameter extends Component
                                         ->where('user_id',$this->licenseeId)
                                         ->get();
                 }
-            }            
+            }
         }
 
         $this->totalVol = number_format($this->permits->sum('total_vol'));
         $this->totalAmount = number_format($this->permits->sum('total_amount'));
     }
 
-   
+
     public function render()
     {
         return view('livewire.report-r3-permit-landtype-diameter');

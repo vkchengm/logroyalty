@@ -134,6 +134,10 @@
                                 <x-jet-dropdown-link href="{{ route('payment-reports.r6-permit-logs-production') }}">
                                     {{ __('R6: Permits By Logs Production') }}
                                 </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r7-permit-logs-production-by-market') }}">
+                                    {{ __('R7: Permits By Logs Production Market') }}
+                                </x-jet-dropdown-link>
                             </div>
                         </x-slot>
                     </x-jet-dropdown>

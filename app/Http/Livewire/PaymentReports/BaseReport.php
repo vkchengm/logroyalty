@@ -78,6 +78,15 @@ trait BaseReport
             ->toArray();
     }
 
+    public function getMarketTypeList()
+    {
+        return Permit::query()
+            ->distinct()
+            ->select('market')
+            ->pluck('market', 'market')
+            ->toArray();
+    }
+
     public function updated($key, $value)
     {
         $this->loadReport();

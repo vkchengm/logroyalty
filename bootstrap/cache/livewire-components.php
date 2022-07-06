@@ -11,6 +11,7 @@
   'payment-reports.r4-permit-land-used-by-volume' => 'App\\Http\\Livewire\\PaymentReports\\R4PermitLandUsedByVolume',
   'payment-reports.r5-permit-land-used-by-species' => 'App\\Http\\Livewire\\PaymentReports\\R5PermitLandUsedBySpecies',
   'payment-reports.r6-permit-logs-production' => 'App\\Http\\Livewire\\PaymentReports\\R6PermitLogsProduction',
+  'payment-reports.r7-permit-logs-production-by-market' => 'App\\Http\\Livewire\\PaymentReports\\R7PermitLogsProductionByMarket',
   'permit-accept' => 'App\\Http\\Livewire\\PermitAccept',
   'permit-approve' => 'App\\Http\\Livewire\\PermitApprove',
   'permit-assign' => 'App\\Http\\Livewire\\PermitAssign',
