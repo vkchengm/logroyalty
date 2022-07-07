@@ -140,6 +140,15 @@
                 Total Amount: {{ number_format($permit->billed_amount, 2) }}
             </td>
         </tr>
+        <tr></tr>
+        <tr style="font-weight:bold;">
+            <td>
+                Total Royalty: {{ number_format($totalRoyalty, 2) }}
+            </td>
+            <td>
+                Total Premium: {{ number_format($totalPremium, 2) }}
+            </td>
+        </tr>
     </table>
     <br>
 
@@ -167,6 +176,15 @@
                 </tr>
             @endforeach
             </tbody>
+            <tfoot>
+                <tr style="font-weight:bold;">
+                    <td></td>            
+                    <td></td>            
+                    <td class="right">
+                        {{ number_format($permit->permitCharges->sum('total'), 2) }}
+                    </td>            
+                </tr>
+            </tfoot>
         </table>
         <br>        
     @endif
@@ -337,14 +355,6 @@
     </table>
     <br>
 
-
-
-
-
-
-
-
-
     <table>
         <thead>
         <tr>
@@ -490,7 +500,7 @@
     @endforeach
     </tbody>
     </table>
-    
+
 </body>
 </html>
 

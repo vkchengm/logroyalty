@@ -19,9 +19,9 @@
                         <div class="px-1 py-1">
                             <div class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"><a href="{{ route('permits.create-plantation') }}">New Plantation Logs</a></div>
                         </div>
-                        {{-- <div class="px-1 py-1">
+                        <div class="px-1 py-1">
                             <div class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"><a href="{{ route('permits.create-converted') }}">New Converted Logs</a></div>
-                        </div> --}}
+                        </div>
                     </div>
                 @else
                     <div class="py-4 text-center">
@@ -76,7 +76,7 @@
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:bg-stone-600 dark:text-gray-300 ">
                                             <a href="{{ route('permits.show', $permit->id) }}">
-                                                <div class="text-sm text-gray-900 dark:text-gray-300 font-semibold"> TDP{{ str_pad($permit->id, 6, '0', STR_PAD_LEFT) }} </div>
+                                                <div title={{ ucfirst($permit->timber_type) }} class="text-sm text-gray-900 dark:text-gray-300 font-semibold"> TDP{{ str_pad($permit->id, 6, '0', STR_PAD_LEFT) }} </div>
                                                 @isset($permit->license)
                                                     <div title="License No." class="text-sm text-gray-900 dark:text-gray-300 "> <p > {{ $permit->license->name }} </p> </div>
                                                     <div title="License AC No." class="text-sm text-gray-900 dark:text-gray-300 "> <p> {{ $permit->licenseAccount->account_no }} </p> </div>

@@ -6,6 +6,7 @@
             {{-- master section 1 --}}
             <div class="px-6 bg-white dark:bg-stone-800 pt-4 pb-4">
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
+                    
                     <input type="hidden" name="timber_type" id="timber_type" value="plantation"/>
 
                     <div class="form-group px-1 py-1">

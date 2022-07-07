@@ -29,12 +29,11 @@
                         <label for="licensee_ac_no" class="dark:text-gray-300 block font-medium text-sm text-gray-700">License A/C No.</label>
                         <select name="licensee_ac_no" id="licensee_ac_no" class="form-control select2 rounded-md shadow-sm mt-1 block w-full"  wire:model="licensee_ac_no" wire:change="updateCoupe()" required>
                             <option value="">Please Select</option>
-                            {{-- @foreach($licenseAccounts as $id => $licenseAccount ) --}}
                             @foreach($licenseAccounts as $licenseAccount => $id )
                                 <option value="{{ $id }}" {{ (isset($permit) && $permit ? $permit->licensee_ac_no : old('licensee_ac_no')) == $id ? 'selected' : '' }}>
                                     {{ $licenseAccount }}
                                 </option>
-                        @endforeach
+                            @endforeach
                         </select>
                         @if($errors->has('licensee_ac_no'))
                             <p class="help-block">
@@ -51,12 +50,11 @@
                     <div class="px-1 py-1">
                         <label for="districts" class="dark:text-gray-300 block font-medium text-sm text-gray-700">District</label>
                         <select name="district_id" id="district" class="form-control select2 rounded-md shadow-sm mt-1 block w-full"  wire:change="changeDistrict" wire:model="districtId">
-                            {{-- @foreach($districts as $id => $district) --}}
                             @foreach($districts as $district => $id)
                                 <option value="{{ $id }}" {{ (isset($permit) && $permit->district ? $permit->district->id : old('district_id')) == $id ? 'selected' : '' }}>
                                     {{ $district }}
                                 </option>
-                        @endforeach
+                            @endforeach
                         </select>
                         @if($errors->has('district_id'))
                             <p class="help-block">
@@ -68,11 +66,11 @@
                     <div class="px-1 py-1">
                         <label for="landtypes" class="dark:text-gray-300 block font-medium text-sm text-gray-700">Land Type</label>
                         <select name="land_type_id" id="land_type_id" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
-                          @foreach($landtypes as $id => $landtype)
+                            @foreach($landtypes as $id => $landtype)
                               <option value="{{ $id }}" {{ (isset($permit) && $permit->landtype ? $permit->landtype->id : old('land_type_id')) == $id ? 'selected' : '' }}>
                                   {{ $landtype }}
                               </option>
-                          @endforeach
+                            @endforeach
                           </select>
                           @if($errors->has('land_type_id'))
                               <p class="help-block">
@@ -85,9 +83,6 @@
                     <div class="px-1 py-1">
                         <label for="logging_method" class="dark:text-gray-300 block font-medium text-sm text-gray-700">Logging method</label>
                         <select name="logging_method" id="logging_method" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
-                                {{-- <option value="" selected>
-                                  Please select
-                                </option> --}}
                                 <option {{ ($permit->logging_method) == 'Non-RIL' ? 'selected' : '' }} value="Non-RIL">
                                     Non-RIL
                                 </option>
@@ -108,9 +103,6 @@
                     <div class="px-1 py-1">
                         <label for="market" class="dark:text-gray-300 block font-medium text-sm text-gray-700">Market</label>
                         <select name="market" id="market" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
-                           {{-- <option value="" selected>
-                             Please select
-                           </option> --}}
                            <option {{ ($permit->market) == 'Export' ? 'selected' : '' }} value="Export">
                                 Export
                             </option>
@@ -143,43 +135,6 @@
                         @enderror
                     </div>    
 
-                    {{-- <div class="px-1 py-1">
-                      <label for="scaled_date" class="dark:text-gray-300 block font-medium text-sm text-gray-700">Scaled Date</label>
-                      <input type="date" name="scaled_date" id="scaled_date" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                          value="{{ old('scaled_date', $permit->scaled_date) }}" required/>
-                      @error('scaled_date')
-                          <p class="text-sm text-red-600">{{ $message }}</p>
-                      @enderror
-                    </div>    
-
-                    <div class="px-1 py-1">
-                        <label for="name_of_scaler" class="dark:text-gray-300 block font-medium text-sm text-gray-700">Name of Scaler</label>
-                        <input type="text" name="name_of_scaler" id="name_of_scaler" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                            value="{{ old('name_of_scaler', $permit->name_of_scaler) }}" />
-                        @error('name_of_scaler')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>    
-
-                    <div class="form-group px-1 py-1">
-                        <label for="hammer_mark_id" class="block font-medium text-sm text-gray-700 dark:text-white">Hammer Mark</label>
-                        <select name="hammer_mark_id" id="hammer_mark_id" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" wire:model="hammer_mark_id" wire:change="updateHammerMarkOwner" required>
-                        <option value="">Please Select</option>
-                        @isset($hammerMarks)
-                            @foreach($hammerMarks as $id => $hammerMark)
-                                <option value="{{ $hammerMark->id }}">
-                                    {{ $hammerMark->name }}
-                                </option>
-                            @endforeach
-                        @endisset
-                        </select>
-                    </div>
-
-                    <div class="form-group px-1 py-1">
-                        <label for="hammer_mark_owner" class="block font-medium text-sm text-gray-700 dark:text-white">Hammer Mark Owner</label>
-                        <input type="text" name="hammer_mark_owner" id="hammer_mark_owner" class="form-input rounded-md shadow-sm mt-1 block w-full" wire:model="hammer_mark_owner" readonly />
-                    </div> --}}
-
                     <div class="px-1 py-1">
                         <label for="buyer" class="dark:text-gray-300 block font-medium text-sm text-gray-700">Buyer</label>
                         <input type="text" name="buyer" id="buyer" type="text" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -206,11 +161,24 @@
                             <th class="font-light">Log No.</th>
                             <th class="font-light">Species</th>
                             <th class="font-light">L(M)</th>
-                            <th class="font-light">D1(CM)</th>
-                            <th class="font-light">D2(CM)</th>
+
+                            @if ($permit->timber_type == 'converted')
+                                <th class="font-light">W(CM)</th>
+                                <th class="font-light">H(CM)</th>
+                            @else
+                                <th class="font-light">D1(CM)</th>
+                                <th class="font-light">D2(CM)</th>
+                            @endif
+
                             <th class="font-light">DS</th>
                             <th class="font-light">DL(M)</th>
-                            <th class="font-light">DD(CM)</th>
+
+                            @if ($permit->timber_type == 'converted')
+                                <th class="font-light">DA(CM)</th>
+                            @else
+                                <th class="font-light">DD(CM)</th>
+                            @endif
+                            
                             <th class="px-2 py-2">
                                 <a href="#" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="removeDetails()">Clear</a>
                             </th>
@@ -256,12 +224,6 @@
                                             wire:model="permitdetails.{{ $index }}.diameter_2" min="1"/>
                                     </td>
                                     
-                                    {{-- <td>
-                                        <input type="number" style="width: 7em"
-                                            name="permitdetails[{{ $index }}][defect_symbol]"
-                                            size="12" 
-                                            wire:model="permitdetails.{{ $index }}.defect_symbol" />
-                                    </td> --}}
                                     <td class="w-full form-control ">
                                         <select name="permitdetails[{{ $index }}][defect_symbol]" class=" min-w-full"
                                         wire:model="permitdetails.{{ $index }}.defect_symbol"
@@ -313,18 +275,11 @@
 
                             <span class="px-2">No. of logs added: {{ count($permitdetails) }}</span>
 
-                            {{-- <input type="number" wire:model="line_no" name="line_no" id="line_no" class="form-input rounded-md shadow-sm mt-1 w-16">
-                            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="addDetails">
-                                Add Logs
-                            </button> --}}
-                    
                             <div class="py-1">
                                 <button type="submit" name='submit' class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-40" wire:click.prevent="importLogsExcel()">
                                     Import Excel file
                                 </button>
                                 <input id="file" wire:model="logs_sheet" type="file" name="file" class="form-control rounded-md shadow-sm mt-1"/>
-                                {{-- <a href="">Sample file</a> --}}
-                                {{-- <a onclick="window.open('info.pdf) class="btn btn-large pull-right"><i class="icon-download-alt"> </i> Sample file </a> --}}
                             </div>
                             <div>
                                 <button wire:click.prevent="downloadSample" class="px-2">
@@ -341,21 +296,13 @@
                                 Logs Imported!
                             </x-jet-action-message>
 
-                            {{-- <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" wire:click.prevent="addDetails">
-                                Import Logs from Excel file
-                            </button> --}}
-
-
-
-                            {{-- <button class="btn btn-sm btn-secondary py-2" wire:click.prevent="addEditDetail">
-                              + Add Another Log
-                            </button> --}}
-
-                           
-
                         </div>
                         <div>
-                            Note: SN=Serial No., L=Length, D1=Diameter 1, D2=Diameter 2, DS=Defect Symbol, DL=Defect Length, DD=Defect Diameter
+                            @if ($permit->timber_type == 'converted')
+                                Note: SN=Serial No., L=Length, W=Width, H=Height, DS=Defect Symbol, DL=Defect Length, DA=Defect Area
+                            @else
+                                Note: SN=Serial No., L=Length, D1=Diameter 1, D2=Diameter 2, DS=Defect Symbol, DL=Defect Length, DD=Defect Diameter
+                            @endif
                         </div>
                     </div>
                 </div>

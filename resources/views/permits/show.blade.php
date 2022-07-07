@@ -184,10 +184,13 @@
             </div>
 
             <div class="py-4">
-                    <div class="flex px-6 justify-end text-xl dark:text-gray-300">
+                    <div class="flex flex-wrap px-6 justify-end text-lg dark:text-gray-300">
+                        <div class="px-2">Timber Type: {{ ucfirst($permit->timber_type) }}</div>
                         <div class="px-2">No. of Log: {{ $permit->permitDetails->count() }}</div>
                         <div class="px-2">Volume: {{ number_format($permit->billed_vol, 2) }}m3</div>
                         @cannot('kppm_access')
+                            <div class="px-2">Total Royalty: {{ $totalRoyalty }}</div>
+                            <div class="px-2">Total Premium: {{ $totalPremium }}</div>
                             <div class="px-2">Amount: {{ number_format($permit->billed_amount, 2) }}</div>
                         @endcannot
                     </div>
@@ -210,15 +213,24 @@
                                     </th>
 
                                     <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Length
+                                        Length (M)
                                     </th>
-                                    
-                                    <th title="Diameter 1 / Diameter 2" scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        D1 / D2
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Mean
-                                    </th>
+                                    @if ($permit->timber_type == 'converted')
+                                        <th title="Diameter 1 / Diameter 2" scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            W / H (cm)
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Area (cm)
+                                        </th>
+                                    @else
+                                        <th title="Diameter 1 / Diameter 2" scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            D1 / D2 (cm)
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Mean (cm)
+                                        </th>
+                                    @endif
+
                                     <th title="Defect Symbol" scope="col" class="px-6 py-3 bg-gray-50 dark:bg-stone-800 dark:text-gray-300 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         DS
                                     </th>
@@ -301,6 +313,28 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
+
+                                <tfoot class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600 text-right">
+                                            <div class="text-sm text-gray-900 dark:text-gray-300"> {{ $permit->permitDetails->sum('vol') }} <div>
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600 text-right">
+                                            <div class="text-sm text-gray-900 dark:text-gray-300"> {{ $permit->permitDetails->sum('amount') }} <div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+
                             </table>
                         </div>
                     </div>
@@ -366,6 +400,19 @@
                                             </tr>
                                         @endforeach
                                     </tbody>
+
+                                    <tfoot class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600 text-right">
+                                                <div class="text-sm text-gray-900 dark:text-gray-300"> {{ number_format($permitcharges->sum('total'),2) }} </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>

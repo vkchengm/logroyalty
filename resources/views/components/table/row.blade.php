@@ -1,4 +1,4 @@
-<tr {{ $attributes->merge(['class' => 'bg-white']) }}>
+<tr {{ $attributes->merge(['class' => 'bg-white dark:bg-stone-600']) }}>
 
     {{ $slot }}
 

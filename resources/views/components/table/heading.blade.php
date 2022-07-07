@@ -4,7 +4,7 @@
 ])
 
 <th
-    {{ $attributes->merge(['class' => 'px-6 py-3 bg-gray-50'])->only('class') }}
+    {{ $attributes->merge(['class' => 'px-6 py-3 bg-gray-50 dark:text-gray-100 dark:bg-stone-500'])->only('class') }}
 
 >
 

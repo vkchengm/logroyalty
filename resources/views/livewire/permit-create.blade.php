@@ -45,32 +45,6 @@
                         <input type="text" name="coupe_no_tmp" id="coupe_no_tmp" class="form-input rounded-md shadow-sm mt-1 block w-full" wire:model="coupe_no" readonly />
                     </div>
 
-                    {{-- <div class="form-group px-1 py-1">
-                        <label for="licensee_ac_no" class="block font-medium text-sm text-gray-700 dark:text-white">License A/C No.</label>
-                        <select name="licensee_ac_no" id="licensee_ac_no" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" required >
-                        @isset($licenseAccounts)
-                            @foreach($licenseAccounts as $id => $licenseAccount)
-                                    <option value="{{ $licenseAccount->id }}">
-                                        {{ $licenseAccount->account_no }}
-                                    </option>
-                            @endforeach
-                        @endisset
-                        </select>
-                    </div>
-
-                    <div class="form-group px-1 py-1">
-                        <label for="coupe_no" class="block font-medium text-sm text-gray-700 dark:text-white">Coupe No.</label>
-                        <select name="coupe_no" id="coupe_no" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" >
-                        @isset($licenseAccounts)
-                            @foreach($licenseAccounts as $id => $licenseAccount)
-                                    <option value="{{ $licenseAccount->id }}">
-                                        {{ $licenseAccount->coupe_no }}
-                                    </option>
-                            @endforeach
-                        @endisset
-                        </select>
-                    </div> --}}
-
                     <div class="form-group px-1 py-1">
                         <label for="districts" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">District</label>
                         <select name="district_id" id="district" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" wire:change="changeDistrict" wire:model="districtId" required>
@@ -147,60 +121,13 @@
                     </div>
 
                     <div class="form-group px-1 py-1">
-                        <label for="description" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Description</label>
-                        <input type="text" name="description" id="description" class="form-input rounded-md shadow-sm mt-1 block w-full" wire:model="description"
-
-                            value="{{ old('description', '') }}" />
-                        @error('description')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="form-group px-1 py-1">
                         <label for="place_of_scaling" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Place of Scaling</label>
-                        <input type="text" name="place_of_scaling" id="place_of_scaling" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                        <input type="text" name="place_of_scaling" id="place_of_scaling" class="form-input rounded-md shadow-sm mt-1 block w-full" required
                             value="{{ old('place_of_scaling', '') }}" />
                         @error('place_of_scaling')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
-
-                    {{-- <div class="form-group px-1 py-1">
-                      <label for="scaled_date" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Scaled Date</label>
-                      <input type="date" name="scaled_date" id="scaled_date" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                          value="{{ old('scaled_date', '') }}" required/>
-                      @error('scaled_date')
-                          <p class="text-sm text-red-600">{{ $message }}</p>
-                      @enderror
-                    </div>
-
-                    <div class="form-group px-1 py-1">
-                        <label for="name_of_scaler" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Name of Scaler</label>
-                        <input type="text" name="name_of_scaler" id="name_of_scaler" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                            value="{{ old('name_of_scaler', '') }}" />
-                        @error('name_of_scaler')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="form-group px-1 py-1">
-                        <label for="hammer_mark_id" class="block font-medium text-sm text-gray-700 dark:text-white">Hammer Mark</label>
-                        <select name="hammer_mark_id" id="hammer_mark_id" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" wire:model="hammer_mark_id" wire:change="updateHammerMarkOwner" required>
-                        <option value="">Please Select</option>
-                        @isset($hammerMarks)
-                            @foreach($hammerMarks as $id => $hammerMark)
-                                    <option value="{{ $hammerMark->id }}">
-                                        {{ $hammerMark->name }}
-                                    </option>
-                            @endforeach
-                        @endisset
-                        </select>
-                    </div>
-
-                    <div class="form-group px-1 py-1">
-                        <label for="hammer_mark_owner" class="block font-medium text-sm text-gray-700 dark:text-white">Hammer Mark Owner</label>
-                        <input type="text" name="hammer_mark_owner" id="hammer_mark_owner" class="form-input rounded-md shadow-sm mt-1 block w-full" wire:model="hammer_mark_owner" readonly />
-                    </div> --}}
 
                     <div class="form-group px-1 py-1">
                         <label for="buyer" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Buyer</label>
@@ -210,6 +137,17 @@
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
+
+                    <div class="form-group px-1 py-1">
+                        <label for="description" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">Description</label>
+                        <input type="text" name="description" id="description" class="form-input rounded-md shadow-sm mt-1 block w-full" wire:model="description"
+
+                            value="{{ old('description', '') }}" />
+                        @error('description')
+                            <p class="text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
+
 
               </div>
             </div>
