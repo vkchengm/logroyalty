@@ -55,4 +55,9 @@ class PaymentReportController extends Controller
     {
         return view('payment-reports.r10-permit-production-logging');
     }
+
+    public function r11PermitLandByRegion()
+    {
+        return view('payment-reports.r11-permit-land-by-region');
+    }
 }

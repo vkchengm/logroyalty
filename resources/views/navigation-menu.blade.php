@@ -144,11 +144,15 @@
                                 </x-jet-dropdown-link>
 
                                 <x-jet-dropdown-link href="{{ route('payment-reports.r9-permit-logs-summary-by-land') }}">
-                                    {{ __('R9: Permits Logs Summary by Land') }}
+                                    {{ __('R9: Permits Logs Summary By Land') }}
                                 </x-jet-dropdown-link>
 
                                 <x-jet-dropdown-link href="{{ route('payment-reports.r10-permit-production-logging') }}">
                                     {{ __('R10: Permits Production Logging') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r11-permit-land-by-region') }}">
+                                    {{ __('R11: Permits Land By Region') }}
                                 </x-jet-dropdown-link>
                             </div>
                         </x-slot>
