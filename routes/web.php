@@ -83,6 +83,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/users/{user}/destroyinternal', [UsersController::class, 'destroyinternal'])->name('users.destroyinternal');
     // Route::put('/user/activate/{id}', [UsersController::class, 'activate'])->name('users.activate');
 
+    Route::get('/hammermarks/deactivate/{id}', [HammerMarkController::class, 'deactivate'])->name('hammermarks.deactivate');
+    Route::get('/hammermarks/activate/{id}', [HammerMarkController::class, 'activate'])->name('hammermarks.activate');
 
     Route::get('/permits/{permit}/bill', [PermitController::class, 'bill'])->name('permits.bill');
     Route::get('/permits/report', [PermitController::class, 'report'])->name('permits.report');

@@ -57,8 +57,9 @@ class HammerMarkController extends Controller
 
     }
 
-    public function destroy(HammerMark $hammermark)
+    public function deactivate($hammermarkId)
     {
+        $hammermark = HammerMark::find($hammermarkId);
         $hammermark->status = 'D';
         $hammermark->save();
 
@@ -66,11 +67,22 @@ class HammerMarkController extends Controller
 
     }
 
-    // public function destroy(HammerMark $hammermark)
-    // {
-    //     $hammermark->delete();
+    public function activate($hammermarkId)
+    {
+        $hammermark = HammerMark::find($hammermarkId);
+        $hammermark->status = 'A';
+        $hammermark->save();
 
-    //     return redirect()->route('hammermarks.index');
+        return redirect()->route('hammermarks.index');
 
-    // }
+    }
+
+
+    public function destroy(HammerMark $hammermark)
+    {
+        $hammermark->delete();
+
+        return redirect()->route('hammermarks.index');
+
+    }
 }

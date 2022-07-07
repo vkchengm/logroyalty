@@ -67,17 +67,23 @@ class PermitController extends Controller
         if (isset($request->permitdetails)) {
             foreach ($request->permitdetails as $detail) {
                 $line = $permit->permitDetails()->create($detail);
-    
-                $mean = round(($line->diameter_1 + $line->diameter_2) / 2);
-                $line->mean = $mean;
+
+                if ($permit->timber_type == 'converted') {
+                    $mean = round($line->diameter_1 * $line->diameter_2);
+                    $line->mean = $mean;
+                    $logvol = $line->length * $line->diameter_1/100 * $line->diameter_2/100;        
+                    $defeatvol = round(($line->defect_diameter/100)*$line->defect_length, 2);
+                    $vol = $logvol - $defeatvol;     
+                } 
+                else {
+                    $mean = round(($line->diameter_1 + $line->diameter_2) / 2);
+                    $line->mean = $mean;
+                    $logvol = round(3.14159*pow(($mean/2/100),2)*$line->length, 2);        
+                    $defeatvol = round(3.14159*pow(($line->defect_diameter/2/100),2)*$line->defect_length, 2);
+                    $vol = $logvol - $defeatvol;     
+                }
                 
-                $logvol = round(3.14159*pow(($mean/2/100),2)*$line->length, 2);        
-                $defeatvol = round(3.14159*pow(($line->defect_diameter/2/100),2)*$line->defect_length, 2);
-                $vol = $logvol - $defeatvol; 
-                
-                // $line->vol = round(3.14159*pow(($line->mean/2/100),2)*$line->length, 2); 
                 $line->vol = $vol; 
-    
     
                 $line->save();
                 $totalVol = $totalVol + $line->vol;
@@ -102,7 +108,15 @@ class PermitController extends Controller
         $permitdetails = PermitDetail::where('permit_id', $permit->id)->get();
         $permitlogs = PermitLog::where('permit_id', $permit->id)->orderByDesc('updated_at')->get();
         $permitcharges = PermitCharge::where('permit_id', $permit->id)->get();
-        return view('permits.show', compact('permit', 'permitdetails', 'permitlogs', 'permitcharges'));
+
+        $totalRoyalty = 0;
+        $totalPremium = 0;
+        foreach ($permit->permitDetails as $detail) {
+            $totalRoyalty = $totalRoyalty + ($detail->vol * $detail->royalty);
+            $totalPremium = $totalPremium + ($detail->vol * $detail->premium);
+        }
+
+        return view('permits.show', compact('permit', 'permitdetails', 'permitlogs', 'permitcharges', 'totalRoyalty', 'totalPremium'));
 
     }
 
@@ -134,11 +148,34 @@ class PermitController extends Controller
 
             foreach ($request->permitdetails as $detail) {
                 // $mean = ($detail['diameter_1']+$detail['diameter_2']) / 2;
-                $mean = round(($detail['diameter_1']+$detail['diameter_2']) / 2);
 
-                $logvol = round(3.14159*pow(($mean/2/100),2)*$detail['length'], 2);            
-                $defeatvol = round(3.14159*pow(($detail['defect_diameter']/2/100),2)*$detail['defect_length'], 2);
-                $vol = $logvol - $defeatvol; 
+
+                // if ($permit->timber_type == 'converted') {
+                //     $mean = round($line->diameter_1 * $line->diameter_2);
+                //     $logvol = $line->length * $line->diameter_1/100 * $line->diameter_2/100;        
+                //     $defeatvol = round(($line->defect_diameter/100)*$line->defect_length, 2);
+                //     $vol = $logvol - $defeatvol;     
+                // } 
+                // else {
+                //     $mean = round(($line->diameter_1 + $line->diameter_2) / 2);
+                //     $logvol = round(3.14159*pow(($mean/2/100),2)*$line->length, 2);        
+                //     $defeatvol = round(3.14159*pow(($line->defect_diameter/2/100),2)*$line->defect_length, 2);
+                //     $vol = $logvol - $defeatvol;     
+                // }
+
+
+                if ($permit->timber_type == 'converted') {
+                    $mean = round(($detail['diameter_1']*$detail['diameter_2']));
+                    $logvol = round(($mean/10000)*$detail['length'], 2);            
+                    $defeatvol = round(($detail['defect_diameter']/100)*$detail['defect_length'], 2);
+                    $vol = $logvol - $defeatvol; 
+                } 
+                else {
+                    $mean = round(($detail['diameter_1']+$detail['diameter_2']) / 2);
+                    $logvol = round(3.14159*pow(($mean/2/100),2)*$detail['length'], 2);            
+                    $defeatvol = round(3.14159*pow(($detail['defect_diameter']/2/100),2)*$detail['defect_length'], 2);
+                    $vol = $logvol - $defeatvol; 
+                }
 
                 $totalVol = $totalVol+$vol;
 
@@ -149,9 +186,7 @@ class PermitController extends Controller
                     'length' => $detail['length'],
                     'diameter_1' => $detail['diameter_1'],
                     'diameter_2' => $detail['diameter_2'],
-                    // 'mean' => ($detail['diameter_1']+$detail['diameter_2']) / 2,
                     'mean' => $mean,
-
                     'defect_symbol' => $detail['defect_symbol'],
                     'defect_length' => $detail['defect_length'],
                     'defect_diameter' => $detail['defect_diameter'],
@@ -214,6 +249,13 @@ class PermitController extends Controller
     {
         $permit = Permit::find($permitId);
 
+        $totalRoyalty = 0;
+        $totalPremium = 0;
+        foreach ($permit->permitDetails as $detail) {
+            $totalRoyalty = $totalRoyalty + ($detail->vol * $detail->royalty);
+            $totalPremium = $totalPremium + ($detail->vol * $detail->premium);
+        }
+
         $speciesSums = $permit->permitDetails->mapToGroups(function ($item, $key) {
             return [$item->species->name => $item['vol']];
         });
@@ -245,15 +287,15 @@ class PermitController extends Controller
             'between30to44' => $between30to44,
             'between45to59' =>$between45to59,
             'above60' => $above60,
-            'index' => 1
+            'index' => 1,
+            'totalRoyalty' => $totalRoyalty,
+            'totalPremium' => $totalPremium
         ]);
 
         $pdf->setOptions([
             'margin-top' => 10,
             'page-size' => 'a4',
-            // 'frompage' => 2,
             'footer-right' => '[page]/[topage]'
-            // 'orientation' => ''
         ]);
 
         return $pdf->stream($tdpNo.'_bill.pdf');

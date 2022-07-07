@@ -7,10 +7,11 @@ use App\Models\Species;
 use Livewire\Component;
 use App\Models\District;
 use App\Models\LandTypes;
+use App\Models\HammerMark;
 use App\Imports\LogsImport;
+use Livewire\WithFileUploads;
 use App\Models\LicenseAccCoupe;
 use Illuminate\Support\Facades\Auth;
-use Livewire\WithFileUploads;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,6 +25,10 @@ class PermitCreateConverted extends Component
     public $licenseAccounts;
     public $licenseId;
     public $logs_sheet;
+    public $licensee_ac_no;
+    public $hammerMarks;
+    public $districtId;
+    public $hammer_mark_id;
 
     public $description = '';
     public $place_of_scaling = '';
@@ -35,12 +40,11 @@ class PermitCreateConverted extends Component
     public function mount()
     {
         // $this->species = Species::all();
-        $this->species = Species::where('type','Converted Timber')->get();
+        $this->species = Species::where('type','Natural')->get();
         $this->licenses = License::where('licensee_id', Auth::user()->licensee->id)->orderBy('name')->pluck('id', 'name');
         $this->districts = District::orderBy('name','asc')->pluck('id','name')->prepend(trans(''), 'Please select');
         $this->landtypes = LandTypes::orderBy('name','asc')->pluck('id','name')->prepend(trans(''), 'Please select');
-        $this->licenseAccounts = LicenseAccCoupe::where('license_id', $this->licenses->first())->orderBy('account_no','DESC')->get();
-
+        // $this->licenseAccounts = LicenseAccCoupe::where('license_id', $this->licenses->first())->orderBy('account_no','DESC')->get();
 
     }
 
@@ -120,12 +124,51 @@ class PermitCreateConverted extends Component
     public function changeLicense()
     {
         $this->licenseAccounts = LicenseAccCoupe::where('license_id', $this->licenseId)->orderBy('account_no','DESC')->get();
+        $this->licensee_ac_no = '';            
+        $this->coupe_no = '';            
+    }
+    
+    public function updateCoupe()
+    {
+        $coupes = LicenseAccCoupe::where('id', $this->licensee_ac_no)->first();
+        if (isset($coupes))
+        {
+            $this->coupe_no = $coupes->coupe_no;
+        } else
+        {
+            $this->coupe_no = '';            
+        }
+    }
+
+    public function changeDistrict()
+    {
+        $this->hammerMarks = HammerMark::where('district_id', $this->districtId)->orderBy('name','ASC')->get();
+        $this->hammer_mark_id = '';
+        $this->hammer_mark_owner = '';            
+    }
+
+    public function updateHammerMarkOwner()
+    {
+        $hammerMarks = HammerMark::where('id', $this->hammer_mark_id)->first();
+        if (isset($hammerMarks))
+        {
+            $this->hammer_mark_owner = $hammerMarks->employee_name;
+        } else
+        {
+            $this->hammer_mark_owner = '';            
+        }
     }
 
     public function removeDetail($index)
     {
         unset($this->permitdetails[$index]);
         $this->permitdetails = array_values($this->permitdetails);
+    }
+
+    public function removeDetails()
+    {
+        unset($this->permitdetails);
+        $this->permitdetails = array();
     }
 
     public function render()

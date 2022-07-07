@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight  dark:text-gray-300">
-            Edit Permit - TDP{{ str_pad($permit->id, 6, '0', STR_PAD_LEFT) }}
+            Edit Permit - TDP{{ str_pad($permit->id, 6, '0', STR_PAD_LEFT) }} - {{ strtoupper($permit->timber_type) }}
         </h2>
     </x-slot>
 
