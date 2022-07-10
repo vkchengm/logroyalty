@@ -26,10 +26,15 @@ class R5PermitLandUsedBySpecies extends Component
 
     public function loadReport()
     {
-
         $this->permits = Permit::query()
             ->when($this->landTypeId, function ($q) {
                 $q->where('land_type_id', $this->landTypeId);
+            })
+            ->when($this->selectedYear, function ($q) {
+                $q->whereYear('payment_date', $this->selectedYear);
+            })
+            ->when($this->selectedYear && $this->selectedMonth, function ($q) {
+                $q->whereMonth('payment_date', $this->selectedMonth);
             })
             ->rightJoin('permit_details', 'permit_details.permit_id', '=', 'permits.id')
             ->addSelect([
