@@ -76,9 +76,9 @@
                         @endforeach
                     </select>
 
-                    @if($errors->has('monthSelected'))
+                    @if($errors->has('selectedMonth'))
                         <p class="help-block">
-                            {{ $errors->first('monthSelected') }}
+                            {{ $errors->first('selectedMonth') }}
                         </p>
                     @endif
                 </div>

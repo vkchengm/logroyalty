@@ -36,7 +36,7 @@
 
                     <select class="form-control select2 rounded-md shadow-sm mt-1 block w-full"
                             wire:ignore
-                            wire:model="monthSelected">
+                            wire:model="selectedMonth">
                         <option value="" selected>
                             All
                         </option>
@@ -48,9 +48,9 @@
                         @endforeach
                     </select>
 
-                    @if($errors->has('monthSelected'))
+                    @if($errors->has('selectedMonth'))
                         <p class="help-block">
-                            {{ $errors->first('monthSelected') }}
+                            {{ $errors->first('selectedMonth') }}
                         </p>
                     @endif
                 </div>

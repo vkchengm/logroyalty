@@ -30,6 +30,12 @@ class R3PermitLandUsedByDiameter extends Component
             ->when($this->landTypeId, function ($q) {
                 $q->where('land_type_id', $this->landTypeId);
             })
+            ->when($this->selectedYear, function ($q) {
+                $q->whereYear('payment_date', $this->selectedYear);
+            })
+            ->when($this->selectedYear && $this->selectedMonth, function ($q) {
+                $q->whereMonth('payment_date', $this->selectedMonth);
+            })
             ->addSelect([
                 'mean' => \App\Models\PermitDetail::query()
                     ->whereColumn('permits.id','=', 'permit_details.permit_id')
