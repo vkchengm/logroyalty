@@ -45,18 +45,18 @@ class ReportR1PermitLoggingMethod extends Component
                                         sum(case when (logging_method="RIL") then billed_vol else 0 end) as ril_vol,
                                         sum(case when (logging_method="Non-RIL") then billed_vol else 0 end) as non_ril_vol,
                                         sum(case when (logging_method="Helicopter") then billed_vol else 0 end)+sum(case when (logging_method="Non-RIL") then billed_vol else 0 end)+sum(case when (logging_method="RIL") then billed_vol else 0 end) total_vol,
-                                        
+
                                         sum(case when (logging_method="Helicopter") then billed_amount else 0 end) as helicopter_amount,
                                         sum(case when (logging_method="RIL") then billed_amount else 0 end) as ril_amount,
                                         sum(case when (logging_method="Non-RIL") then billed_amount else 0 end) as non_ril_amount,
                                         sum(case when (logging_method="Helicopter") then billed_amount else 0 end)+sum(case when (logging_method="Non-RIL") then billed_amount else 0 end)+sum(case when (logging_method="RIL") then billed_amount else 0 end) total_amount')
-                                    
+
                                         ->groupBy('year','month')
                                         ->orderBy('year','desc')
                                         ->orderBy('month','asc')
                                         ->where('status', env('PERMIT_STATUS'))
                                         ->get();
-                               
+
 
         $this->totalHelicopterVol = number_format($this->permits->sum('helicopter_vol'));
         $this->totalNonRilVol = number_format($this->permits->sum('ril_vol'));
@@ -65,7 +65,7 @@ class ReportR1PermitLoggingMethod extends Component
         $this->totalHelicopterAmount = number_format($this->permits->sum('helicopter_amount'));
         $this->totalNonRilAmount = number_format($this->permits->sum('ril_amount'));
         $this->totalRilAmount = number_format($this->permits->sum('non_ril_amount'));
-                                                                                                                                
+
         $this->totalVol = number_format($this->permits->sum('total_vol'));
         $this->totalAmount = number_format($this->permits->sum('total_amount'));
     }
@@ -85,13 +85,16 @@ class ReportR1PermitLoggingMethod extends Component
             sum(case when (logging_method="RIL") then billed_vol else 0 end) as ril_vol,
             sum(case when (logging_method="Non-RIL") then billed_vol else 0 end) as non_ril_vol,
             sum(case when (logging_method="Helicopter") then billed_vol else 0 end)+sum(case when (logging_method="Non-RIL") then billed_vol else 0 end)+sum(case when (logging_method="RIL") then billed_vol else 0 end) total_vol,
-            
+
             sum(case when (logging_method="Helicopter") then billed_amount else 0 end) as helicopter_amount,
             sum(case when (logging_method="RIL") then billed_amount else 0 end) as ril_amount,
             sum(case when (logging_method="Non-RIL") then billed_amount else 0 end) as non_ril_amount,
             sum(case when (logging_method="Helicopter") then billed_amount else 0 end)+sum(case when (logging_method="Non-RIL") then billed_amount else 0 end)+sum(case when (logging_method="RIL") then billed_amount else 0 end) total_amount')
-        
+
             ->whereYear('scaled_date', $this->selectedYear)
+            ->when($this->selectedMonth, function ($q) {
+                $q->whereMonth('scaled_date', $this->selectedMonth);
+            })
             ->groupBy('year','month')
             ->orderBy('year','desc')
             ->orderBy('month','asc')
@@ -109,18 +112,18 @@ class ReportR1PermitLoggingMethod extends Component
             sum(case when (logging_method="RIL") then billed_vol else 0 end) as ril_vol,
             sum(case when (logging_method="Non-RIL") then billed_vol else 0 end) as non_ril_vol,
             sum(case when (logging_method="Helicopter") then billed_vol else 0 end)+sum(case when (logging_method="Non-RIL") then billed_vol else 0 end)+sum(case when (logging_method="RIL") then billed_vol else 0 end) total_vol,
-            
+
             sum(case when (logging_method="Helicopter") then billed_amount else 0 end) as helicopter_amount,
             sum(case when (logging_method="RIL") then billed_amount else 0 end) as ril_amount,
             sum(case when (logging_method="Non-RIL") then billed_amount else 0 end) as non_ril_amount,
             sum(case when (logging_method="Helicopter") then billed_amount else 0 end)+sum(case when (logging_method="Non-RIL") then billed_amount else 0 end)+sum(case when (logging_method="RIL") then billed_amount else 0 end) total_amount')
-        
+
             ->groupBy('year','month')
             ->orderBy('year','desc')
             ->orderBy('month','asc')
             ->where('status', env('PERMIT_STATUS'))
             ->get();
-   
+
 
             // $this->totalHelicopterVol = number_format($this->permits->sum('helicopter_vol'));
             // $this->totalNonRilVol = number_format($this->permits->sum('ril_vol'));
@@ -129,7 +132,7 @@ class ReportR1PermitLoggingMethod extends Component
             // $this->totalHelicopterAmount = number_format($this->permits->sum('helicopter_amount'));
             // $this->totalNonRilAmount = number_format($this->permits->sum('ril_amount'));
             // $this->totalRilAmount = number_format($this->permits->sum('non_ril_amount'));
-                                                                                                                
+
             // $this->totalVol = number_format($this->permits->sum('total_vol'));
             // $this->totalAmount = number_format($this->permits->sum('total_amount'));
         }
@@ -141,7 +144,7 @@ class ReportR1PermitLoggingMethod extends Component
         $this->totalHelicopterAmount = number_format($this->permits->sum('helicopter_amount'));
         $this->totalNonRilAmount = number_format($this->permits->sum('ril_amount'));
         $this->totalRilAmount = number_format($this->permits->sum('non_ril_amount'));
-                                                                                                            
+
         $this->totalVol = number_format($this->permits->sum('total_vol'));
         $this->totalAmount = number_format($this->permits->sum('total_amount'));
 
@@ -157,7 +160,7 @@ class ReportR1PermitLoggingMethod extends Component
         // }
     }
 
-   
+
     public function render()
     {
         return view('livewire.report-r1-permit-logging-method');

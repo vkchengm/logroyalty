@@ -14,7 +14,7 @@
 
                 @canany(['permit_access'])
                     <div class=" space-x-8 px-4 ml-10 pt-4 flex">
-                        
+
                         <x-jet-nav-link class="py-4 text-white dark:hover:text-gray-200" href="{{ route('permits.index') }}" :active="request()->routeIs('permits.*')">
                             {{-- {{ __('Permits') }} --}}
                             {{ __('TDP') }}
@@ -38,7 +38,7 @@
                                     <x-jet-dropdown-link href="{{ route('reports.r1-permit-logging-method') }}">
                                         {{ __('R1: RIL, Non-RIL & Helicopter') }}
                                     </x-jet-dropdown-link>
-    
+
                                     <x-jet-dropdown-link href="{{ route('reports.permit-summary') }}">
                                         {{ __('TDP Summary') }}
                                     </x-jet-dropdown-link>
@@ -50,7 +50,6 @@
 
                 @canany(['report_access', 'viewer_access'])
                     <div class=" space-x-8 px-4 ml-10 pt-4 flex">
-                        
                         <x-jet-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
@@ -69,31 +68,96 @@
                                     {{-- <x-jet-dropdown-link href="{{ route('permits.report') }}">
                                         {{ __('Application Status') }}
                                     </x-jet-dropdown-link>
-    
+
                                     <x-jet-dropdown-link href="{{ route('permits.report') }}">
                                         {{ __('TDP Summary') }}
                                     </x-jet-dropdown-link> --}}
-                                    
+
                                     <x-jet-dropdown-link href="{{ route('reports.permit-summary') }}">
                                         {{ __('TDP Summary') }}
                                     </x-jet-dropdown-link>
 
                                     <x-jet-dropdown-link href="{{ route('reports.r1-permit-logging-method') }}">
                                         {{ __('R1: RIL, Non-RIL & Helicopter') }}
-                                    </x-jet-dropdown-link>    
-    
+                                    </x-jet-dropdown-link>
+
                                     <x-jet-dropdown-link href="{{ route('reports.r2-permit-licensee') }}">
                                         {{ __('R2 Accumulated Production By Licnesee') }}
                                     </x-jet-dropdown-link>
 
-                                    {{-- <x-jet-dropdown-link href="{{ route('reports.r3-permit-landtype-diameter') }}">
+                                    <x-jet-dropdown-link href="{{ route('reports.r3-permit-landtype-diameter') }}">
                                         {{ __('R3 Accumulated Production By Land Type and Diameter') }}
-                                    </x-jet-dropdown-link> --}}
+                                    </x-jet-dropdown-link>
                                 </div>
                             </x-slot>
                         </x-jet-dropdown>
                     </div>
                 @endcanany
+
+{{--                payment reports --}}
+                <div class=" space-x-8 px-4 ml-10 pt-4 flex">
+                    <x-jet-dropdown align="right" width="60">
+                        <x-slot name="trigger">
+                            <span class="inline-flex rounded-md">
+                                <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-white bg-white dark:bg-inherit hover:bg-gray-50 hover:text-gray-700 hover:text-gray-700 dark:hover:text-gray-200 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
+                                    {{-- <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition"> --}}
+                                    Payment Reports
+                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </span>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <div class="w-52">
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r1-permit-logging-method') }}">
+                                    {{ __('R1: RIL and Non-RIL') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r2-permit-licensee') }}">
+                                    {{ __('R2: Accumulated Production By Licensee') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r3-permit-land-used-diameter') }}">
+                                    {{ __('R3: Accumulated Production By Land Type and Diameter') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r4-permit-land-used-volume') }}">
+                                    {{ __('R4: Accumulated Production By Land Type and Volume') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r5-permit-land-species-volume') }}">
+                                    {{ __('R5: Permits By Land Type, Species and Volume') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r6-permit-logs-production') }}">
+                                    {{ __('R6: Permits By Logs Production') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r7-permit-logs-production-by-market') }}">
+                                    {{ __('R7: Permits By Logs Production Market') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r8-permit-log-production-by-revenue') }}">
+                                    {{ __('R8: Permits By Logs Production Revenue') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r9-permit-logs-summary-by-land') }}">
+                                    {{ __('R9: Permits Logs Summary By Land') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r10-permit-production-logging') }}">
+                                    {{ __('R10: Permits Production Logging') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('payment-reports.r11-permit-land-by-region') }}">
+                                    {{ __('R11: Permits Land By Region') }}
+                                </x-jet-dropdown-link>
+                            </div>
+                        </x-slot>
+                    </x-jet-dropdown>
+                </div>
 
                 @can('admin_access')
                     {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -101,9 +165,9 @@
                             Users Management
                         </x-jet-nav-link>
                     </div>  --}}
-                    
+
                     <div class=" space-x-8 px-4 ml-10 pt-4 flex">
-                    
+
                     <x-jet-dropdown align="right" width="60" >
                         <x-slot name="trigger">
                             <span class="inline-flex rounded-md">
@@ -129,12 +193,12 @@
                         </x-slot>
                     </x-jet-dropdown>
                     </div>
-                @endcan    
+                @endcan
 
             </div>
 
             {{-- <div class="flex items-center justify-center mx-auto absolute top-5 right-0 left-1/3"> --}}
-                
+
                 <div class="flex justify-end items-center space-x-2 mx-auto relative">
 
                     <button
@@ -166,9 +230,9 @@
                         clip-rule="evenodd"
                       ></path>
                     </svg>
-                  </button>                    
-                    
-                </div>                
+                  </button>
+
+                </div>
             {{-- </div> --}}
 
             <script>
@@ -210,7 +274,7 @@
                             localStorage.setItem('color-theme', 'dark');
                         }
                     }
-                    
+
                 });
             </script>
 
@@ -310,7 +374,7 @@
                                         @if (Auth::user()->roles()->first()->title == 'Applicant')
                                             @isset(Auth::user()->licensee)
                                                 {{ Auth::user()->licensee->name }}
-                                            @endisset   
+                                            @endisset
                                         @endif
                                         <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -355,7 +419,7 @@
 
 
 
-{{-- 
+{{--
             <div class="flex justify-end items-center space-x-2 mx-auto relative">
                 <button
                 id="theme-toggle"
@@ -386,8 +450,8 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-              </button>                    
-                
+              </button>
+
             </div>   --}}
 
             {{-- <script>
@@ -429,7 +493,7 @@
                             localStorage.setItem('color-theme', 'dark');
                         }
                     }
-                    
+
                 });
             </script> --}}
 
@@ -461,7 +525,7 @@
                 <x-jet-responsive-nav-link class="dark:text-gray-300 dark:hover:text-gray-800" href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
                     {{ __('Users Management') }}
                 </x-jet-responsive-nav-link>
-            @endcan    
+            @endcan
 
             {{-- @can('permit_access')
                 <x-jet-responsive-nav-link href="{{ route('permits.index') }}" :active="request()->routeIs('permits.*')">
@@ -488,21 +552,21 @@
                 <x-jet-responsive-nav-link class="dark:text-gray-300 dark:hover:text-gray-800" href="{{ route('prices.index') }}" :active="request()->routeIs('prices.*')">
                     {{ __('Royalty Rates') }}
                 </x-jet-responsive-nav-link>
-                
+
                 <x-jet-responsive-nav-link class="dark:text-gray-300 dark:hover:text-gray-800" href="{{ route('logsizes.index') }}" :active="request()->routeIs('logsizes.*')">
                     {{ __('Log Sizes') }}
                 </x-jet-responsive-nav-link>
-                
+
                 <x-jet-responsive-nav-link class="dark:text-gray-300 dark:hover:text-gray-800" href="{{ route('species.index') }}" :active="request()->routeIs('species.*')">
                     {{ __('Species') }}
                 </x-jet-responsive-nav-link>
-                
+
                 <x-jet-responsive-nav-link class="dark:text-gray-300 dark:hover:text-gray-800" href="{{ route('landtypes.index') }}" :active="request()->routeIs('landtypes.*')">
                     {{ __('Land Types') }}
                 </x-jet-responsive-nav-link>
             @endcanany
 
-            @can('users_access')               
+            @can('users_access')
                 <x-jet-responsive-nav-link class="dark:text-gray-300 dark:hover:text-gray-800" href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
                     Users
                 </x-jet-responsive-nav-link>

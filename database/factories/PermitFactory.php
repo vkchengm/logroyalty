@@ -28,17 +28,17 @@ class PermitFactory extends Factory
             'market' => $markets[rand(0, 1)],
             'licensee_ac_no' => $this->faker->text(10),
             'description' => $this->faker->text(30),
-            
+
             'place_of_scaling' => $this->faker->text(15),
             'scaled_date' => $this->faker->unique()->dateTimeBetween($startDate = '-10 years', $endDate = 'now', $timezone = null),
             'name_of_scaler' => $this->faker->text(20),
-            'owner_of_property_hammer_mark' => $this->faker->text(10),
-            'registered_property_hammer_mark' => $this->faker->text(10),
+//            'owner_of_property_hammer_mark' => $this->faker->text(10),
+//            'registered_property_hammer_mark' => $this->faker->text(10),
             'status' => 'approved',
-    
+
             'billed_vol' => rand(5, 500),
             'billed_amount' => rand(800, 200000),
-    
+
             'user_id' => $users[rand(0,3)],
             'district_id' => rand(1,15),
             'land_type_id' => rand(2,5),
