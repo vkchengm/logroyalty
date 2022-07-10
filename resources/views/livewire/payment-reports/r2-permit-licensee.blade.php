@@ -64,7 +64,7 @@
 
                     <select class="form-control select2 rounded-md shadow-sm mt-1 block w-full"
                             wire:ignore
-                            wire:model="monthSelected">
+                            wire:model="selectedMonth">
                         <option value="" selected>
                             All
                         </option>
