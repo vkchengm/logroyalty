@@ -55,27 +55,23 @@ class R3PermitLandUsedByDiameter extends Component
                     ->whereColumn('users.id', 'permits.user_id')
                     ->select('licensees.name'),
 
-//                sum(case when mean >= 60 then mean else 0 end) as 'more_than_59',
                 'more_than_59' => PermitDetail::query()
                     ->whereColumn('permits.id','permit_details.permit_id')
                     ->where('mean', '>', 59)
                     ->selectRaw('sum(mean)'),
 
-                //                sum(case when mean >= 44 and mean <= 59 then mean else 0 end) as 'between_44_to_59',
                 'between_44_to_59' => PermitDetail::query()
                     ->whereColumn('permits.id','permit_details.permit_id')
                     ->where('mean', '>=', 44)
                     ->where('mean', '<=', 59)
                     ->selectRaw('sum(mean)'),
 
-//                sum(case when mean >= 30 and mean <= 43 then mean else 0 end) as 'between_30_to_43',
                 'between_30_to_43' => PermitDetail::query()
                     ->whereColumn('permits.id','permit_details.permit_id')
                     ->where('mean', '>=', 30)
                     ->where('mean', '<=', 43)
                     ->selectRaw('sum(mean)'),
 
-//                sum(case when mean <= 30 then mean else 0 end) as 'less_than_30'
                 'less_than_30' => PermitDetail::query()
                     ->whereColumn('permits.id','permit_details.permit_id')
                     ->where('mean', '<', 30)

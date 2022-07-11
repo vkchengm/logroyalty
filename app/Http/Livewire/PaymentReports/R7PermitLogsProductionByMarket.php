@@ -56,27 +56,23 @@ class R7PermitLogsProductionByMarket extends Component
                     ->whereColumn('users.id', 'permits.user_id')
                     ->select('licensees.name'),
 
-//                sum(case when vol >= 60 then vol else 0 end) as 'more_than_59',
                 'more_than_59' => PermitDetail::query()
                     ->whereColumn('permits.id','permit_details.permit_id')
                     ->where('vol', '>', 59)
                     ->selectRaw('sum(vol)'),
 
-                //                sum(case when vol >= 44 and vol <= 59 then vol else 0 end) as 'between_44_to_59',
                 'between_44_to_59' => PermitDetail::query()
                     ->whereColumn('permits.id','permit_details.permit_id')
                     ->where('vol', '>=', 44)
                     ->where('vol', '<=', 59)
                     ->selectRaw('sum(vol)'),
 
-//                sum(case when vol >= 30 and vol <= 43 then vol else 0 end) as 'between_30_to_43',
                 'between_30_to_43' => PermitDetail::query()
                     ->whereColumn('permits.id','permit_details.permit_id')
                     ->where('vol', '>=', 30)
                     ->where('vol', '<=', 43)
                     ->selectRaw('sum(vol)'),
 
-//                sum(case when vol <= 30 then vol else 0 end) as 'less_than_30'
                 'less_than_30' => PermitDetail::query()
                     ->whereColumn('permits.id','permit_details.permit_id')
                     ->where('vol', '<', 30)
