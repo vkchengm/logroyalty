@@ -154,6 +154,10 @@
                                 <x-jet-dropdown-link href="{{ route('payment-reports.r11-permit-land-by-region') }}">
                                     {{ __('R11: Permits Land By Region') }}
                                 </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('payment-reports.rk3-permit-receipt-listing') }}">
+                                    {{ __('RK3: Receipt Listing') }}
+                                </x-jet-dropdown-link>
                             </div>
                         </x-slot>
                     </x-jet-dropdown>

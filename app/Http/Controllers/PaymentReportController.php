@@ -60,4 +60,9 @@ class PaymentReportController extends Controller
     {
         return view('payment-reports.r11-permit-land-by-region');
     }
+
+    public function rk3PermitReceiptListing()
+    {
+        return view('payment-reports.rk3-permit-receipt-listing');
+    }
 }

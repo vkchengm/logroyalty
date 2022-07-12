@@ -8,7 +8,8 @@
                         Year
                     </label>
 
-                    <select class="form-control select2 rounded-md shadow-sm mt-1 block w-full" wire:ignore
+                    <select class="form-control select2 rounded-md shadow-sm mt-1 block w-full"
+                            wire:ignore
                             wire:model="selectedYear">
                         <option value="" selected>
                             All
@@ -41,7 +42,7 @@
                         </option>
 
                         @foreach($monthList as $id => $month)
-                            <option value="{{ $id }}">
+                            <option value="{{ $id }}" >
                                 {{ $month }}
                             </option>
                         @endforeach
@@ -55,21 +56,21 @@
                 </div>
 
                 <div class="px-1">
-                    <label for="land_type"
+                    <label for="landType"
                            class="block font-medium text-sm text-gray-700 dark:text-white">
                         Land Type
                     </label>
 
-                    <select name="land_type" id="land_type"
+                    <select name="landType" id="landType"
                             class="form-control select2 rounded-md shadow-sm mt-1 block w-full"
                             wire:model="landTypeId">
                         <option value="" selected>
                             All
                         </option>
 
-                        @foreach($landTypeList as $id => $land)
+                        @foreach($landTypeList as $id => $landType)
                             <option value="{{ $id }}">
-                                {{ $land }}
+                                {{ $landType }}
                             </option>
                         @endforeach
                     </select>
@@ -79,6 +80,45 @@
                             {{ $errors->first('landTypeId') }}
                         </p>
                     @endif
+                </div>
+
+                <div class="px-1">
+                    <label for="Regions" class="block font-medium text-sm text-gray-700 dark:text-white">
+                        Region
+                    </label>
+
+                    <select class="form-control select2 rounded-md shadow-sm mt-1 block w-full"
+                            wire:model="regionId">
+                        <option value="" selected>
+                            All
+                        </option>
+
+                        @foreach($regionList as $id => $region)
+                            <option value="{{ $id }}">
+                                {{ $region }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="px-1">
+                    <label for="districts"
+                           class="block font-medium text-sm text-gray-700 dark:text-white">
+                        District
+                    </label>
+
+                    <select class="form-control select2 rounded-md shadow-sm mt-1 block w-full"
+                            wire:model="districtId">
+                        <option value="" selected>
+                            All
+                        </option>
+
+                        @foreach($districtList as $id => $district)
+                            <option value="{{ $id }}">
+                                {{ $district }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
         </div>
@@ -95,16 +135,6 @@
                         {{ $totalVolume }}
                     </div>
                 </div>
-
-                <div class="px-1">
-                    <label for="year" class="block font-medium text-sm text-gray-700 dark:text-white">
-                        Total Royalty
-                    </label>
-
-                    <div class="px-2">
-                        {{ $totalRoyalty }}
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -117,45 +147,67 @@
                             <table class="min-w-full divide-y divide-gray-200 " id="products_table">
                                 <thead>
                                 <tr class="break-words text-left">
-                                    <th class="font-light">Year</th>
-                                    <th class="font-light">Month</th>
                                     <th class="font-light">Region</th>
                                     <th class="font-light">District</th>
+                                    <th class="font-light">Receipt No</th>
                                     <th class="font-light">Licensee</th>
-                                    <th class="font-light text-center">Volume (M3)</th>
-                                    <th class="font-light text-center">Royalty ($)</th>
+                                    <th class="font-light text-right">Volume (M3)</th>
+                                    <th class="font-light text-right">Royalty ($)</th>
+                                    <th class="font-light text-right">PPM ($)</th>
+                                    <th class="font-light text-right">Premium ($)</th>
+                                    <th class="font-light text-right">FCF ($)</th>
+                                    <th class="font-light text-right">Revenue ($)</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
                                 @foreach ($permits as $index => $permit)
                                     <tr class="break-words">
-                                        <td>{{ $permit->year }}</td>
-                                        <td>{{ $this->monthList[$permit->month] }}</td>
-                                        <td>{{ $permit->district->region->name }}</td>
-                                        <td>{{ $permit->district->name }}</td>
-                                        <td>{{ $permit->user->licensee->name }}</td>
+                                        <td>
+                                            {{ $permit->region }}
+                                        </td>
 
-                                        <td class='text-right'>{{ number_format($permit->volume) }}</td>
-                                        <td class='text-right'>{{ number_format($permit->royalty) }}</td>
+                                        <td>
+                                            {{ $permit->district }}
+                                        </td>
+
+                                        <td class='text-right'>
+                                            {{ $permit->receipt_no }}
+                                        </td>
+
+                                        <td class='text-right'>
+                                            {{ $permit->licensee }}
+                                        </td>
+
+                                        <td class='text-right'>
+                                            {{ $permit->volume }}
+                                        </td>
+
+                                        <td class='text-right'>
+                                            {{ number_format($permit->royalty) }}
+                                        </td>
+
+                                        <td class='text-right'>
+                                            {{ number_format($permit->ppm) }}
+                                        </td>
+
+                                        <td class='text-right'>
+                                            {{ number_format($permit->premium) }}
+                                        </td>
+
+                                        <td class='text-right'>
+                                            {{ number_format($permit->fcf) }}
+                                        </td>
+
+                                        <td class='text-right'>
+                                            {{
+                                                number_format(
+                                                    $permit->royalty + $permit->ppm + $permit->premium + $permit->fcf
+                                                )
+                                            }}
+                                        </td>
                                     </tr>
                                 @endforeach
-
-                                <tr class="break-words border-t border-gray-300">
-                                    <td>Total</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-
-                                    <td class='text-right'>
-                                        {{ number_format($totalVolume) }}
-                                    </td>
-
-                                    <td class='text-right'>
-                                        {{ number_format($totalRoyalty) }}
-                                    </td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>

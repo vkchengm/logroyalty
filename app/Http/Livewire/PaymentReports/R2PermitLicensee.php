@@ -62,7 +62,7 @@ class R2PermitLicensee extends Component
             ->when($this->selectedYear, function ($q) {
                 $q->whereYear('payment_date', $this->selectedYear);
             })
-            ->when($this->selectedMonth, function ($q) {
+            ->when($this->selectedYear && $this->selectedMonth, function ($q) {
                 $q->whereMonth('payment_date', $this->selectedMonth);
             })
             ->orderBy(
