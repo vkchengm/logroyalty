@@ -209,7 +209,8 @@
                             <option value="">Select Species</option>
                             @foreach ($species as $specie)
                                 <option value={{ $specie->id }}>
-                                    {{ $specie->name.' ('.$specie->type.')' }}
+                                    {{ $specie->name }}
+                                    {{-- {{ $specie->name.' ('.$specie->type.')' }} --}}
                                 </option>
                             @endforeach
                         </select>
@@ -290,7 +291,8 @@
                                             <option value="">Select Species</option>
                                             @foreach ($species as $specie)
                                                 <option value={{ $specie->id }}>
-                                                    {{ $specie->name.' ('.$specie->type.')' }}
+                                                    {{ $specie->name }}
+                                                    {{-- {{ $specie->name.' ('.$specie->type.')' }} --}}
                                                 </option>
                                             @endforeach
                                         </select>

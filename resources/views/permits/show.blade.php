@@ -189,8 +189,8 @@
                         <div class="px-2">No. of Log: {{ $permit->permitDetails->count() }}</div>
                         <div class="px-2">Volume: {{ number_format($permit->billed_vol, 2) }}m3</div>
                         @cannot('kppm_access')
-                            <div class="px-2">Total Royalty: {{ $totalRoyalty }}</div>
-                            <div class="px-2">Total Premium: {{ $totalPremium }}</div>
+                            <div class="px-2">Total Royalty: {{ $totalRoyalty ?? '0' }}</div>
+                            <div class="px-2">Total Premium: {{ $totalPremium ?? '0' }}</div>
                             <div class="px-2">Amount: {{ number_format($permit->billed_amount, 2) }}</div>
                         @endcannot
                     </div>

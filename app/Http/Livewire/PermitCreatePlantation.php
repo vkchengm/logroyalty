@@ -34,7 +34,7 @@ class PermitCreatePlantation extends Component
     public $buyer = '';
     public $weight;
     public $volume;
-    public $ratio = '1.2';
+    public $ratio = '1.13';
     public $length;
     public $no_logs;
     public $weigh_species;

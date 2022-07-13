@@ -14,7 +14,7 @@
                         <div class="flex-auto px-2"><a href="{{ route('permits.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">New TDP - Plantation</a></div>
                         <div class="flex-auto px-2"><a href="{{ route('permits.create') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">New TDP - Converted Logs</a></div> --}}
                         <div class="px-1 py-1">
-                            <div class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"><a href="{{ route('permits.create') }}">New Round Logs</a></div>
+                            <div class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"><a href="{{ route('permits.create') }}">New Natural Logs</a></div>
                         </div>
                         <div class="px-1 py-1">
                             <div class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"><a href="{{ route('permits.create-plantation') }}">New Plantation Logs</a></div>
