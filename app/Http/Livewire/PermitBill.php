@@ -53,7 +53,7 @@ class PermitBill extends Component
 
           $royalty = Royalties::where('market', $market)
                           ->where('land_type_id', $landTypeId)
-                          ->where('method', $method)
+                        //   ->where('method', $method)
                           ->where('species_id', $speciesId)
                           ->get();
 
