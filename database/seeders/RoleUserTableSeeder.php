@@ -669,6 +669,47 @@ class RoleUserTableSeeder extends Seeder
                 'role_id' => 4,
                 'user_id' => 115,
             ),
+
+
+
+            130 => 
+            array (
+                'role_id' => 2,
+                'user_id' => 141,
+            ),
+
+            131 => 
+            array (
+                'role_id' => 2,
+                'user_id' => 142,
+            ),
+
+            132 => 
+            array (
+                'role_id' => 2,
+                'user_id' => 143,
+            ),
+
+            133 => 
+            array (
+                'role_id' => 2,
+                'user_id' => 144,
+            ),
+
+            134 => 
+            array (
+                'role_id' => 6,
+                'user_id' => 145,
+            ),
+
+            135 => 
+            array (
+                'role_id' => 4,
+                'user_id' => 139,
+            ),
+
+            // applicants=2 viewer=6 kppm=4
+
         ));
         
         

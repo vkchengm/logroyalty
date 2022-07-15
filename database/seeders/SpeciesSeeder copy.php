@@ -17,7 +17,7 @@ class SpeciesSeeder extends Seeder
         $id = 1;
         $species = [
 
-            // Natural Log 1-20
+            // Natural Log 1-19
             [
                 'id'    => $id++,
                 'name' => 'Belian',
@@ -44,36 +44,6 @@ class SpeciesSeeder extends Seeder
             ],
             [
                 'id'    => $id++,
-                'name' => 'Pelawan-Pelawan',
-                'type' => 'Natural',
-                'import_code' => 'NPP',
-            ],
-            [
-                'id'    => $id++,
-                'name' => 'Kayu Malam',
-                'type' => 'Natural',
-                'import_code' => 'NKM',
-            ],
-            [
-                'id'    => $id++,
-                'name' => 'Kapur',
-                'type' => 'Natural',
-                'import_code' => 'NKP',
-            ],
-            [
-                'id'    => $id++,
-                'name' => 'Keruing',
-                'type' => 'Natural',
-                'import_code' => 'NKR',
-            ],
-            [
-                'id'    => $id++,
-                'name' => 'Agathis',
-                'type' => 'Natural',
-                'import_code' => 'NAG',
-            ], //9
-            [
-                'id'    => $id++,
                 'name' => 'Red Seraya',
                 'type' => 'Natural',
                 'import_code' => 'NRS',
@@ -95,6 +65,24 @@ class SpeciesSeeder extends Seeder
                 'name' => 'Melapi',
                 'type' => 'Natural',
                 'import_code' => 'NMLP',
+            ],
+            [
+                'id'    => $id++,
+                'name' => 'Kapur',
+                'type' => 'Natural',
+                'import_code' => 'NKP',
+            ],
+            [
+                'id'    => $id++,
+                'name' => 'Keruing',
+                'type' => 'Natural',
+                'import_code' => 'NKR',
+            ],
+            [
+                'id'    => $id++,
+                'name' => 'Agathis',
+                'type' => 'Natural',
+                'import_code' => 'NAG',
             ],
             [
                 'id'    => $id++,
@@ -125,12 +113,12 @@ class SpeciesSeeder extends Seeder
                 'name' => 'Pengiran',
                 'type' => 'Natural',
                 'import_code' => 'NPG',
-            ], //18
+            ],
             [
                 'id'    => $id++,
-                'name' => 'Others',
+                'name' => 'Perupok',
                 'type' => 'Natural',
-                'import_code' => 'NOT',
+                'import_code' => 'NPR',
             ],
             [
                 'id'    => $id++,
@@ -138,16 +126,14 @@ class SpeciesSeeder extends Seeder
                 'type' => 'Natural',
                 'import_code' => 'NMC',
             ],
-
-            // Fuel Wood 21
             [
                 'id'    => $id++,
-                'name' => 'Fuel Wood',
+                'name' => 'Others',
                 'type' => 'Natural',
-                'import_code' => 'NFW',            
+                'import_code' => 'NOT',
             ],
 
-            // Plantation Log 22-44
+            // Plantation Log 20-42
             [
                 'id'    => $id++,
                 'name' => 'Acacia Mangium',
@@ -289,144 +275,145 @@ class SpeciesSeeder extends Seeder
                 'import_code' => 'PBT',
             ],
 
-            //Converted Timber 45-63
+            //Converted Timber 43-61
             [
                 'id'    => $id++,
                 'name' => 'Belian',
                 'type' => 'Converted',
-                'import_code' => 'NBL',
+                'import_code' => 'CBL',
             ],
             [
                 'id'    => $id++,
                 'name' => 'Merbau',
                 'type' => 'Converted',
-                'import_code' => 'NMB',
+                'import_code' => 'CMB',
             ],
             [
                 'id'    => $id++,
                 'name' => 'Merbau Lalat',
                 'type' => 'Converted',
-                'import_code' => 'NMBL',
+                'import_code' => 'CMBL',
             ],
             [
                 'id'    => $id++,
                 'name' => 'Selangan Batu',
                 'type' => 'Converted',
-                'import_code' => 'NSB',
-            ],
-            [
-                'id'    => $id++,
-                'name' => 'Pelawan-Pelawan',
-                'type' => 'Converted',
-                'import_code' => 'NPP',
-            ],
-            [
-                'id'    => $id++,
-                'name' => 'Kayu Malam',
-                'type' => 'Converted',
-                'import_code' => 'NKM',
-            ],
-            [
-                'id'    => $id++,
-                'name' => 'Kapur',
-                'type' => 'Converted',
-                'import_code' => 'NKP',
-            ],
-            [
-                'id'    => $id++,
-                'name' => 'Keruing',
-                'type' => 'Converted',
-                'import_code' => 'NKR',
-            ],
-            [
-                'id'    => $id++,
-                'name' => 'Agathis',
-                'type' => 'Converted',
-                'import_code' => 'NAG',
+                'import_code' => 'CSB',
             ],
             [
                 'id'    => $id++,
                 'name' => 'Red Seraya',
                 'type' => 'Converted',
-                'import_code' => 'NRS',
+                'import_code' => 'CRS',
             ],
             [
                 'id'    => $id++,
                 'name' => 'White Seraya',
                 'type' => 'Converted',
-                'import_code' => 'NWS',
+                'import_code' => 'CWS',
             ],
             [
                 'id'    => $id++,
                 'name' => 'Yellow Seraya',
                 'type' => 'Converted',
-                'import_code' => 'NYS',
+                'import_code' => 'CYS',
             ],
             [
                 'id'    => $id++,
                 'name' => 'Melapi',
                 'type' => 'Converted',
-                'import_code' => 'NMLP',
+                'import_code' => 'CMLP',
+            ],
+            [
+                'id'    => $id++,
+                'name' => 'Kapur',
+                'type' => 'Converted',
+                'import_code' => 'CKP',
+            ],
+            [
+                'id'    => $id++,
+                'name' => 'Keruing',
+                'type' => 'Converted',
+                'import_code' => 'CKR',
+            ],
+            [
+                'id'    => $id++,
+                'name' => 'Agathis',
+                'type' => 'Converted',
+                'import_code' => 'CAG',
             ],
             [
                 'id'    => $id++,
                 'name' => 'Kembang',
                 'type' => 'Converted',
-                'import_code' => 'NKB',
+                'import_code' => 'CKB',
             ],
             [
                 'id'    => $id++,
                 'name' => 'Kembang Semangkok',
                 'type' => 'Converted',
-                'import_code' => 'NKS',
+                'import_code' => 'CKS',
             ],
             [
                 'id'    => $id++,
                 'name' => 'Nyatoh',
                 'type' => 'Converted',
-                'import_code' => 'NNY',
+                'import_code' => 'CNY',
             ],
             [
                 'id'    => $id++,
                 'name' => 'Oba Suluk',
                 'type' => 'Converted',
-                'import_code' => 'NOS',
+                'import_code' => 'COS',
             ],
             [
                 'id'    => $id++,
                 'name' => 'Pengiran',
                 'type' => 'Converted',
-                'import_code' => 'NPG',
+                'import_code' => 'CPG',
             ],
             [
                 'id'    => $id++,
-                'name' => 'Others',
+                'name' => 'Perupok',
                 'type' => 'Converted',
-                'import_code' => 'NOT',
+                'import_code' => 'CPR',
             ],
             [
                 'id'    => $id++,
                 'name' => 'Macaranga',
                 'type' => 'Converted',
-                'import_code' => 'NMC',
+                'import_code' => 'CMC',
+            ],
+            [
+                'id'    => $id++,
+                'name' => 'Others',
+                'type' => 'Converted',
+                'import_code' => 'COT',            
             ],
 
 
+            // Fuel Wood 62
+            [
+                'id'    => $id++,
+                'name' => 'Fuel Wood',
+                'type' => 'Natural',
+                'import_code' => 'FW',            
+            ],
 
 
-            // Pulp and paper logs
-            // [
-            //     'id'    => $id++,
-            //     'name' => 'Log for Pulp and Paper',
-            //     'type' => 'Converted',
-            //     'import_code' => 'NPNP',            
-            // ],
-            // [
-            //     'id'    => $id++,
-            //     'name' => 'Log for Pulp and Paper',
-            //     'type' => 'Plantation',
-            //     'import_code' => 'PPNP',            
-            // ],
+            // Pulp and paper logs 63, 64
+            [
+                'id'    => $id++,
+                'name' => 'Log for Pulp and Paper',
+                'type' => 'Natural',
+                'import_code' => 'NPNP',            
+            ],
+            [
+                'id'    => $id++,
+                'name' => 'Log for Pulp and Paper',
+                'type' => 'Plantation',
+                'import_code' => 'PPNP',            
+            ],
 
         ];
 

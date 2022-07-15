@@ -39,13 +39,6 @@ class PremiumsSeeder extends Seeder
                 'log_size_id'   => '5',
                 'amount'        => '30',
             ],
-            // [
-            //     'id'            => $id++,
-            //     'licensee_type'  => 'Form 2B',
-            //     'land_type_id'  => '2',
-            //     'log_size_id'   => '5',
-            //     'amount'        => '20',
-            // ],
 
             // ITP
             [
@@ -136,35 +129,6 @@ class PremiumsSeeder extends Seeder
                 'log_size_id'   => '5',
                 'amount'        => '20',
             ],
-
-            // [
-            //     'id'            => $id++,
-            //     'licensee_type'  => 'Form 2B',
-            //     'land_type_id'  => '3',
-            //     'log_size_id'   => '2',
-            //     'amount'        => '5',
-            // ],
-            // [
-            //     'id'            => $id++,
-            //     'licensee_type'  => 'Form 2B',
-            //     'land_type_id'  => '3',
-            //     'log_size_id'   => '3',
-            //     'amount'        => '5',
-            // ],
-            // [
-            //     'id'            => $id++,
-            //     'licensee_type'  => 'Form 2B',
-            //     'land_type_id'  => '3',
-            //     'log_size_id'   => '4',
-            //     'amount'        => '20',
-            // ],
-            // [
-            //     'id'            => $id++,
-            //     'licensee_type'  => 'Form 2B',
-            //     'land_type_id'  => '3',
-            //     'log_size_id'   => '5',
-            //     'amount'        => '20',
-            // ],
 
         ];
         Premiums::insert($premiums);

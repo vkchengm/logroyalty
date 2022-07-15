@@ -1639,6 +1639,72 @@ class UsersTableSeeder extends Seeder
                 'licensee_id'   => null,
             ],
 
+
+
+            [
+                'id'             => 141,
+                'name'           => 'Top Quantum',
+                'email'          => 'TopQuantum@rakanrimba.com',
+                'type'           => 'external',
+                'password'       => bcrypt('password'),
+                'is_activated'   => 1,
+                'remember_token' => null,
+                'email_verified_at' => Carbon::now(),
+                'licensee_id'   => 3123,
+            ],
+
+            [
+                'id'             => 142,
+                'name'           => 'First Green World',
+                'email'          => 'firstgreenworld@rakanrimba.com',
+                'type'           => 'external',
+                'password'       => bcrypt('password'),
+                'is_activated'   => 1,
+                'remember_token' => null,
+                'email_verified_at' => Carbon::now(),
+                'licensee_id'   => 2172,
+            ],
+
+            [
+                'id'             => 143,
+                'name'           => 'PesonaMajukaya',
+                'email'          => 'PesonaMajukaya@rakanrimba.com',
+                'type'           => 'external',
+                'password'       => bcrypt('password'),
+                'is_activated'   => 1,
+                'remember_token' => null,
+                'email_verified_at' => Carbon::now(),
+                'licensee_id'   => 2534,
+            ],
+
+            [
+                'id'             => 144,
+                'name'           => 'Bornion Timber',
+                'email'          => 'btlogproduction@gmail.com',
+                'type'           => 'external',
+                'password'       => bcrypt('password'),
+                'is_activated'   => 1,
+                'remember_token' => null,
+                'email_verified_at' => Carbon::now(),
+                'licensee_id'   => 2095,
+            ],
+            
+            
+            [
+                'id'             => 145,
+                'name'           => 'Bernard Valentine',
+                'email'          => 'Bernard.Valentine@sabah.gov.my',
+                'type'           => 'internal',
+                'password'       => bcrypt('password'),
+                'is_activated'   => 1,
+                'remember_token' => null,
+                'email_verified_at' => Carbon::now(),
+                'licensee_id'   => null,
+            ],
+
+            
+            
+
         ];
 
         User::insert($users);
