@@ -47,7 +47,7 @@ class R11PermitLandByRegion extends Component
             Region::query()
                 ->select('regions.name')
                 ->join('districts', 'districts.region_id', '=', 'regions.id')
-                ->whereColumn('districts.id', 'Permits.district_id')
+                ->whereColumn('districts.id', 'permits.district_id')
                 ->take(1)
         )
         ->orderBy(
@@ -61,7 +61,7 @@ class R11PermitLandByRegion extends Component
             Licensee::query()
                 ->select('licensees.name')
                 ->join('users', 'users.licensee_id', '=', 'licensees.id')
-                ->whereColumn('users.id', 'Permits.user_id')
+                ->whereColumn('users.id', 'permits.user_id')
                 ->take(1)
         )
         ->where('status', env('PERMIT_STATUS'))

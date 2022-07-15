@@ -79,7 +79,7 @@ class R9PermitLogsSummaryByLand extends Component
                 Region::query()
                     ->select('regions.name')
                     ->join('districts', 'districts.region_id', '=', 'regions.id')
-                    ->whereColumn('districts.id', 'Permits.district_id')
+                    ->whereColumn('districts.id', 'permits.district_id')
                     ->take(1)
             )
             ->orderBy(
