@@ -25,7 +25,11 @@ class StoreHammerMarkRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'     => [
+            'type'     => [
+                'string',
+                'required',
+            ],
+            'number'     => [
                 'string',
                 'required',
             ],
@@ -33,6 +37,14 @@ class StoreHammerMarkRequest extends FormRequest
                 'string',
             ],
             'employee_name'     => [
+                'string',
+                'required',
+            ],
+            'ic'     => [
+                'string',
+                'required',
+            ],
+            'old_ic'     => [
                 'string',
                 'required',
             ],

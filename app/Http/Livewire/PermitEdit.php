@@ -8,7 +8,7 @@ use App\Models\Species;
 use Livewire\Component;
 use App\Models\District;
 use App\Models\LandTypes;
-use App\Models\HammerMark;
+// use App\Models\HammerMark;
 use App\Imports\LogsImport;
 use App\Models\PermitDetail;
 use Livewire\WithFileUploads;
@@ -29,9 +29,9 @@ class PermitEdit extends Component
     public $licenseId;
     public $logs_sheet;
     public $licensee_ac_no;
-    public $hammerMarks;
-    public $districtId;
-    public $hammer_mark_id;
+    // public $hammerMarks;
+    // public $districtId;
+    // public $hammer_mark_id;
 
 
     public function mount($permit)
@@ -48,10 +48,10 @@ class PermitEdit extends Component
         $this->licensee_ac_no = $permit->licensee_ac_no;
         $this->updateCoupe();
 
-        $this->districtId = $permit->district_id; 
-        $this->hammerMarks = HammerMark::where('district_id', $this->districtId)->orderBy('name','ASC')->get();
-        $this->hammer_mark_id = $permit->hammer_mark_id;
-        $this->updateHammerMarkOwner();
+        // $this->districtId = $permit->district_id; 
+        // $this->hammerMarks = HammerMark::where('district_id', $this->districtId)->orderBy('name','ASC')->get();
+        // $this->hammer_mark_id = $permit->hammer_mark_id;
+        // $this->updateHammerMarkOwner();
 
     }
 
@@ -75,24 +75,24 @@ class PermitEdit extends Component
         }
     }
 
-    public function changeDistrict()
-    {
-        $this->hammerMarks = HammerMark::where('district_id', $this->districtId)->orderBy('name','ASC')->get();
-        $this->hammer_mark_id = '';
-        $this->hammer_mark_owner = '';            
-    }
+    // public function changeDistrict()
+    // {
+    //     $this->hammerMarks = HammerMark::where('district_id', $this->districtId)->orderBy('name','ASC')->get();
+    //     $this->hammer_mark_id = '';
+    //     $this->hammer_mark_owner = '';            
+    // }
 
-    public function updateHammerMarkOwner()
-    {
-        $hammerMarks = HammerMark::where('id', $this->hammer_mark_id)->first();
-        if (isset($hammerMarks))
-        {
-            $this->hammer_mark_owner = $hammerMarks->employee_name;
-        } else
-        {
-            $this->hammer_mark_owner = '';            
-        }
-    }
+    // public function updateHammerMarkOwner()
+    // {
+    //     $hammerMarks = HammerMark::where('id', $this->hammer_mark_id)->first();
+    //     if (isset($hammerMarks))
+    //     {
+    //         $this->hammer_mark_owner = $hammerMarks->employee_name;
+    //     } else
+    //     {
+    //         $this->hammer_mark_owner = '';            
+    //     }
+    // }
 
     public function addDetails()
     {

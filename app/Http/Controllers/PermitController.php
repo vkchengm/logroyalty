@@ -298,8 +298,8 @@ class PermitController extends Controller
             'footer-right' => '[page]/[topage]'
         ]);
 
-        return $pdf->stream($tdpNo.'_bill.pdf');
-        // return $pdf->download($tdpNo.'_bill.pdf');
+        // return $pdf->stream($tdpNo.'_bill.pdf');
+        return $pdf->download($tdpNo.'_bill.pdf');
     }
 
 }

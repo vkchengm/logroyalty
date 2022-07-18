@@ -13,10 +13,18 @@
                     @method('put')
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
-                            <label for="name" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Hammer Mark No.</label>
-                            <input type="text" name="name" id="name" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                                   value="{{ old('name', $hammermark->name) }}" />
-                            @error('name')
+                            <label for="type" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Hammer Mark No.</label>
+                            <input type="text" name="type" id="type" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                   value="{{ old('type', $hammermark->type) }}" />
+                            @error('type')
+                                <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
+                            <label for="number" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Hammer Mark No.</label>
+                            <input type="text" name="number" id="number" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                   value="{{ old('number', $hammermark->number) }}" />
+                            @error('number')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>
@@ -35,6 +43,23 @@
                             <input type="text" name="employee_name" id="employee_name" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('employee_name', $hammermark->employee_name) }}" />
                             @error('employee_name')
+                                <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
+                            <label for="ic" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Employee Name</label>
+                            <input type="text" name="ic" id="ic" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                   value="{{ old('ic', $hammermark->ic) }}" />
+                            @error('ic')
+                                <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
+                            <label for="old_ic" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Employee Name</label>
+                            <input type="text" name="old_ic" id="old_ic" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                                   value="{{ old('old_ic', $hammermark->old_ic) }}" />
+                            @error('old_ic')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
                         </div>

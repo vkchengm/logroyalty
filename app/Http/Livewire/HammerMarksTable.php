@@ -22,7 +22,7 @@ class HammerMarksTable extends Component
         // return view('livewire.hammermarks');
 
         return view('livewire.hammermarks', [
-            'hammermarks' => HammerMark::search('name', 'employee_name', $this->search)->paginate(2),
+            'hammermarks' => HammerMark::search('number', 'employee_name', $this->search)->paginate(20),
         ]);
 
     }

@@ -27,7 +27,8 @@ class PermitAccept extends ModalComponent
 
         // $this->hammermarks = 
 
-        $this->hammermarks = HammerMark::where('district_id', $this->permit->district_id)->orderBy('name','ASC')->get();
+        // $this->hammermarks = HammerMark::where('district_id', $this->permit->district_id)->orderBy('name','ASC')->get();
+        $this->hammermarks = HammerMark::where('type', 'FD')->orderBy('number','ASC')->get();
 
 
         // $this->permitLogRemark = 'Testing';

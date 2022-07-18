@@ -7,7 +7,7 @@
             <div class="px-6 bg-white dark:bg-stone-800 pt-4 pb-4">
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
 
-                    <input type="hidden" name="timber_type" id="timber_type" value="round"/>
+                    <input type="hidden" name="timber_type" id="timber_type" value="natural"/>
 
                     <div class="form-group px-1 py-1">
                         <label for="license_no" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">License No.</label>
@@ -47,7 +47,8 @@
 
                     <div class="form-group px-1 py-1">
                         <label for="districts" class="form-control dark:text-gray-300 block font-medium text-sm text-gray-700">District</label>
-                        <select name="district_id" id="district" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" wire:change="changeDistrict" wire:model="districtId" required>
+                        {{-- <select name="district_id" id="district" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" wire:change="changeDistrict" wire:model="districtId" required> --}}
+                        <select name="district_id" id="district" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" required>
                             @foreach($districts as $id => $district)
                                 <option value="{{ $district }}">
                                     {{ $id }}

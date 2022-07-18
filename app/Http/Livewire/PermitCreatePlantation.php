@@ -29,8 +29,8 @@ class PermitCreatePlantation extends Component
     public $description = '';
     public $place_of_scaling = '';
     public $name_of_scaler = '';
-    public $owner_of_property_hammer_mark = '';
-    public $registered_property_hammer_mark = '';
+    // public $owner_of_property_hammer_mark = '';
+    // public $registered_property_hammer_mark = '';
     public $buyer = '';
     public $weight;
     public $volume;

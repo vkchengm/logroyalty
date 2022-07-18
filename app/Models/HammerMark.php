@@ -10,9 +10,12 @@ class HammerMark extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'type',
+        'number',
         'employee_id',
         'employee_name',
+        'id',
+        'old_id',
         'position',
         'district_id',
         'folio_borang',

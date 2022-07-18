@@ -14,7 +14,7 @@
                 <option value="">Select Hammer Mark</option>
                 @foreach ($hammermarks as $hammermark)
                     <option value={{ $hammermark->id }}>
-                        {{ $hammermark->name.' - '. $hammermark->employee_name }}
+                        {{ $hammermark->type.$hammermark->number.' - '. $hammermark->employee_name }}
                     </option>
                 @endforeach
             </select>

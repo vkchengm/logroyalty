@@ -34,11 +34,17 @@
                                 <input type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" value="Submit">
                             </form>
                         </div>
+                    @elseif ($permit->status == "billed")
+                        <form class="inline-block" action="{{ route('permits.print', $permit->id) }}" method="POST">
+                            <input type="hidden" name="_method" value="PUT">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" value="Print Bill">
+                        </form>
                     @elseif ($permit->status == "paid")
                         <form class="inline-block" action="{{ route('permits.print', $permit->id) }}" method="POST">
                             <input type="hidden" name="_method" value="PUT">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" value="Print">
+                            <input type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" value="Print Permit">
                         </form>
                     @endif
                 @endcan
@@ -61,8 +67,16 @@
                         <form class="inline-block" action="{{ route('permits.print', $permit->id) }}" method="POST">
                             <input type="hidden" name="_method" value="PUT">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" value="Print">
+                            <input type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" value="Print Permit">
                         </form>
+                    @elseif ($permit->status == "billed")
+                        <div class="px-2">
+                            <form class="inline-block" action="{{ route('permits.print', $permit->id) }}" method="POST">
+                                <input type="hidden" name="_method" value="PUT">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" value="Print Bill">
+                            </form>
+                        </div>
                     @endif
 
                 @endcan
@@ -161,7 +175,7 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600 ">
                                             @isset($permit->hammerMark)
-                                                <div title="Hammer Mark" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->hammerMark->name }} </div>
+                                                <div title="Hammer Mark" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->hammerMark->type.$permit->hammerMark->number }} </div>
                                                 <div title="Hammer Mark Owner" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->hammerMark->employee_name }} </div>
                                             @endisset
                                             <div title="Remark" class="text-sm text-gray-900 dark:text-gray-300 "> {{ $permit->description }} </div>
@@ -314,7 +328,7 @@
                                     @endforeach
                                 </tbody>
 
-                                <tfoot class="bg-white divide-y divide-gray-200">
+                                {{-- <tfoot class="bg-white divide-y divide-gray-200">
                                     <tr>
                                         <td></td>
                                         <td></td>
@@ -333,7 +347,7 @@
                                             <div class="text-sm text-gray-900 dark:text-gray-300"> {{ $permit->permitDetails->sum('amount') }} <div>
                                         </td>
                                     </tr>
-                                </tfoot>
+                                </tfoot> --}}
 
                             </table>
                         </div>

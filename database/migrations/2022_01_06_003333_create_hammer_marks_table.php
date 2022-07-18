@@ -15,9 +15,12 @@ class CreateHammerMarksTable extends Migration
     {
         Schema::create('hammer_marks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('type');
+            $table->string('number');
             $table->string('employee_id');
             $table->string('employee_name');
+            $table->string('ic')->nullable();
+            $table->string('old_ic')->nullable();
             $table->string('position')->nullable();
             $table->unsignedBigInteger('district_id')->nullable();
             $table->foreign('district_id')->references('id')->on('districts');

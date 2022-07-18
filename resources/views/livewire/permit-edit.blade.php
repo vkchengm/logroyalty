@@ -49,7 +49,8 @@
 
                     <div class="px-1 py-1">
                         <label for="districts" class="dark:text-gray-300 block font-medium text-sm text-gray-700">District</label>
-                        <select name="district_id" id="district" class="form-control select2 rounded-md shadow-sm mt-1 block w-full"  wire:change="changeDistrict" wire:model="districtId">
+                        {{-- <select name="district_id" id="district" class="form-control select2 rounded-md shadow-sm mt-1 block w-full"  wire:change="changeDistrict" wire:model="districtId"> --}}
+                        <select name="district_id" id="district" class="form-control select2 rounded-md shadow-sm mt-1 block w-full" >
                             @foreach($districts as $district => $id)
                                 <option value="{{ $id }}" {{ (isset($permit) && $permit->district ? $permit->district->id : old('district_id')) == $id ? 'selected' : '' }}>
                                     {{ $district }}
