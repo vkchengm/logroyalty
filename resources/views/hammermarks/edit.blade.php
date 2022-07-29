@@ -12,14 +12,37 @@
                     @csrf
                     @method('put')
                     <div class="shadow overflow-hidden sm:rounded-md">
-                        <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
-                            <label for="type" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Hammer Mark No.</label>
+                        {{-- <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
+                            <label for="type" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Hammer Mark Type</label>
                             <input type="text" name="type" id="type" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('type', $hammermark->type) }}" />
                             @error('type')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
+                        </div> --}}
+
+                        <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
+                            <label for="type" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Hammer Mark Type</label>
+                            <select name="type" id="type" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                                <option value="">Please select</option>
+                                <option {{ ($hammermark->type) == 'FD' ? 'selected' : '' }} value="FD">FD</option>
+                                <option {{ ($hammermark->type) == 'FDRP' ? 'selected' : '' }} value="FDRP">FDRP</option>
+                                <option {{ ($hammermark->type) == 'ROYALTY' ? 'selected' : '' }} value="ROYALTY">ROYALTY</option>
+                                <option {{ ($hammermark->type) == 'RIL' ? 'selected' : '' }} value="RIL">RIL</option>
+                                <option {{ ($hammermark->type) == 'FID' ? 'selected' : '' }} value="FID">FID</option>
+
+                            </select>
+                            @if($errors->has('type'))
+                                <p class="help-block">
+                                    {{ $errors->first('type') }}
+                                </p>
+                            @endif
                         </div>
+
+
+
+
+
                         <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
                             <label for="number" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Hammer Mark No.</label>
                             <input type="text" name="number" id="number" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -48,7 +71,7 @@
                         </div>
 
                         <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
-                            <label for="ic" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Employee Name</label>
+                            <label for="ic" class="block font-medium text-sm text-gray-700 dark:text-gray-200">IC</label>
                             <input type="text" name="ic" id="ic" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('ic', $hammermark->ic) }}" />
                             @error('ic')
@@ -56,7 +79,7 @@
                             @enderror
                         </div>
                         <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
-                            <label for="old_ic" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Employee Name</label>
+                            <label for="old_ic" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Old IC</label>
                             <input type="text" name="old_ic" id="old_ic" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('old_ic', $hammermark->old_ic) }}" />
                             @error('old_ic')

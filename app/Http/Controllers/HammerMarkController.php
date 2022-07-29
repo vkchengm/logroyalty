@@ -29,7 +29,7 @@ class HammerMarkController extends Controller
     public function store(StoreHammerMarkRequest $request)
     {
         $hammerMark = HammerMark::create($request->validated());
-        $hammerMark->status = 'A';
+        $hammerMark->status = 'active';
         $hammerMark->save();
 
         return redirect()->route('hammermarks.index');
@@ -60,7 +60,7 @@ class HammerMarkController extends Controller
     public function deactivate($hammermarkId)
     {
         $hammermark = HammerMark::find($hammermarkId);
-        $hammermark->status = 'D';
+        $hammermark->status = 'canceled';
         $hammermark->save();
 
         return redirect()->route('hammermarks.index');
@@ -70,7 +70,7 @@ class HammerMarkController extends Controller
     public function activate($hammermarkId)
     {
         $hammermark = HammerMark::find($hammermarkId);
-        $hammermark->status = 'A';
+        $hammermark->status = 'active';
         $hammermark->save();
 
         return redirect()->route('hammermarks.index');

@@ -16,8 +16,9 @@ class CreateHammerMarksTable extends Migration
         Schema::create('hammer_marks', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->string('number');
-            $table->string('employee_id');
+            // $table->string('number');
+            $table->integer('number');
+            $table->string('employee_id')->nullable();
             $table->string('employee_name');
             $table->string('ic')->nullable();
             $table->string('old_ic')->nullable();

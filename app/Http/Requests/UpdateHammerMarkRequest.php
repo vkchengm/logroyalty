@@ -30,30 +30,30 @@ class UpdateHammerMarkRequest extends FormRequest
                 'required',
             ],
             'number'     => [
-                'string',
+                // 'string',
                 'required',
             ],
-            'employee_id'     => [
-                'string',
-            ],
+            // 'employee_id'     => [
+            //     'string',
+            // ],
             'employee_name'     => [
                 'string',
                 'required',
             ],
-            'ic'     => [
-                'string',
-                'required',
-            ],
-            'old_ic'     => [
-                'string',
-                'required',
-            ],
+            // 'ic'     => [
+            //     'string',
+            //     'required',
+            // ],
+            // 'old_ic'     => [
+            //     'string',
+            //     'required',
+            // ],
             'position'     => [
                 'string',
             ],
-            'district_id'     => [
-                'integer',
-            ],
+            // 'district_id'     => [
+            //     'integer',
+            // ],
         ];
     }
 }

@@ -4,17 +4,23 @@
 
 <div class="flex-col space-y-4 py-2">
     <input wire:model="search" type="text" placeholder="Search mark no. or owner" class="rounded-md shadow-sm"/>
+    {{-- <input wire:model="status" type="text" placeholder="Status Filter" class="rounded-md shadow-sm"/> --}}
+    {{-- <select wire:model="status" type="text" placeholder="Status Filter" class="rounded-md shadow-sm w-32">
+        <option value="active">Active</option>
+        <option value="canceled">Canceled</option>
+    </select> --}}
 
     <x-table>
 
         <x-slot name="head">
 
-            <x-table.heading sortable>Type</x-table.heading>
-            <x-table.heading sortable>Hammer Mark No.</x-table.heading>
-            <x-table.heading sortable>Employee Name</x-table.heading>
-            <x-table.heading sortable>Employee ID</x-table.heading>
-            <x-table.heading sortable>IC</x-table.heading>
-            <x-table.heading sortable>Old IC</x-table.heading>
+            <x-table.heading sortable wire:click="sortBy('type')" :direction="$sortField === 'type' ? $sortDirection : null">Type</x-table.heading>
+            <x-table.heading sortable wire:click="sortBy('number')" :direction="$sortField === 'number' ? $sortDirection : null">Hammer Mark No.</x-table.heading>
+            <x-table.heading sortable wire:click="sortBy('employee_name')" :direction="$sortField === 'employee_name' ? $sortDirection : null">Employee Name</x-table.heading>
+            <x-table.heading sortable wire:click="sortBy('employee_id')" :direction="$sortField === 'employee_id' ? $sortDirection : null">Employee ID</x-table.heading>
+            <x-table.heading sortable wire:click="sortBy('ic')" :direction="$sortField === 'ic' ? $sortDirection : null">IC</x-table.heading>
+            <x-table.heading sortable wire:click="sortBy('old_ic')" :direction="$sortField === 'old_ic' ? $sortDirection : null">Old IC</x-table.heading>
+            <x-table.heading sortable wire:click="sortBy('status')" :direction="$sortField === 'status' ? $sortDirection : null">Status</x-table.heading>
             {{-- <x-table.heading sortable>Position</x-table.heading> --}}
             {{-- <x-table.heading sortable>District</x-table.heading> --}}
             <x-table.heading></x-table.heading>
@@ -33,6 +39,7 @@
                     <x-table.cell>{{ $hammermark->employee_id }}</x-table.cell>
                     <x-table.cell>{{ $hammermark->ic }}</x-table.cell>
                     <x-table.cell>{{ $hammermark->old_ic }}</x-table.cell>
+                    <x-table.cell>{{ strtoupper($hammermark->status) }}</x-table.cell>
                     {{-- <x-table.cell>{{ $hammermark->position }}</x-table.cell> --}}
                     {{-- <x-table.cell>{{ $hammermark->district->name ?? '' }}</x-table.cell> --}}
 
