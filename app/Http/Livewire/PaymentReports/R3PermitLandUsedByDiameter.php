@@ -58,24 +58,28 @@ class R3PermitLandUsedByDiameter extends Component
                 'more_than_59' => PermitDetail::query()
                     ->whereColumn('permits.id','permit_details.permit_id')
                     ->where('mean', '>', 59)
-                    ->selectRaw('sum(mean)'),
+                    // ->selectRaw('sum(mean)'),
+                    ->selectRaw('sum(vol)'),
 
                 'between_44_to_59' => PermitDetail::query()
                     ->whereColumn('permits.id','permit_details.permit_id')
                     ->where('mean', '>=', 44)
                     ->where('mean', '<=', 59)
-                    ->selectRaw('sum(mean)'),
+                    // ->selectRaw('sum(mean)'),
+                    ->selectRaw('sum(vol)'),
 
                 'between_30_to_43' => PermitDetail::query()
                     ->whereColumn('permits.id','permit_details.permit_id')
                     ->where('mean', '>=', 30)
                     ->where('mean', '<=', 43)
-                    ->selectRaw('sum(mean)'),
+                    // ->selectRaw('sum(mean)'),
+                    ->selectRaw('sum(vol)'),
 
                 'less_than_30' => PermitDetail::query()
                     ->whereColumn('permits.id','permit_details.permit_id')
                     ->where('mean', '<', 30)
-                    ->selectRaw('sum(mean)'),
+                    // ->selectRaw('sum(mean)'),
+                    ->selectRaw('sum(vol)'),
             ])
             ->selectRaw('
                 MONTH(payment_date) as month,

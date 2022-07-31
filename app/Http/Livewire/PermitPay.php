@@ -80,7 +80,8 @@ class PermitPay extends ModalComponent
     {
         return [
             'permit.receipt_no' => ['string'],
-            'permit.fcf_receipt_no' => ['string'],
+            // 'permit.fcf_receipt_no' => ['string'],
+            'permit.fcf_receipt_no' => [],
             'permit.payment_date' => ['date'],
             // 'permit.valid_from' => ['date'],
             // 'permit.valid_to' => ['date']

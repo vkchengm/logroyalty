@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            R2 Permit By Licensee Report
+            R3 Accumulated Production By Land Type and Diameter
         </h2>
     </x-slot>
 

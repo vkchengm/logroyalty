@@ -8,7 +8,7 @@
     <x-slot name="content">
         <div>
             Receipt No.:
-            <input id="receipt_no" class="block mt-1 w-full" type="text" wire:model.defer="permit.receipt_no" />
+            <input id="receipt_no" class="block mt-1 w-full" type="text" oninput="this.value = this.value.toUpperCase()" wire:model.defer="permit.receipt_no" />
             
             @error('permit.receipt_no')
                 <span class="text-sm text-red-500">{{ $message }}</span>
@@ -26,7 +26,7 @@
 
         <div>
             FCF Receipt No.:
-            <input id="fcf_receipt_no" class="block mt-1 w-full" type="text" wire:model.defer="permit.fcf_receipt_no" />
+            <input id="fcf_receipt_no" class="block mt-1 w-full" type="text" oninput="this.value = this.value.toUpperCase()" wire:model.defer="permit.fcf_receipt_no" />
             
             @error('permit.fcf_receipt_no')
                 <span class="text-sm text-red-500">{{ $message }}</span>

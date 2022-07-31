@@ -146,7 +146,7 @@
                                         </td>
 
                                         <td class='text-right'>
-                                            {{ number_format($permit->vol) }}
+                                            {{ number_format($permit->vol, 2) }}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -162,7 +162,7 @@
                                     <td ></td>
 
                                     <td class='text-right'>
-                                        {{ number_format($totalVol) }}
+                                        {{ number_format($totalVol, 2) }}
                                     </td>
                                 </tr>
                                 </tbody>

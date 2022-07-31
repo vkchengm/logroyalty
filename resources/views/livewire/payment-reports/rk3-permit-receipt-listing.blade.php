@@ -171,11 +171,11 @@
                                             {{ $permit->district }}
                                         </td>
 
-                                        <td class='text-right'>
+                                        <td>
                                             {{ $permit->receipt_no }}
                                         </td>
 
-                                        <td class='text-right'>
+                                        <td>
                                             {{ $permit->licensee }}
                                         </td>
 

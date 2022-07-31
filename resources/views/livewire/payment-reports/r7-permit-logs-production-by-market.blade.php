@@ -116,7 +116,7 @@
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 ">
                 <div class="px-1">
                     <label for="year" class="block font-medium text-sm text-gray-700 dark:text-white">
-                        Total Diameter
+                        Total Volume
                     </label>
 
                     <div class="px-2">
