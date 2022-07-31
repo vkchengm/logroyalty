@@ -46,6 +46,10 @@ class RolesTableSeeder extends Seeder
                 'id'    => 9,
                 'title' => 'ADFO',
             ],
+            [
+                'id'    => 10,
+                'title' => 'Hammer Mark Admin',
+            ],
 
         ];
 

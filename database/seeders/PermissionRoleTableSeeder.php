@@ -19,10 +19,10 @@ class PermissionRoleTableSeeder extends Seeder
         Role::findOrFail(1)->permissions()->attach($user_permissions);
         // Role::findOrFail(1)->permissions()->sync($user_permissions);
 
-        $user_permissions = $all_permissions->filter(function ($permission) {
-            return substr($permission->title, 0, 3) == 'fo_';
-        });
-        Role::findOrFail(1)->permissions()->attach($user_permissions);
+        // $user_permissions = $all_permissions->filter(function ($permission) {
+        //     return substr($permission->title, 0, 3) == 'fo_';
+        // });
+        // Role::findOrFail(1)->permissions()->attach($user_permissions);
 
 
         // Applicant
@@ -61,10 +61,15 @@ class PermissionRoleTableSeeder extends Seeder
             return substr($permission->title, 0, 3) == 'fo_';
         });
         Role::findOrFail(5)->permissions()->sync($user_permissions);
+        // $user_permissions = $all_permissions->filter(function ($permission) {
+        //     return substr($permission->title, 0, 7) == 'permit_';
+        // });
+        // Role::findOrFail(5)->permissions()->attach($user_permissions);
+        // FO
         $user_permissions = $all_permissions->filter(function ($permission) {
-            return substr($permission->title, 0, 7) == 'permit_';
+            return substr($permission->title, 0, 7) == 'hammer_';
         });
-        Role::findOrFail(5)->permissions()->attach($user_permissions);
+        Role::findOrFail(10)->permissions()->sync($user_permissions);
 
 
         // Viewer

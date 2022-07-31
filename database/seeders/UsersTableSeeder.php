@@ -1702,6 +1702,17 @@ class UsersTableSeeder extends Seeder
                 'licensee_id'   => null,
             ],
 
+            [
+                'id'             => 146,
+                'name'           => 'Hammer Admin',
+                'email'          => 'hadmin@email.com',
+                'type'           => 'internal',
+                'password'       => bcrypt('password'),
+                'is_activated'   => 1,
+                'remember_token' => null,
+                'email_verified_at' => Carbon::now(),
+                'licensee_id'   => null,
+            ],
             
             
 

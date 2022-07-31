@@ -9,18 +9,26 @@
         <option value="active">Active</option>
         <option value="canceled">Canceled</option>
     </select> --}}
+    <select wire:model="type" type="text" placeholder="Type Filter" class="rounded-md shadow-sm w-32">
+        <option value="">All</option>
+        <option value="FD">FD</option>
+        <option value="FDRP">FDRP</option>
+        <option value="FID">FID</option>
+        <option value="RIL">RIL</option>
+        <option value="ROYALTY">ROYALTY</option>
+    </select>
 
     <x-table>
 
         <x-slot name="head">
 
             <x-table.heading sortable wire:click="sortBy('type')" :direction="$sortField === 'type' ? $sortDirection : null">Type</x-table.heading>
-            <x-table.heading sortable wire:click="sortBy('number')" :direction="$sortField === 'number' ? $sortDirection : null">Hammer Mark No.</x-table.heading>
+            <x-table.heading sortable wire:click="sortBy('number')" :direction="$sortField === 'number' ? $sortDirection : null">Mark No.</x-table.heading>
             <x-table.heading sortable wire:click="sortBy('employee_name')" :direction="$sortField === 'employee_name' ? $sortDirection : null">Employee Name</x-table.heading>
             <x-table.heading sortable wire:click="sortBy('employee_id')" :direction="$sortField === 'employee_id' ? $sortDirection : null">Employee ID</x-table.heading>
             <x-table.heading sortable wire:click="sortBy('ic')" :direction="$sortField === 'ic' ? $sortDirection : null">IC</x-table.heading>
             <x-table.heading sortable wire:click="sortBy('old_ic')" :direction="$sortField === 'old_ic' ? $sortDirection : null">Old IC</x-table.heading>
-            <x-table.heading sortable wire:click="sortBy('status')" :direction="$sortField === 'status' ? $sortDirection : null">Status</x-table.heading>
+            {{-- <x-table.heading sortable wire:click="sortBy('status')" :direction="$sortField === 'status' ? $sortDirection : null">Status</x-table.heading> --}}
             {{-- <x-table.heading sortable>Position</x-table.heading> --}}
             {{-- <x-table.heading sortable>District</x-table.heading> --}}
             <x-table.heading></x-table.heading>

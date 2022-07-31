@@ -58,6 +58,10 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 12,
                 'title' => 'adfo_access',
             ],
+            [
+                'id'    => 13,
+                'title' => 'hammer_access',
+            ],
         ];
 
         Permission::insert($permissions);

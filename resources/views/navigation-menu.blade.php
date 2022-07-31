@@ -292,7 +292,7 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
 
                 <!-- Setting Dropdown for Admin-->
-                @canany(['admin_access','fo_access'])
+                @canany(['admin_access','fo_access','hammer_access'])
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-dropdown align="right" width="60">
                         <x-slot name="trigger">
@@ -313,49 +313,56 @@
                                 {{-- <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ __('Location Management') }}
                                 </div> --}}
-                                <x-jet-dropdown-link href="{{ route('licensemasters.index') }}">
+                                {{-- <x-jet-dropdown-link href="{{ route('licensemasters.index') }}">
                                     {{ __('License Master') }}
-                                </x-jet-dropdown-link>
-
-                                <x-jet-dropdown-link href="{{ route('licensees.index') }}">
-                                    {{ __('Licensees') }}
-                                </x-jet-dropdown-link>
-
-                                <x-jet-dropdown-link href="{{ route('regions.index') }}">
-                                    {{ __('Regions') }}
-                                </x-jet-dropdown-link>
-
-                                <x-jet-dropdown-link href="{{ route('districts.index') }}">
-                                    {{ __('Districts') }}
-                                </x-jet-dropdown-link>
-
-                                <div class="border-t border-gray-100"></div>
-
-                                <!-- Team Switcher -->
-                                <div class="block px-4 py-2 text-xs text-gray-400">
-                                    {{ __('Royalty Rates Factors') }}
-                                </div>
-                                {{-- <x-jet-dropdown-link href="{{ route('prices.index') }}">
-                                    {{ __('Royalty Prices') }}
                                 </x-jet-dropdown-link> --}}
-                                <x-jet-dropdown-link href="{{ route('royalties.index') }}">
-                                    {{ __('Royalties') }}
-                                </x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="{{ route('premiums.index') }}">
-                                    {{ __('Premiums') }}
-                                </x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="{{ route('logsizes.index') }}">
-                                    {{ __('Log Sizes') }}
-                                </x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="{{ route('hammermarks.index') }}">
-                                    {{ __('Hammer Marks') }}
-                                </x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="{{ route('species.index') }}">
-                                    {{ __('Species') }}
-                                </x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="{{ route('landtypes.index') }}">
-                                    {{ __('Land Types') }}
-                                </x-jet-dropdown-link>
+                                @can('admin_access')
+                                    <x-jet-dropdown-link href="{{ route('licensees.index') }}">
+                                        {{ __('Licensees') }}
+                                    </x-jet-dropdown-link>
+
+                                    <x-jet-dropdown-link href="{{ route('regions.index') }}">
+                                        {{ __('Regions') }}
+                                    </x-jet-dropdown-link>
+
+                                    <x-jet-dropdown-link href="{{ route('districts.index') }}">
+                                        {{ __('Districts') }}
+                                    </x-jet-dropdown-link>
+
+                                    {{-- <div class="border-t border-gray-100"></div> --}}
+
+                                    <!-- Team Switcher -->
+                                    {{-- <div class="block px-4 py-2 text-xs text-gray-400">
+                                        {{ __('Royalty Rates Factors') }}
+                                    </div> --}}
+                                    {{-- <x-jet-dropdown-link href="{{ route('prices.index') }}">
+                                        {{ __('Royalty Prices') }}
+                                    </x-jet-dropdown-link> --}}
+                                    <x-jet-dropdown-link href="{{ route('logsizes.index') }}">
+                                        {{ __('Log Sizes') }}
+                                    </x-jet-dropdown-link>
+                                    <x-jet-dropdown-link href="{{ route('species.index') }}">
+                                        {{ __('Species') }}
+                                    </x-jet-dropdown-link>
+                                    <x-jet-dropdown-link href="{{ route('landtypes.index') }}">
+                                        {{ __('Land Types') }}
+                                    </x-jet-dropdown-link>
+                                @endcan
+
+                                @canany(['admin_access', 'fo_access'])
+                                    <x-jet-dropdown-link href="{{ route('royalties.index') }}">
+                                        {{ __('Royalties') }}
+                                    </x-jet-dropdown-link>
+                                    <x-jet-dropdown-link href="{{ route('premiums.index') }}">
+                                        {{ __('Premiums') }}
+                                    </x-jet-dropdown-link>                                    
+                                @endcanany
+
+                                @canany(['admin_access', 'hammer_access'])
+                                    <x-jet-dropdown-link href="{{ route('hammermarks.index') }}">
+                                        {{ __('Hammer Marks') }}
+                                    </x-jet-dropdown-link>
+                                @endcanany
 
                             </div>
                         </x-slot>

@@ -14,6 +14,7 @@ class HammerMarksTable extends Component
     public $search;
     public $sortField = 'number';
     public $sortDirection = 'asc';
+    public $type = '';
 
     // public $status = 'active';
 
@@ -36,10 +37,19 @@ class HammerMarksTable extends Component
 
         // return view('livewire.hammermarks');
 
-        return view('livewire.hammermarks', [
-            'hammermarks' => HammerMark::search('number', 'employee_name', $this->search)->orderBy($this->sortField, $this->sortDirection)->paginate(20),
+        if ($this->type == '')
+        {
+            return view('livewire.hammermarks', [
+                'hammermarks' => HammerMark::search('number', 'employee_name', $this->search)->orderBy($this->sortField, $this->sortDirection)->paginate(20),
+            ]);
+        } else
+        {
+            return view('livewire.hammermarks', [
+                'hammermarks' => HammerMark::search('number', 'employee_name', $this->search)->where('type', $this->type)->orderBy($this->sortField, $this->sortDirection)->paginate(20),
+            ]);
+        }
+            // 'hammermarks' => HammerMark::search('number', 'employee_name', $this->search)->orderBy($this->sortField, $this->sortDirection)->paginate(20),
             // 'hammermarks' => HammerMark::search('number', 'employee_name', $this->search)->where('status', $this->status)->paginate(20),
-        ]);
 
     }
 

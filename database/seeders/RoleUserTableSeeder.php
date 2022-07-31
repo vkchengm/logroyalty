@@ -708,6 +708,11 @@ class RoleUserTableSeeder extends Seeder
                 'user_id' => 139,
             ),
 
+            136 => 
+            array (
+                'role_id' => 10,
+                'user_id' => 146,
+            ),
             // applicants=2 viewer=6 kppm=4
 
         ));

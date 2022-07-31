@@ -32,8 +32,8 @@
 
                         <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
                             <label for="roles" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Roles</label>
-                            {{-- <select name="roles[]" id="roles" class="form-multiselect block rounded-md shadow-sm mt-1 block w-full" multiple="multiple"> --}}
-                            <select name="roles[]" id="roles" class="form-multiselect block rounded-md shadow-sm mt-1 block w-full">
+                            <select name="roles[]" id="roles" class="form-multiselect block rounded-md shadow-sm mt-1 block w-full" multiple="multiple">
+                            {{-- <select name="roles[]" id="roles" class="form-multiselect block rounded-md shadow-sm mt-1 block w-full"> --}}
                                 @foreach($roles as $id => $role)
                                     <option value="{{ $id }}"{{ in_array($id, old('roles', $user->roles->pluck('id')->toArray())) ? ' selected' : '' }}>
                                         {{ $role }}
