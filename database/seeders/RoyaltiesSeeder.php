@@ -18,201 +18,209 @@ class RoyaltiesSeeder extends Seeder
 
 
         // Export Market
-        $species =  [1];  // A Belian
-        foreach ($species as $specie) {
+        // $species =  [1];  // A Belian
+        // foreach ($species as $specie) {
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'A', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 400, ];
+                'timber_type' => 'natural', 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 400, ];
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'A', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 400, ];
+                'timber_type' => 'natural', 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 400, ];
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'A', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 400, ];
+                'timber_type' => 'natural', 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 400, ];
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'A', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 400, ];
-        }
+                'timber_type' => 'natural', 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 400, ];
+        // }
 
-        $species =  [2,3];  // B Merbau & Merbau Lalat
-        foreach ($species as $specie) {
+        // $species =  [2,3];  // B Merbau & Merbau Lalat
+        // foreach ($species as $specie) {
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'B', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 330, ];
+                'timber_type' => 'natural', 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 330, ];
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'B', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 330, ];
+                'timber_type' => 'natural', 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 330, ];
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'B', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 330, ];
+                'timber_type' => 'natural', 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 330, ];
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'B', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 330, ];
-        }
+                'timber_type' => 'natural', 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 330, ];
+        // }
                     
-        $species =  [4,5,6];  // C Selangan Batu, Pelawan-Pelawan, Kayu Malam
-        foreach ($species as $specie) {
+        // $species =  [4,5,6];  // C Selangan Batu, Pelawan-Pelawan, Kayu Malam
+        // foreach ($species as $specie) {
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'C', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 240, ];
+            'timber_type' => 'natural', 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 240, ];
 
             $landTypes = [3,4,5];
             foreach ($landTypes as $landType) {
                 $royalties[] = [ 'id'    =>  $id++, 'class' => 'C', 'market' => 'Export', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 5, 'amount' => 240, ];
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 5, 'amount' => 240, ];
                 $royalties[] = [ 'id'    =>  $id++, 'class' => 'C', 'market' => 'Export', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 4, 'amount' => 204, ];
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 4, 'amount' => 204, ];
                 $royalties[] = [ 'id'    =>  $id++, 'class' => 'C', 'market' => 'Export', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 3, 'amount' => 168, ];
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 3, 'amount' => 168, ];
                 $royalties[] = [ 'id'    =>  $id++, 'class' => 'C', 'market' => 'Export', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 2, 'amount' => 96, ];
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 2, 'amount' => 96, ];
             }
-        }
+        // }
 
-        $species =  [7,8,9];  // D
-        foreach ($species as $specie) {
+        // $species =  [7,8,9];  // D
+        // foreach ($species as $specie) {
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'D', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 200, ];
+                'timber_type' => 'natural', 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 200, ];
 
             $landTypes = [3,4,5];
             foreach ($landTypes as $landType) {
                 $royalties[] = [ 'id'    =>  $id++, 'class' => 'D', 'market' => 'Export', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 5, 'amount' => 200, ];
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 5, 'amount' => 200, ];
                 $royalties[] = [ 'id'    =>  $id++, 'class' => 'D', 'market' => 'Export', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 4, 'amount' => 170, ];
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 4, 'amount' => 170, ];
                 $royalties[] = [ 'id'    =>  $id++, 'class' => 'D', 'market' => 'Export', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 3, 'amount' => 140, ];
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 3, 'amount' => 140, ];
                 $royalties[] = [ 'id'    =>  $id++, 'class' => 'D', 'market' => 'Export', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 2, 'amount' => 80, ];
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 2, 'amount' => 80, ];
             }
-        }
+        // }
 
-        $species =  [10,11,12,13,14,15,16,17,18];  // E
-        foreach ($species as $specie) {
+        // $species =  [10,11,12,13,14,15,16,17,18];  // E
+        // foreach ($species as $specie) {
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'E', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 180, ];
+                'timber_type' => 'natural', 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 180, ];
 
             $landTypes = [3,4,5];
             foreach ($landTypes as $landType) {
                 $royalties[] = [ 'id'    =>  $id++, 'class' => 'E', 'market' => 'Export', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 5, 'amount' => 180, ];
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 5, 'amount' => 180, ];
                 $royalties[] = [ 'id'    =>  $id++, 'class' => 'E', 'market' => 'Export', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 4, 'amount' => 153, ];
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 4, 'amount' => 153, ];
                 $royalties[] = [ 'id'    =>  $id++, 'class' => 'E', 'market' => 'Export', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 3, 'amount' => 126, ];
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 3, 'amount' => 126, ];
                 $royalties[] = [ 'id'    =>  $id++, 'class' => 'E', 'market' => 'Export', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 2, 'amount' => 72, ];
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 2, 'amount' => 72, ];
             }
-        }
+        // }
 
-        $species =  [19];  // F Others
-        foreach ($species as $specie) {
+        // $species =  [19];  // F Others
+        // foreach ($species as $specie) {
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'F', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 150, ];
+                'timber_type' => 'natural', 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 150, ];
 
             $landTypes = [3,4,5];
             foreach ($landTypes as $landType) {
                 $royalties[] = [ 'id'    =>  $id++, 'class' => 'F', 'market' => 'Export', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 5, 'amount' => 150, ];
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 5, 'amount' => 150, ];
                 $royalties[] = [ 'id'    =>  $id++, 'class' => 'F', 'market' => 'Export', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 4, 'amount' => 128, ];
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 4, 'amount' => 128, ];
                 $royalties[] = [ 'id'    =>  $id++, 'class' => 'F', 'market' => 'Export', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 3, 'amount' => 105, ];
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 3, 'amount' => 105, ];
                 $royalties[] = [ 'id'    =>  $id++, 'class' => 'F', 'market' => 'Export', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 2, 'amount' => 60, ];
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 2, 'amount' => 60, ];
             }
-        }
+        // }
 
-        $species =  [20];  // G Macaranga
-        foreach ($species as $specie) {
+        // $species =  [20];  // G Macaranga
+        // foreach ($species as $specie) {
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'G', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 20, ];
+                'timber_type' => 'natural', 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 20, ];
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'G', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 20, ];
+                'timber_type' => 'natural', 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 20, ];
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'G', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 20, ];
+                'timber_type' => 'natural', 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 20, ];
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'G', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 20, ];
-        }
+                'timber_type' => 'natural', 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 20, ];
+        // }
 
-        $species =  [22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44];  // H Planted
-        foreach ($species as $specie) {
+        // $species =  [22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44];  // H Planted
+        // foreach ($species as $specie) {
             // $royalties[] = [ 'id'    =>  $id++, 'class' => 'H', 'market' => 'Export', 'method' => 'Non-RIL',
             //     'species_id' => $specie, 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 30, ];
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'H', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 30, ];
+                'timber_type' => 'natural', 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 30, ];
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'H', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 30, ];
+                'timber_type' => 'natural', 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 30, ];
             $royalties[] = [ 'id'    =>  $id++, 'class' => 'H', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 30, ];
-        }
+                'timber_type' => 'natural', 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 30, ];
+        // }
 
         // Local Processing
-        $species =  [1,2,3];  // Belian, Merbau, Merbau Lalat
-        foreach ($species as $specie) {
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 120, ];
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 120, ];
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 120, ];
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 120, ];
-        }
+        // $species =  [1,2,3];  // Belian, Merbau, Merbau Lalat
+        // foreach ($species as $specie) {
+            $royalties[] = [ 'id'    =>  $id++, 'class' => 'A', 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'natural', 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 120, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => 'A', 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'natural', 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 120, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => 'A', 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'natural', 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 120, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => 'A', 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'natural', 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 120, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => 'B', 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'natural', 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 120, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => 'B', 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'natural', 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 120, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => 'B', 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'natural', 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 120, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => 'B', 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'natural', 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 120, ];
+        // }
 
-        $species =  [4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];  // C Selangan Batu, Pelawan-Pelawan, Kayu Malam.....
-        foreach ($species as $specie) {
+        $classes =  ['C','D','E','F'];  // C Selangan Batu, Pelawan-Pelawan, Kayu Malam.....
+        foreach ($classes as $class) {
             $landTypes = [2,3,4,5];
             foreach ($landTypes as $landType) {
-                $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 5, 'amount' => 95, ];
-                $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 4, 'amount' => 80, ];
-                $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 3, 'amount' => 45, ];
-                $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                    'species_id' => $specie, 'land_type_id' => $landType, 'log_size_id' => 2, 'amount' => 35, ];
+                $royalties[] = [ 'id'    =>  $id++, 'class' => $class, 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 5, 'amount' => 95, ];
+                $royalties[] = [ 'id'    =>  $id++, 'class' => $class, 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 4, 'amount' => 80, ];
+                $royalties[] = [ 'id'    =>  $id++, 'class' => $class, 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 3, 'amount' => 45, ];
+                $royalties[] = [ 'id'    =>  $id++, 'class' => $class, 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                    'timber_type' => 'natural', 'land_type_id' => $landType, 'log_size_id' => 2, 'amount' => 35, ];
             }
         }
 
 
-        $species =  [20,21];  // Macaranga, Fuel Wood
-        foreach ($species as $specie) {
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 5, ];
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 5, ];
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 5, ];
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 5, ];
-        }
+        // $species =  [20,21];  // Macaranga, Fuel Wood
+        // foreach ($species as $specie) {
+            $royalties[] = [ 'id'    =>  $id++, 'class' => 'G', 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'natural', 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 5, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => 'G', 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'natural', 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 5, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => 'G', 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'natural', 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 5, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => 'G', 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'natural', 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 5, ];
+        // }
 
-        $species =  [22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44];  // Planted
-        foreach ($species as $specie) {
+        // $species =  [22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44];  // Planted
+        // foreach ($species as $specie) {
             // $royalties[] = [ 'id'    =>  $id++, 'class' => 'H', 'market' => 'Export', 'method' => 'Non-RIL',
             //     'species_id' => $specie, 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 30, ];
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 15, ];
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 0, ];
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 15, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => 'H', 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'plantation', 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 15, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => 'H', 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'plantation', 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 0, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => 'H', 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'plantation', 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 15, ];
+        // }
+
+        $classes =  ['A','B'];  // Converted Belian, Merbau, Merbau Lalat
+        foreach ($classes as $class) {
+            $royalties[] = [ 'id'    =>  $id++, 'class' => $class, 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'converted', 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 240, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => $class, 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'converted', 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 240, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => $class, 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'converted', 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 240, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => $class, 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'converted', 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 240, ];
         }
 
-        $species =  [45,46,47];  // Converted Belian, Merbau, Merbau Lalat
-        foreach ($species as $specie) {
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'H', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 240, ];
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 240, ];
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 240, ];
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 240, ];
-        }
-
-        $species =  [48,49,50,51,52,53,54,55,56,57,58,59,60,61,62];  // Converted others...
-        foreach ($species as $specie) {
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'H', 'market' => 'Export', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 190, ];
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 190, ];
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 190, ];
-            $royalties[] = [ 'id'    =>  $id++, 'class' => 'LP', 'market' => 'Local Processing', 'method' => 'Non-RIL',
-                'species_id' => $specie, 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 190, ];
+        $classes =  ['C','D','E','F','G','H'];  // Converted others...
+        foreach ($classes as $class) {
+            $royalties[] = [ 'id'    =>  $id++, 'class' => $class, 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'converted', 'land_type_id' => 2, 'log_size_id' => 1, 'amount' => 190, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => $class, 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'converted', 'land_type_id' => 3, 'log_size_id' => 1, 'amount' => 190, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => $class, 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'converted', 'land_type_id' => 4, 'log_size_id' => 1, 'amount' => 190, ];
+            $royalties[] = [ 'id'    =>  $id++, 'class' => $class, 'market' => 'Local Processing', 'method' => 'Non-RIL',
+                'timber_type' => 'converted', 'land_type_id' => 5, 'log_size_id' => 1, 'amount' => 190, ];
         }
 
         // $royalties = [

@@ -13,7 +13,7 @@
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
                             <label for="name" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Name</label>
-                            <input type="text" name="name" id="name" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                            <input type="text" name="name" id="name" oninput="this.value = this.value.toUpperCase()" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('name', '') }}" />
                             @error('name')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
@@ -26,15 +26,15 @@
                                 <option value="" selected>
                                     Please select
                                 </option>
-                                <option value="Natural">
-                                        Natural
-                                    </option>
-                                    <option value="Plantation">
-                                        Plantation
-                                    </option>
-                                    <option value="Converted Timber">
-                                        Converted Timber
-                                    </option>
+                                <option value='Natural' {{ old('type') == 'Natural' ? 'selected' : '' }}>
+                                    Natural
+                                </option>
+                                <option value='Plantation' {{ old('type') == 'Plantation' ? 'selected' : '' }}>
+                                    Plantation
+                                </option>
+                                <option value='Both' {{ old('type') == 'Both' ? 'selected' : '' }}>
+                                    Both
+                                </option>
                             </select>
                             @if($errors->has('type'))
                                 <p class="help-block">
@@ -43,9 +43,47 @@
                             @endif
                         </div>
 
+                        <div class="px-4 py-5 bg-white dark:bg-stone-600  sm:p-6">
+                            <label for="class" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Class</label>
+                            <select name="class" id="class" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                                <option value="" selected>
+                                    Please select
+                                </option>
+                                <option value='A' {{ old('class') == 'A' ? 'selected' : '' }}>
+                                    A
+                                </option>
+                                <option value='B' {{ old('class') == 'B' ? 'selected' : '' }}>
+                                    B
+                                </option>
+                                <option value='C' {{ old('class') == 'C' ? 'selected' : '' }}>
+                                    C
+                                </option>
+                                <option value='D' {{ old('class') == 'D' ? 'selected' : '' }}>
+                                    D
+                                </option>
+                                <option value='E' {{ old('class') == 'E' ? 'selected' : '' }}>
+                                    E
+                                </option>
+                                <option value='F' {{ old('class') == 'F' ? 'selected' : '' }}>
+                                    F
+                                </option>
+                                <option value='G' {{ old('class') == 'G' ? 'selected' : '' }}>
+                                    G
+                                </option>
+                                <option value='H' {{ old('class') == 'H' ? 'selected' : '' }}>
+                                    H
+                                </option>
+                            </select>
+                            @if($errors->has('class'))
+                                <p class="help-block">
+                                    {{ $errors->first('class') }}
+                                </p>
+                            @endif
+                        </div>
+
                         <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
                             <label for="import_code" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Import Code</label>
-                            <input type="text" name="import_code" id="import_code" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                            <input type="text" name="import_code" id="import_code" oninput="this.value = this.value.toUpperCase()"  class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('import_code', '') }}" />
                             @error('import_code')
                                 <p class="text-sm text-red-600">{{ $message }}</p>

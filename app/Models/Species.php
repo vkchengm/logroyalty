@@ -12,6 +12,7 @@ class Species extends Model
     protected $fillable = [
         'name',
         'type',
+        'class',
         'import_code',
     ];    
 }

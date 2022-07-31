@@ -280,7 +280,8 @@
                                             </td>
 
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600">
-                                                <div class="text-sm text-gray-900 dark:text-gray-300"> {{ $permitdetail->species->name.' ('.$permitdetail->species->type.')' }} </div>
+                                                {{-- <div class="text-sm text-gray-900 dark:text-gray-300"> {{ $permitdetail->species->name.' ('.$permitdetail->species->type.')' }} </div> --}}
+                                                <div class="text-sm text-gray-900 dark:text-gray-300"> {{ $permitdetail->species->name }} </div>
                                             </td>
 
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 dark:bg-stone-600">

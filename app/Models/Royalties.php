@@ -14,7 +14,8 @@ class Royalties extends Model
         'market',
         'method',
 
-        'species_id',
+        // 'species_id',
+        'class',
         'land_type_id',
         'log_size_id',
 

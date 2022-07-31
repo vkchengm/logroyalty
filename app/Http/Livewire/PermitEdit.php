@@ -36,7 +36,15 @@ class PermitEdit extends Component
 
     public function mount($permit)
     {
-        $this->species = Species::all();
+        // $this->species = Species::all();
+        if ($permit->timber_type == 'plantation')
+        {
+            $this->species = Species::where('type','Plantation')->get();
+        } else
+        {
+            $this->species = Species::where('type','Natural')->get();
+        }
+        
         $this->districts = District::orderBy('name','asc')->pluck('id', 'name');
 
         $this->landtypes = LandTypes::all()->pluck('name', 'id');

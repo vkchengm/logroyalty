@@ -119,7 +119,8 @@
                                         @foreach ($species as $specie)
                                             @if ($specie->id == $permitdetails[$index]['species_id'])
                                                 
-                                                <span class="px-2 block py-1 text-base text-sm text-gray-700 dark:text-gray-200 rounded-md shadow-sm mt-1 border-solid w-full">{{ $specie->name.' ('.$specie->type.')' }}</span>
+                                                {{-- <span class="px-2 block py-1 text-base text-sm text-gray-700 dark:text-gray-200 rounded-md shadow-sm mt-1 border-solid w-full">{{ $specie->name.' ('.$specie->type.')' }}</span> --}}
+                                                <span class="px-2 block py-1 text-base text-sm text-gray-700 dark:text-gray-200 rounded-md shadow-sm mt-1 border-solid w-full">{{ $specie->name }}</span>
 
                                                 @break
                                             @endif

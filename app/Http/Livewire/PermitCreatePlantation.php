@@ -41,7 +41,7 @@ class PermitCreatePlantation extends Component
 
     public function mount()
     {
-        $this->species = Species::where('type','Plantation')->get();
+        $this->species = Species::where('type','Plantation')->orWhere('type','Both')->orderBy('name')->get();
         $this->licenses = License::where('licensee_id', Auth::user()->licensee->id)->orderBy('name')->pluck('id', 'name');
         $this->districts = District::orderBy('name','asc')->pluck('id','name')->prepend(trans(''), 'Please select');
         $this->landtypes = LandTypes::orderBy('name','asc')->pluck('id','name')->prepend(trans(''), 'Please select');

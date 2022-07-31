@@ -13,7 +13,7 @@ class SpeciesController extends Controller
 {
     public function index()
     {
-        $species = Species::all();
+        $species = Species::orderBy('name')->get();
 
         return view('species.index', compact('species'));
     }
@@ -44,8 +44,11 @@ class SpeciesController extends Controller
 
     public function update(UpdateSpeciesRequest $request, Species $species)
     {
-        $species->update($request->validated());
+        // $this->validate($request, [              
+        //     'import_code'=> 'required|unique:species.import_code,'.$species,
+        //     ]);  
 
+        $species->update($request->validated());
         return redirect()->route('species.index');
         
     }

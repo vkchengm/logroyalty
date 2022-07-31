@@ -40,6 +40,7 @@ class PermitBill extends Component
         $market = $permit->market; 
         $landTypeId = $permit->land_type_id;
         $method = $permit->logging_method;
+        $timber_type = $permit->timber_type;
         $licensee_type = $permit->user->licensee->name;
 
         $grandTotal = 0;
@@ -49,12 +50,17 @@ class PermitBill extends Component
         foreach($this->permitdetails as $innerArray){
         //   $innerArray['mean']=($innerArray['diameter_1']+$innerArray['diameter_2'])/2; 
         //   $innerArray['vol']=round(3.14159*pow(($innerArray['mean']/100),2)*$innerArray['length'], 2); 
-          $speciesId = $innerArray['species_id'];
+        //   $speciesId = $innerArray['species_id'];
+        //   $speciesClass = $innerArray['class'];
+          $speciesClass = Species::find($innerArray['species_id'])->class;
+
 
           $royalty = Royalties::where('market', $market)
                           ->where('land_type_id', $landTypeId)
+                          ->where('class', $speciesClass)
+                          ->where('timber_type', $timber_type)
                         //   ->where('method', $method)
-                          ->where('species_id', $speciesId)
+                        //   ->where('species_id', $speciesId)
                           ->get();
 
           if (count($royalty) == 1){
@@ -90,7 +96,14 @@ class PermitBill extends Component
               $logSizeId=$logSize->first()->id;
               $filtered = $premium->where('log_size_id', $logSizeId);
               $filtered->all();
-              $innerArray['premium'] = $filtered->first()->amount;
+            //   $innerArray['premium'] = $filtered->first()->amount;
+              if (isset($filtered->first()->amount))
+              {
+                  $innerArray['premium'] = $filtered->first()->amount;
+              }  else
+              {
+                $innerArray['premium'] = 0;
+              }
           }
           else { 
               $innerArray['premium'] = 0;

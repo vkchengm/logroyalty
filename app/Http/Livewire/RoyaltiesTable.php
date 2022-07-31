@@ -36,10 +36,10 @@ class RoyaltiesTable extends DataTableComponent
                 // ->sortable()
                 ->searchable(),
 
-                Column::make('Species', 'species.name')
-                // ->sortable()
-                ->searchable(),
-            Column::make('Type', 'species.type')
+            // Column::make('Species', 'species.name')
+            //     ->searchable(),
+
+            Column::make('Type', 'timber_type')
                 // ->sortable()
                 ->searchable(),
             

@@ -42,17 +42,17 @@
                         </div>
 
                         <div class="px-4 py-5 bg-white dark:bg-stone-600  sm:p-6">
-                            <label for="species" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Species</label>
-                            <select name="species_id" id="specie" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                            <label for="timber_type" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Timber Type</label>
+                            <select name="timber_type" id="specie" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
                                 @foreach($species as $id => $specie)
-                                    <option value="{{ $id }}" {{ (isset($royalty) && $royalty->specie ? $royalty->specie->id : old('species_id')) == $id ? 'selected' : '' }}>
+                                    <option value="{{ $id }}" {{ (isset($royalty) && $royalty->specie ? $royalty->specie->id : old('timber_type')) == $id ? 'selected' : '' }}>
                                         {{ $specie }}
                                     </option>
                             @endforeach
                             </select>
-                            @if($errors->has('species_id'))
+                            @if($errors->has('timber_type'))
                                 <p class="help-block">
-                                    {{ $errors->first('species_id') }}
+                                    {{ $errors->first('timber_type') }}
                                 </p>
                             @endif
                         </div>

@@ -33,9 +33,14 @@ class UpdateSpeciesRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'class'     => [
+                'string',
+                'required',
+            ],
             'import_code'   => [
                 'string',
                 'required',
+                'unique:species,import_code,'. $this->species['id'],
             ],
         ];
     }

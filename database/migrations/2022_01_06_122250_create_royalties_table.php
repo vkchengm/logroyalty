@@ -18,8 +18,9 @@ class CreateRoyaltiesTable extends Migration
             $table->string('class');
             $table->string('market');
             $table->string('method');
-            $table->unsignedBigInteger('species_id')->nullable();
-            $table->foreign('species_id')->references('id')->on('species');
+            $table->string('timber_type');
+            // $table->unsignedBigInteger('species_id')->nullable();
+            // $table->foreign('species_id')->references('id')->on('species');
             $table->unsignedBigInteger('land_type_id')->nullable();
             $table->foreign('land_type_id')->references('id')->on('land_types');
             $table->unsignedBigInteger('log_size_id')->nullable();

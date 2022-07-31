@@ -14,7 +14,7 @@
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
                             <label for="name" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Name</label>
-                            <input type="text" name="name" id="name" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                            <input type="text" name="name" id="name" oninput="this.value = this.value.toUpperCase()" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('name', $species->name) }}" />
                             @error('name')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
@@ -28,15 +28,52 @@
                                     Natural
                                 </option>
                                 <option {{ ($species->type) == 'Plantation' ? 'selected' : '' }} value="Plantation" >
-                                        Plantation
+                                    Plantation
                                 </option>
-                                <option {{ ($species->type) == 'Converted Timber' ? 'selected' : '' }} value="Converted Timber" >
-                                    Converted Timber
+                                <option {{ ($species->type) == 'Both' ? 'selected' : '' }} value="Both" >
+                                    Both
                                 </option>
                             </select>
                             @if($errors->has('type'))
                                 <p class="help-block">
                                     {{ $errors->first('type') }}
+                                </p>
+                            @endif
+                        </div>
+                        <div class="px-4 py-5 bg-white dark:bg-stone-600  sm:p-6">
+                            <label for="class" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Class</label>
+                            <select name="class" id="class" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                                <option value="" selected>
+                                    Please select
+                                </option>
+                                <option value='A' {{ ($species->class) == 'A' ? 'selected' : '' }}>
+                                    A
+                                </option>
+                                <option value='B' {{ ($species->class) == 'B' ? 'selected' : '' }}>
+                                    B
+                                </option>
+                                <option value='C' {{ ($species->class) == 'C' ? 'selected' : '' }}>
+                                    C
+                                </option>
+                                <option value='D' {{ ($species->class) == 'D' ? 'selected' : '' }}>
+                                    D
+                                </option>
+                                <option value='E' {{ ($species->class) == 'E' ? 'selected' : '' }}>
+                                    E
+                                </option>
+                                <option value='F' {{ ($species->class) == 'F' ? 'selected' : '' }}>
+                                    F
+                                </option>
+                                <option value='G' {{ ($species->class) == 'G' ? 'selected' : '' }}>
+                                    G
+                                </option>
+                                <option value='H' {{ ($species->class) == 'H' ? 'selected' : '' }}>
+                                    H
+                                </option>
+                            </select>
+                            @if($errors->has('class'))
+                                <p class="help-block">
+                                    {{ $errors->first('class') }}
                                 </p>
                             @endif
                         </div>
