@@ -200,7 +200,7 @@
                                         <td>{{ $permit->district->region->name }}</td>
                                         <td>{{ $permit->district->name }}</td>
                                         <td>{{ $permit->year }}</td>
-                                        <td>{{ $this->monthList[$permit->month] }}</td>
+                                        <td>{{ $this->getMonth($permit->month) }}</td>
 
                                         <td class='text-right'>{{ number_format($permit->ril_vol_more_than_59) }}</td>
                                         <td class='text-right'>{{ number_format($permit->non_ril_vol_more_than_59) }}</td>

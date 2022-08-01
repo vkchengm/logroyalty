@@ -66,7 +66,7 @@
                                         </td>
 
                                         <td class="text-right">
-                                            {{ data_get($monthList, $permit->month, $permit->month) }}
+                                            {{ $this->getMonth($permit->month) }}
                                         </td>
 
                                         <td class="text-right">

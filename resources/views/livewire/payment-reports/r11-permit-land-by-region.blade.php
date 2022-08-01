@@ -131,7 +131,7 @@
                                 @foreach ($permits as $index => $permit)
                                     <tr class="break-words">
                                         <td>{{ $permit->year }}</td>
-                                        <td>{{ $this->monthList[$permit->month] }}</td>
+                                        <td>{{ $this->getMonth($permit->month) }}</td>
                                         <td>{{ $permit->district->region->name }}</td>
                                         <td>{{ $permit->district->name }}</td>
                                         <td>{{ $permit->user->licensee->name }}</td>

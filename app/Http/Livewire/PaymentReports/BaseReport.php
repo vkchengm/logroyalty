@@ -87,13 +87,16 @@ trait BaseReport
             ->toArray();
     }
 
+    public function getMonth($monthNumber)
+    {
+        return data_get($this->monthList, $monthNumber, $monthNumber);
+    }
+
     public function updated($key, $value)
     {
         $this->loadReport();
     }
 
     public function loadReport()
-    {
-
-    }
+    {}
 }

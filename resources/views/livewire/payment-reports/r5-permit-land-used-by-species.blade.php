@@ -126,7 +126,7 @@
                                         </td>
 
                                         <td>
-                                            {{ $this->monthList[$permit->month] }}
+                                            {{ $this->getMonth($permit->month) }}
                                         </td>
 
                                         <td>
