@@ -66,9 +66,6 @@
                                         </td>
 
                                         <td class="text-right">
-                                            @php info('permit month ', [$permit->month]) @endphp
-                                            @php info('month name ', [$this->getMonth($permit->month)]) @endphp
-
                                             {{ $this->getMonth($permit->month) }}
                                         </td>
 
