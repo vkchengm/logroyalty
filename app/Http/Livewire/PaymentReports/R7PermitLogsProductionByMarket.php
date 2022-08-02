@@ -29,6 +29,8 @@ class R7PermitLogsProductionByMarket extends Component
     public function loadReport()
     {
         $this->permits = Permit::query()
+            ->where('status', env('PERMIT_STATUS'))
+
             ->when($this->selectedYear, function ($q) {
                 $q->whereYear('payment_date', $this->selectedYear);
             })

@@ -25,6 +25,8 @@ class R4PermitLandUsedByVolume extends Component
     public function loadReport()
     {
         $this->permits = Permit::query()
+        ->where('status', env('PERMIT_STATUS'))
+
             ->when($this->landTypeId, function ($q) {
                 $q->where('land_type_id', $this->landTypeId);
             })

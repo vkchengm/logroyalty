@@ -62,7 +62,10 @@ trait BaseReport
     public function getLandTypeList()
     {
         return LandTypes::query()
-            ->whereIn('id', Permit::query()->distinct()->select('land_type_id'))
+            ->whereIn('id', Permit::query()
+            ->where('status', env('PERMIT_STATUS'))
+            
+            ->distinct()->select('land_type_id'))
             ->pluck('name', 'id')
             ->toArray();
     }
@@ -72,7 +75,10 @@ trait BaseReport
         return Licensee::query()
             ->leftJoin('users', 'users.licensee_id', '=', 'licensees.id')
             ->whereNotNull('users.id')
-            ->whereIn('users.id',Permit::query()->select('user_id'))
+            ->whereIn('users.id',Permit::query()
+            ->where('status', env('PERMIT_STATUS'))
+            
+            ->select('user_id'))
             ->oldest('licensees.name')
             ->pluck('licensees.name', 'users.id')
             ->toArray();
@@ -81,6 +87,8 @@ trait BaseReport
     public function getMarketTypeList()
     {
         return Permit::query()
+            ->where('status', env('PERMIT_STATUS'))
+
             ->distinct()
             ->select('market')
             ->pluck('market', 'market')
