@@ -59,6 +59,12 @@ class RoyaltiesTable extends DataTableComponent
                 // ->sortable()
                 ->searchable(),
 
+            Column::make('')
+                ->format(function($value, $column, $row) {
+                    return view('royalties.show')->withRoyalties($row);
+                }),
+            // ->sortable()
+                // ->searchable(),
         ];
     }
 

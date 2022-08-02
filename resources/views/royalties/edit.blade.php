@@ -34,14 +34,58 @@
 
                         <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
                             <label for="class" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Class</label>
+                            <select name="class" id="class" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                                    {{-- <option value="" selected>
+                                        Please select
+                                    </option> --}}
+                                    <option value="">Please select</option>
+                                    <option {{ ($royalty->class) == 'A' ? 'selected' : '' }} value="A">A</option>
+                                    <option {{ ($royalty->class) == 'B' ? 'selected' : '' }} value="B">B</option>
+                                    <option {{ ($royalty->class) == 'C' ? 'selected' : '' }} value="C">C</option>
+                                    <option {{ ($royalty->class) == 'D' ? 'selected' : '' }} value="D">D</option>
+                                    <option {{ ($royalty->class) == 'E' ? 'selected' : '' }} value="E">E</option>
+                                    <option {{ ($royalty->class) == 'F' ? 'selected' : '' }} value="F">F</option>
+                                    <option {{ ($royalty->class) == 'G' ? 'selected' : '' }} value="G">G</option>
+                                    <option {{ ($royalty->class) == 'H' ? 'selected' : '' }} value="H">H</option>
+    
+                            </select>
+                            @if($errors->has('class'))
+                                <p class="help-block">
+                                    {{ $errors->first('class') }}
+                                </p>
+                            @endif
+                        </div>
+
+                        {{-- <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
+                            <label for="class" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Class</label>
                             <input type="text" name="class" id="class" class="form-input rounded-md shadow-sm mt-1 block w-full"
                                    value="{{ old('class', $royalty->class) }}" />
                             @error('class')
                                 <p class="text-sm text-red-600">{{ $message }}</p>
                             @enderror
-                        </div>
+                        </div> --}}
                         
-                            <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
+
+                        <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
+                            <label for="timber_type" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Timber type</label>
+                            <select name="timber_type" id="timber_type" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                                    {{-- <option value="" selected>
+                                        Please select
+                                    </option> --}}
+                                    <option value="">Please select</option>
+                                    <option {{ ($royalty->timber_type) == 'natural' ? 'selected' : '' }} value="natural">Natural</option>
+                                    <option {{ ($royalty->timber_type) == 'plantation' ? 'selected' : '' }} value="plantation">Plantation</option>
+                                    <option {{ ($royalty->timber_type) == 'converted' ? 'selected' : '' }} value="converted">Converted</option>
+    
+                            </select>
+                            @if($errors->has('timber_type'))
+                                <p class="help-block">
+                                    {{ $errors->first('timber_type') }}
+                                </p>
+                            @endif
+                        </div>
+
+                            {{-- <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
                             <label for="species" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Species</label>
                             <select name="species_id" id="specie" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
                                 @foreach($species as $id => $specie)                                    
@@ -55,28 +99,28 @@
                                     {{ $errors->first('species_id') }}
                                 </p>
                             @endif
+                        </div> --}}
+                        
+                        
+                        <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
+                            <label for="landtype" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Land Type</label>
+                            <select name="land_type_id" id="land_type_id" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
+                                @foreach($landtypes as $id => $landtype)
+                                <option value="{{ $id }}" {{ (isset($royalty) && $royalty->landtype ? $royalty->landtype->id : old('land_type_id')) == $id ? 'selected' : '' }}>
+                                    {{ $landtype }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('land_type_id'))
+                            <p class="help-block">
+                                {{ $errors->first('land_type_id') }}
+                            </p>
+                            @endif
                         </div>
                         
                     </div>
                     
                     <div class="flex flex-row shadow overflow-hidden sm:rounded-md bg-white dark:bg-stone-600">
-
-                        <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
-                            <label for="landtype" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Land Type</label>
-                            <select name="land_type_id" id="land_type_id" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">
-                                @foreach($landtypes as $id => $landtype)
-                                    <option value="{{ $id }}" {{ (isset($royalty) && $royalty->landtype ? $royalty->landtype->id : old('land_type_id')) == $id ? 'selected' : '' }}>
-                                        {{ $landtype }}
-                                    </option>
-                            @endforeach
-                            </select>
-                            @if($errors->has('land_type_id'))
-                                <p class="help-block">
-                                    {{ $errors->first('land_type_id') }}
-                                </p>
-                            @endif
-                        </div>
-
                         <div class="px-4 py-5 bg-white dark:bg-stone-600 sm:p-6">
                             <label for="method" class="block font-medium text-sm text-gray-700 dark:text-gray-200">Method</label>
                             <select name="method" id="method" class="form-control select2 rounded-md shadow-sm mt-1 block w-full">

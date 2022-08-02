@@ -14,7 +14,7 @@ class UpdateHammerMarkRequest extends FormRequest
      */
     public function authorize()
     {
-        return Gate::allows('fo_access');
+        return Gate::allows('hammer_access');
     }
 
     /**

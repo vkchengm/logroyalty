@@ -37,8 +37,12 @@ class StoreRoyaltiesRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'species_id'     => [
-                'integer',
+            // 'species_id'     => [
+            //     'integer',
+            //     'required',
+            // ],
+            'timber_type'     => [
+                'string',
                 'required',
             ],
             'amount'     => [

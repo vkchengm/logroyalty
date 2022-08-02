@@ -15,6 +15,7 @@ class Royalties extends Model
         'method',
 
         // 'species_id',
+        'timber_type',
         'class',
         'land_type_id',
         'log_size_id',

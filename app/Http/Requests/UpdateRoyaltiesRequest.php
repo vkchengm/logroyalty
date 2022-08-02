@@ -38,8 +38,8 @@ class UpdateRoyaltiesRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'species_id'     => [
-                'integer',
+            'timber_type'     => [
+                'string',
                 'required',
             ],
             'amount'     => [
